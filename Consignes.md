@@ -1,6 +1,7 @@
 # Instructions pour le Projet Quiz - Méthode Agile
 
-https://www.figma.com/proto/UPGrEqudKD9En12DGu1xh5/DashStack---Free-Admin-Dashboard-UI-Kit---Admin-%26-Dashboard-Ui-Kit---Admin-Dashboard-(Community)?node-id=0-1&t=pwXD0NLYii4wcMSQ-1
+https://www.figma.com/design/UPGrEqudKD9En12DGu1xh5/DashStack---Free-Admin-Dashboard-UI-Kit---Admin-%26-Dashboard-Ui-Kit---Admin-Dashboard-(Community)?node-id=0-1&p=f&t=pwXD0NLYii4wcMSQ-0
+
 
 ## Contexte
 Dans ce projet, vous êtes un groupe de 3 à 4 personnes travaillant sur le développement d'une application de quiz. Vous avez à votre disposition un **backlog** de fonctionnalités à développer, et vous devrez appliquer les rituels agiles pour organiser votre travail en équipe.
