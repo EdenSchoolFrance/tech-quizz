@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <header>
+        <ul>
+            <li>
+                <a href="login.php">Register</a>
+            </li>
+            <li>
+                <a href="register.php">Login</a>
+            </li>
+        </ul>
+    </header>
 <main>
     <?php echo $content; ?>
 </main>
