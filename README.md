@@ -22,6 +22,7 @@ Accédez au répertoire du projet cloné :
 cd quiz-project
 
 Ajoutez le dépôt original comme upstream :
+```
 
  ```bash
 git remote add upstream https://github.com/auteur-original/quiz-project.git
