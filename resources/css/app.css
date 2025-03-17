@@ -1,5 +1,11 @@
-body * {
+* {
     font-family: "Rubik", sans-serif;
+}
+
+body {
+    background-color: var(--deep-white-color);
+    background-image: url("../img/bg.svg");
+
 }
 
 :root {
