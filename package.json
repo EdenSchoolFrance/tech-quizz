@@ -4,6 +4,7 @@
     "tailwindcss": "^4.0.14"
   },
   "scripts": {
-    "dev": "npx @tailwindcss/cli -i ./public/tailwind.css -o ./public/style.css --watch"
+    "dev": "npx @tailwindcss/cli -i ./public/tailwind.css -o ./public/style.css --watch",
+    "serve": "php -S localhost:8000"
   }
 }
