@@ -7,6 +7,13 @@
         <p>Pick a subject to get started</p>
     </div>
     <div>
+        @foreach($quizzes as $quiz)
+            <a href='quiz/{{ $quiz->id }}'><div class="flex">
+                    <div class="bg-[#F6E7FF] h-8 w-1/12"></div><p>fds</p>
+                </div>
+            </a>
+
+        @endforeach
     </div>
 
 
