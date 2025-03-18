@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+    color: #313e51;
+}
+
+body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+.account-icon {
+    position: relative;
+    left: 95%;
+}
+
+.quiz-button {
+    transition: .5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 15px 0 15px 0 ;
+    background-color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.quiz-button:hover {
+    background-color: lightgray;
+}
+
+.second-text {
+    font-size: .8rem;
+    color: #626c7f;
+    margin-bottom: 50px;
+}
+
+.ellipse {
+    width: 75%;
+    position: absolute;
+    z-index: -1;
+}
+
+.ellipse-1 {
+    top: 0;
+    left: 0;
+}
+
+.ellipse-2 {
+    right: 0;
+    bottom: 0;
+}
+
+.form {
+    z-index: 2;
+}
+
+
+@media screen and (min-width : 768px) {
+    body {
+        flex-direction: row;
+    }
+
+    .min-h-screen {
+        width: 100%;
+        height: 100vh;
+    }
+
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .container > div {
+        padding-top: 10%;
+        width: 50%;
+        display: flex;
+    }
+
+    .first-div {
+
+        align-items: center;
+        flex-direction: column;
+    }
+
+    h1 {
+        width: 60%;
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .second-text {
+        text-align: left;
+    }
+
+    .second-div {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .quiz-button {
+        width: 70%;
+        height: 70px;
+        margin: 15px 0 15px 0 ;
+    }
+
+    .ellipse {
+        width: 45%;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {
+    .ellipse {
+        width: 35%;
+    }
+}
