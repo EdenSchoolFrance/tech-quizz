@@ -10,6 +10,11 @@ $router = new App\Router($_SERVER["REQUEST_URI"]);
 
 $router->get('/', 'HomeController@index');
 
+$router->get('/login', 'AuthController@showLogin');
+$router->get('/register', 'AuthController@showRegister');
+
+
+
 
 
 $router->run();

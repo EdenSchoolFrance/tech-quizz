@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `answers` (
-  `id` int(11) NOT NULL,
-  `question_id` int(11) DEFAULT NULL,
-  `answer_text` text NOT NULL,
-  `is_correct` tinyint(1) DEFAULT 0
+                           `id` varchar(20) NOT NULL,
+                           `question_id` varchar(20) DEFAULT NULL,
+                           `answer_text` text NOT NULL,
+                           `is_correct` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -41,10 +41,10 @@ CREATE TABLE `answers` (
 --
 
 CREATE TABLE `questions` (
-  `id` int(11) NOT NULL,
-  `quizz_id` int(11) DEFAULT NULL,
-  `question_text` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+                             `id` varchar(20) NOT NULL,
+                             `quizz_id` varchar(20) DEFAULT NULL,
+                             `question_text` text NOT NULL,
+                             `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -54,11 +54,11 @@ CREATE TABLE `questions` (
 --
 
 CREATE TABLE `quizz` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+                         `id` varchar(20) NOT NULL,
+                         `title` varchar(255) NOT NULL,
+                         `description` text DEFAULT NULL,
+                         `created_by` varchar(20) DEFAULT NULL,
+                         `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -68,12 +68,12 @@ CREATE TABLE `quizz` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
-  `role` enum('admin','user') DEFAULT 'user',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+                         `id` varchar(20) NOT NULL,
+                         `username` varchar(50) NOT NULL,
+                         `email` varchar(100) NOT NULL,
+                         `password_hash` varchar(255) NOT NULL,
+                         `role` enum('admin','user') DEFAULT 'user',
+                         `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -83,12 +83,12 @@ CREATE TABLE `users` (
 --
 
 CREATE TABLE `user_answers` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `question_id` int(11) DEFAULT NULL,
-  `answer_id` int(11) DEFAULT NULL,
-  `is_correct` varchar(10) DEFAULT NULL,
-  `answered_at` timestamp NOT NULL DEFAULT current_timestamp()
+                                `id` varchar(20) NOT NULL,
+                                `user_id` varchar(20) DEFAULT NULL,
+                                `question_id` varchar(20) DEFAULT NULL,
+                                `answer_id` varchar(20) DEFAULT NULL,
+                                `is_correct` varchar(10) DEFAULT NULL,
+                                `answered_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -98,11 +98,11 @@ CREATE TABLE `user_answers` (
 --
 
 CREATE TABLE `user_quizz` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `quizz_id` int(11) DEFAULT NULL,
-  `score` int(11) DEFAULT 0,
-  `completed_at` timestamp NOT NULL DEFAULT current_timestamp()
+                              `id` varchar(20) NOT NULL,
+                              `user_id` varchar(20) DEFAULT NULL,
+                              `quizz_id` varchar(20) DEFAULT NULL,
+                              `score` int(11) DEFAULT 0,
+                              `completed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -113,28 +113,28 @@ CREATE TABLE `user_quizz` (
 -- Index pour la table `answers`
 --
 ALTER TABLE `answers`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD KEY `question_id` (`question_id`);
 
 --
 -- Index pour la table `questions`
 --
 ALTER TABLE `questions`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD KEY `quizz_id` (`quizz_id`);
 
 --
 -- Index pour la table `quizz`
 --
 ALTER TABLE `quizz`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD KEY `created_by` (`created_by`);
 
 --
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`);
 
@@ -142,7 +142,7 @@ ALTER TABLE `users`
 -- Index pour la table `user_answers`
 --
 ALTER TABLE `user_answers`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `question_id` (`question_id`),
   ADD KEY `answer_id` (`answer_id`);
@@ -151,49 +151,9 @@ ALTER TABLE `user_answers`
 -- Index pour la table `user_quizz`
 --
 ALTER TABLE `user_quizz`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `quizz_id` (`quizz_id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `answers`
---
-ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `questions`
---
-ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `quizz`
---
-ALTER TABLE `quizz`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `user_answers`
---
-ALTER TABLE `user_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `user_quizz`
---
-ALTER TABLE `user_quizz`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
@@ -203,25 +163,25 @@ ALTER TABLE `user_quizz`
 -- Contraintes pour la table `answers`
 --
 ALTER TABLE `answers`
-  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE;
+    ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `questions`
 --
 ALTER TABLE `questions`
-  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`) ON DELETE CASCADE;
+    ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `quizz`
 --
 ALTER TABLE `quizz`
-  ADD CONSTRAINT `quizz_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+    ADD CONSTRAINT `quizz_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL;
 
 --
 -- Contraintes pour la table `user_answers`
 --
 ALTER TABLE `user_answers`
-  ADD CONSTRAINT `user_answers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+    ADD CONSTRAINT `user_answers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_answers_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_answers_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `answers` (`id`) ON DELETE CASCADE;
 
@@ -229,7 +189,7 @@ ALTER TABLE `user_answers`
 -- Contraintes pour la table `user_quizz`
 --
 ALTER TABLE `user_quizz`
-  ADD CONSTRAINT `user_quizz_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+    ADD CONSTRAINT `user_quizz_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_quizz_ibfk_2` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`) ON DELETE CASCADE;
 COMMIT;
 
