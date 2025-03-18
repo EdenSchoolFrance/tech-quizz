@@ -19,7 +19,7 @@
         <img class="ellipse ellipse-1" src="{{ asset('img/ellipse1.svg') }}" alt="ellipse">
     </div>
     <div class=" flex flex-col justify-center items-center w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg form">
-        <img src="{{ asset('img/404.png') }}" alt="">
+        <img style="z-index: 200;" src="{{ asset('img/404.png') }}" alt="profile">
         <h1>Looks like you've got lost...</h1>
         <a href="{{ url('/') }}"><button type="button" class="button">Back to home</button></a>
     </div>
