@@ -2,7 +2,7 @@
 
 namespace App\models;
 
-class UserManager
+class UserManager extends Model
 {
 
     private $pdo;
