@@ -1,0 +1,35 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:nuxt/recommended",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "vue"],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "vue/multi-word-component-names": "off",
+    "vue/no-multiple-template-root": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "no-console": "off",
+    "no-debugger": "off",
+    "vue/attributes-order": "warn",
+    "vue/component-tags-order": ["error", {
+      "order": ["script", "template", "style"]
+    }],
+    "vue/html-self-closing": ["error", {
+      "html": {
+        "void": "always",
+        "normal": "always",
+        "component": "always"
+      }
+    }]
+  }
+} 
