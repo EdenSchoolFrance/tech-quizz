@@ -7,23 +7,21 @@ use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
-
     public function up()
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('category');
-            $table->string('difficulty');
+            $table->string('img_url');
             $table->timestamps();
         });
 
         // Insertion des quiz initiaux
         DB::table('quizzes')->insert([
-            ['title' => 'Quiz JavaScript', 'category' => 'Développement Web', 'difficulty' => 'medium'],
-            ['title' => 'Quiz HTML', 'category' => 'Développement Web', 'difficulty' => 'easy'],
-            ['title' => 'Quiz CSS', 'category' => 'Développement Web', 'difficulty' => 'medium'],
-            ['title' => 'Quiz Accessibilité Web', 'category' => 'Développement Web', 'difficulty' => 'hard'],
+            ['title' => 'JavaScript', 'img_url' => 'img/quizz/javascript.svg'],
+            ['title' => 'HTML', 'img_url' => 'img/quizz/html.svg'],
+            ['title' => 'CSS', 'img_url' => 'img/quizz/css.svg'],
+            ['title' => 'Accessibility', 'img_url' => 'img/quizz/accessibility.svg'],
         ]);
     }
 
