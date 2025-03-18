@@ -16,6 +16,8 @@
             <label :for="reponse.id_reponse">{{ reponse.label }}</label>
           </li>
         </ul>
+        <button v-if="currentQuestion < questions.length - 1" @click="nextQuestion">Suivant</button>
+        <button v-else @click="submitQuiz">Terminer</button>
       </div>
     </div>
     <div v-else>
@@ -40,6 +42,11 @@ const score = ref(0);
 const currentQuestion = ref(0);
 const reponses = ref(null);
 const selectedReponse = ref('');
+
+const nextQuestion = async () => {
+  currentQuestion.value++;
+  reponses.value = await fetchReponses(questions.value[currentQuestion.value].id_question);
+}
 
 onMounted(async () => {
   try {
