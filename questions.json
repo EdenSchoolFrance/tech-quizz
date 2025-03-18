@@ -1,0 +1,852 @@
+{
+    "quizzes": [
+      {
+        "title": "JavaScript Quiz",
+        "questions": [
+          {
+            "question": "What keyword is used to declare a variable in JavaScript?",
+            "options": [
+              "let",
+              "var",
+              "const",
+              "All of the above"
+            ],
+            "answer": "All of the above"
+          },
+          {
+            "question": "What is the output of console.log(typeof [])?",
+            "options": [
+              "\"array\"",
+              "\"object\"",
+              "\"undefined\"",
+              "\"function\""
+            ],
+            "answer": "\"object\""
+          },
+          {
+            "question": "How do you write a single-line comment in JavaScript?",
+            "options": [
+              "# This is a comment",
+              "/* This is a comment */",
+              "// This is a comment",
+              "-- This is a comment"
+            ],
+            "answer": "// This is a comment"
+          },
+          {
+            "question": "What does the expression Boolean('false') return?",
+            "options": [
+              "true",
+              "false",
+              "undefined",
+              "NaN"
+            ],
+            "answer": "true"
+          },
+          {
+            "question": "Which method is used to add an element to the end of an array in JavaScript?",
+            "options": [
+              ".push()",
+              ".pop()",
+              ".shift()",
+              ".unshift()"
+            ],
+            "answer": ".push()"
+          },
+          {
+            "question": "What is the output of console.log(2 + '2')?",
+            "options": [
+              "4",
+              "22",
+              "NaN",
+              "TypeError"
+            ],
+            "answer": "22"
+          },
+          {
+            "question": "Which structure is used to execute code repeatedly?",
+            "options": [
+              "if",
+              "switch",
+              "loop",
+              "for"
+            ],
+            "answer": "for"
+          },
+          {
+            "question": "Which object is used to manipulate dates in JavaScript?",
+            "options": [
+              "Date",
+              "Time",
+              "Clock",
+              "Calendar"
+            ],
+            "answer": "Date"
+          },
+          {
+            "question": "What does the JSON.stringify() method do?",
+            "options": [
+              "Converts a JavaScript object to a JSON string",
+              "Converts a JSON string to a JavaScript object",
+              "Checks if a string is in JSON format",
+              "None of the above"
+            ],
+            "answer": "Converts a JavaScript object to a JSON string"
+          },
+          {
+            "question": "What is the difference between == and === in JavaScript?",
+            "options": [
+              "No difference",
+              "== compares values only, while === compares both values and types",
+              "=== compares values only",
+              "== compares memory references"
+            ],
+            "answer": "== compares values only, while === compares both values and types"
+          }
+        ],
+        "language": "en"
+      },
+      {
+        "title": "HTML Quiz",
+        "questions": [
+          {
+            "question": "What is the role of HTML?",
+            "options": [
+              "Defines the structure of a webpage",
+              "Applies style to webpages",
+              "Adds interactivity",
+              "Stores data"
+            ],
+            "answer": "Defines the structure of a webpage"
+          },
+          {
+            "question": "What is the correct tag to insert an image in HTML?",
+            "options": [
+              "<image>",
+              "<img>",
+              "<picture>",
+              "<photo>"
+            ],
+            "answer": "<img>"
+          },
+          {
+            "question": "Which tag is used to create a hyperlink?",
+            "options": [
+              "<link>",
+              "<a>",
+              "<href>",
+              "<url>"
+            ],
+            "answer": "<a>"
+          },
+          {
+            "question": "What is the basic structure of an HTML document?",
+            "options": [
+              "<html><head><title></title></head><body></body></html>",
+              "<header><body><footer>",
+              "<main><article><section>",
+              "<head><content><footer>"
+            ],
+            "answer": "<html><head><title></title></head><body></body></html>"
+          },
+          {
+            "question": "Which tag is used to insert an unordered list?",
+            "options": [
+              "<ol>",
+              "<ul>",
+              "<li>",
+              "<list>"
+            ],
+            "answer": "<ul>"
+          },
+          {
+            "question": "How do you create an input field for a form in HTML?",
+            "options": [
+              "<text>",
+              "<input type=\"text\">",
+              "<textbox>",
+              "<field>"
+            ],
+            "answer": "<input type=\"text\">"
+          },
+          {
+            "question": "Which tag is used to create a table in HTML?",
+            "options": [
+              "<table>",
+              "<tr>",
+              "<td>",
+              "<tab>"
+            ],
+            "answer": "<table>"
+          },
+          {
+            "question": "Which attribute allows you to open a link in a new tab?",
+            "options": [
+              "target=\"_self\"",
+              "target=\"_new\"",
+              "target=\"_blank\"",
+              "target=\"new_tab\""
+            ],
+            "answer": "target=\"_blank\""
+          },
+          {
+            "question": "Which tag is used to define a navigation section?",
+            "options": [
+              "<nav>",
+              "<menu>",
+              "<section>",
+              "<header>"
+            ],
+            "answer": "<nav>"
+          },
+          {
+            "question": "What is the correct semantics for a first-level heading in HTML?",
+            "options": [
+              "<head>",
+              "<title>",
+              "<h1>",
+              "<header>"
+            ],
+            "answer": "<h1>"
+          }
+        ],
+        "language": "en"
+      },
+      {
+        "title": "CSS Quiz",
+        "questions": [
+          {
+            "question": "What does CSS stand for?",
+            "options": [
+              "Creative Style Sheets",
+              "Cascading Style Sheets",
+              "Computer Styled Sections",
+              "Colorful Style Sheets"
+            ],
+            "answer": "Cascading Style Sheets"
+          },
+          {
+            "question": "Which CSS property is used to change the text color?",
+            "options": [
+              "text-color",
+              "color",
+              "font-color",
+              "text-style"
+            ],
+            "answer": "color"
+          },
+          {
+            "question": "Which CSS selector is used to target an element with id=\"menu\"?",
+            "options": [
+              ".menu",
+              "#menu",
+              "menu",
+              "*menu*"
+            ],
+            "answer": "#menu"
+          },
+          {
+            "question": "Which of these CSS rules adds 10px of padding inside an element?",
+            "options": [
+              "margin: 10px;",
+              "padding: 10px;",
+              "spacing: 10px;",
+              "border-spacing: 10px;"
+            ],
+            "answer": "padding: 10px;"
+          },
+          {
+            "question": "What is the effect of display: flex; on an element?",
+            "options": [
+              "It prevents the element from being displayed",
+              "It aligns child elements in a row or column",
+              "It turns the element into a table",
+              "It forces the element to take up the full width"
+            ],
+            "answer": "It aligns child elements in a row or column"
+          },
+          {
+            "question": "Which CSS property is used to round the corners of an element?",
+            "options": [
+              "corner-radius",
+              "border-radius",
+              "rounding",
+              "border-style"
+            ],
+            "answer": "border-radius"
+          },
+          {
+            "question": "Which position value allows an element to stay fixed at the top of the page while scrolling?",
+            "options": [
+              "relative",
+              "absolute",
+              "fixed",
+              "static"
+            ],
+            "answer": "fixed"
+          },
+          {
+            "question": "Which property is used to add a shadow to text in CSS?",
+            "options": [
+              "text-decoration",
+              "text-shadow",
+              "box-shadow",
+              "shadow-effect"
+            ],
+            "answer": "text-shadow"
+          },
+          {
+            "question": "Which CSS rule is used to apply a style only when the user hovers over an element?",
+            "options": [
+              ":focus",
+              ":visited",
+              ":hover",
+              ":active"
+            ],
+            "answer": ":hover"
+          },
+          {
+            "question": "Which CSS unit is relative to the parent element's font size?",
+            "options": [
+              "px",
+              "em",
+              "%",
+              "vh"
+            ],
+            "answer": "em"
+          }
+        ],
+        "language": "en"
+      },
+      {
+        "title": "Web Accessibility Quiz",
+        "questions": [
+          {
+            "question": "What is web accessibility?",
+            "options": [
+              "A set of rules to make a website faster",
+              "Adapting websites for users with disabilities",
+              "A principle to improve search engine optimization",
+              "A technology for creating animations"
+            ],
+            "answer": "Adapting websites for users with disabilities"
+          },
+          {
+            "question": "Which HTML tag is used to provide alternative text for images?",
+            "options": [
+              "title",
+              "alt",
+              "aria-label",
+              "desc"
+            ],
+            "answer": "alt"
+          },
+          {
+            "question": "What does WCAG stand for?",
+            "options": [
+              "Web Content Accessibility Guidelines",
+              "Web Compliance and Accessibility Guide",
+              "Worldwide Content Accessibility Guide",
+              "Web Color Accessibility Guidelines"
+            ],
+            "answer": "Web Content Accessibility Guidelines"
+          },
+          {
+            "question": "Which text color provides the best contrast on a white background?",
+            "options": [
+              "Yellow",
+              "Light blue",
+              "Black",
+              "Light gray"
+            ],
+            "answer": "Black"
+          },
+          {
+            "question": "Which ARIA attribute is used to define a text alternative when no visible text is available?",
+            "options": [
+              "aria-hidden",
+              "aria-label",
+              "aria-description",
+              "alt"
+            ],
+            "answer": "aria-label"
+          },
+          {
+            "question": "What does keyboard navigation allow?",
+            "options": [
+              "Navigating only in forms",
+              "Navigating a website without using the mouse",
+              "Modifying page displays",
+              "Using keyboard shortcuts to code"
+            ],
+            "answer": "Navigating a website without using the mouse"
+          },
+          {
+            "question": "Why is it important to use semantic HTML tags (<header>, <nav>, <main>, <footer>)?",
+            "options": [
+              "To better structure the page and improve accessibility",
+              "To make the website faster",
+              "To avoid using CSS",
+              "To add animations"
+            ],
+            "answer": "To better structure the page and improve accessibility"
+          },
+          {
+            "question": "What is essential to make a website accessible to visually impaired users?",
+            "options": [
+              "A colorful design",
+              "Text that is readable with good contrast",
+              "Fancy fonts",
+              "Large images"
+            ],
+            "answer": "Text that is readable with good contrast"
+          },
+          {
+            "question": "Which CSS property improves readability for dyslexic people?",
+            "options": [
+              "letter-spacing: 0;",
+              "font-family: Arial, sans-serif;",
+              "text-transform: uppercase;",
+              "word-spacing: -2px;"
+            ],
+            "answer": "font-family: Arial, sans-serif;"
+          },
+          {
+            "question": "Which tool can be used to test the accessibility of a website?",
+            "options": [
+              "Google PageSpeed",
+              "Lighthouse",
+              "Photoshop",
+              "Figma"
+            ],
+            "answer": "Lighthouse"
+          }
+        ],
+        "language": "en"
+      },
+      {
+        "title": "Quiz JavaScript",
+        "questions": [
+          {
+            "question": "Quel mot-clé est utilisé pour déclarer une variable en JavaScript ?",
+            "options": [
+              "let",
+              "var",
+              "const",
+              "Toutes les réponses ci-dessus"
+            ],
+            "answer": "Toutes les réponses ci-dessus"
+          },
+          {
+            "question": "Quelle est la sortie de console.log(typeof [])?",
+            "options": [
+              "\"array\"",
+              "\"object\"",
+              "\"undefined\"",
+              "\"function\""
+            ],
+            "answer": "\"object\""
+          },
+          {
+            "question": "Comment écrire un commentaire sur une seule ligne en JavaScript ?",
+            "options": [
+              "# Ceci est un commentaire",
+              "/* Ceci est un commentaire */",
+              "// Ceci est un commentaire",
+              "-- Ceci est un commentaire"
+            ],
+            "answer": "// Ceci est un commentaire"
+          },
+          {
+            "question": "Que retourne l'expression Boolean('false')?",
+            "options": [
+              "true",
+              "false",
+              "undefined",
+              "NaN"
+            ],
+            "answer": "true"
+          },
+          {
+            "question": "Quelle méthode permet d'ajouter un élément à la fin d'un tableau en JavaScript ?",
+            "options": [
+              ".push()",
+              ".pop()",
+              ".shift()",
+              ".unshift()"
+            ],
+            "answer": ".push()"
+          },
+          {
+            "question": "Quelle est la sortie de console.log(2 + '2')?",
+            "options": [
+              "4",
+              "22",
+              "NaN",
+              "TypeError"
+            ],
+            "answer": "22"
+          },
+          {
+            "question": "Quelle structure est utilisée pour exécuter du code de manière répétitive ?",
+            "options": [
+              "if",
+              "switch",
+              "loop",
+              "for"
+            ],
+            "answer": "for"
+          },
+          {
+            "question": "Quel objet est utilisé pour manipuler les dates en JavaScript ?",
+            "options": [
+              "Date",
+              "Time",
+              "Clock",
+              "Calendar"
+            ],
+            "answer": "Date"
+          },
+          {
+            "question": "Que fait la méthode JSON.stringify() ?",
+            "options": [
+              "Convertit un objet JavaScript en une chaîne JSON",
+              "Convertit une chaîne JSON en un objet JavaScript",
+              "Vérifie si une chaîne est en JSON",
+              "Aucun des choix ci-dessus"
+            ],
+            "answer": "Convertit un objet JavaScript en une chaîne JSON"
+          },
+          {
+            "question": "Quelle est la différence entre == et === en JavaScript ?",
+            "options": [
+              "Aucune différence",
+              "== compare les valeurs uniquement, tandis que === compare les valeurs et les types",
+              "=== compare uniquement les valeurs",
+              "== compare les références mémoire"
+            ],
+            "answer": "== compare les valeurs uniquement, tandis que === compare les valeurs et les types"
+          }
+        ],
+        "language": "fr"
+      },
+      {
+        "title": "Quiz HTML",
+        "questions": [
+          {
+            "question": "Quel est le rôle de HTML ?",
+            "options": [
+              "Définir la structure d'une page web",
+              "Appliquer du style aux pages web",
+              "Ajouter de l'interactivité",
+              "Stocker des données"
+            ],
+            "answer": "Définir la structure d'une page web"
+          },
+          {
+            "question": "Quelle est la balise correcte pour insérer une image en HTML ?",
+            "options": [
+              "<image>",
+              "<img>",
+              "<picture>",
+              "<photo>"
+            ],
+            "answer": "<img>"
+          },
+          {
+            "question": "Quelle balise est utilisée pour créer un lien hypertexte ?",
+            "options": [
+              "<link>",
+              "<a>",
+              "<href>",
+              "<url>"
+            ],
+            "answer": "<a>"
+          },
+          {
+            "question": "Quelle est la structure de base d'un document HTML ?",
+            "options": [
+              "<html><head><title></title></head><body></body></html>",
+              "<header><body><footer>",
+              "<main><article><section>",
+              "<head><content><footer>"
+            ],
+            "answer": "<html><head><title></title></head><body></body></html>"
+          },
+          {
+            "question": "Quelle balise est utilisée pour insérer une liste non ordonnée ?",
+            "options": [
+              "<ol>",
+              "<ul>",
+              "<li>",
+              "<list>"
+            ],
+            "answer": "<ul>"
+          },
+          {
+            "question": "Comment créer un champ de saisie pour un formulaire HTML ?",
+            "options": [
+              "<text>",
+              "<input type=\"text\">",
+              "<textbox>",
+              "<field>"
+            ],
+            "answer": "<input type=\"text\">"
+          },
+          {
+            "question": "Quelle balise est utilisée pour créer un tableau en HTML ?",
+            "options": [
+              "<table>",
+              "<tr>",
+              "<td>",
+              "<tab>"
+            ],
+            "answer": "<table>"
+          },
+          {
+            "question": "Quel attribut permet d'ouvrir un lien dans un nouvel onglet ?",
+            "options": [
+              "target=\"_self\"",
+              "target=\"_new\"",
+              "target=\"_blank\"",
+              "target=\"new_tab\""
+            ],
+            "answer": "target=\"_blank\""
+          },
+          {
+            "question": "Quelle balise est utilisée pour définir une section de navigation ?",
+            "options": [
+              "<nav>",
+              "<menu>",
+              "<section>",
+              "<header>"
+            ],
+            "answer": "<nav>"
+          },
+          {
+            "question": "Quelle est la sémantique correcte pour un titre de premier niveau en HTML ?",
+            "options": [
+              "<head>",
+              "<title>",
+              "<h1>",
+              "<header>"
+            ],
+            "answer": "<h1>"
+          }
+        ],
+        "language": "fr"
+      },
+      {
+        "title": "Quiz CSS",
+        "questions": [
+          {
+            "question": "Que signifie CSS ?",
+            "options": [
+              "Creative Style Sheets",
+              "Cascading Style Sheets",
+              "Computer Styled Sections",
+              "Colorful Style Sheets"
+            ],
+            "answer": "Cascading Style Sheets"
+          },
+          {
+            "question": "Quelle propriété CSS est utilisée pour changer la couleur du texte ?",
+            "options": [
+              "text-color",
+              "color",
+              "font-color",
+              "text-style"
+            ],
+            "answer": "color"
+          },
+          {
+            "question": "Quel sélecteur CSS est utilisé pour cibler un élément avec un id=\"menu\" ?",
+            "options": [
+              ".menu",
+              "#menu",
+              "menu",
+              "*menu*"
+            ],
+            "answer": "#menu"
+          },
+          {
+            "question": "Laquelle de ces règles CSS permet d'ajouter un espace intérieur (padding) de 10px à un élément ?",
+            "options": [
+              "margin: 10px;",
+              "padding: 10px;",
+              "spacing: 10px;",
+              "border-spacing: 10px;"
+            ],
+            "answer": "padding: 10px;"
+          },
+          {
+            "question": "Quel est l'effet de display: flex; sur un élément ?",
+            "options": [
+              "Il empêche l'élément d'être affiché",
+              "Il aligne les éléments enfants sur une ligne ou une colonne",
+              "Il transforme l'élément en tableau",
+              "Il force l'élément à occuper toute la largeur"
+            ],
+            "answer": "Il aligne les éléments enfants sur une ligne ou une colonne"
+          },
+          {
+            "question": "Quelle propriété CSS est utilisée pour arrondir les coins d'un élément ?",
+            "options": [
+              "corner-radius",
+              "border-radius",
+              "rounding",
+              "border-style"
+            ],
+            "answer": "border-radius"
+          },
+          {
+            "question": "Quelle valeur de position permet de fixer un élément en haut de la page, même en scrollant ?",
+            "options": [
+              "relative",
+              "absolute",
+              "fixed",
+              "static"
+            ],
+            "answer": "fixed"
+          },
+          {
+            "question": "Quelle propriété permet d'ajouter une ombre à un texte en CSS ?",
+            "options": [
+              "text-decoration",
+              "text-shadow",
+              "box-shadow",
+              "shadow-effect"
+            ],
+            "answer": "text-shadow"
+          },
+          {
+            "question": "Quelle règle CSS est utilisée pour appliquer un style uniquement lorsque l'utilisateur survole un élément ?",
+            "options": [
+              ":focus",
+              ":visited",
+              ":hover",
+              ":active"
+            ],
+            "answer": ":hover"
+          },
+          {
+            "question": "Quelle unité CSS est relative à la taille de la police du parent ?",
+            "options": [
+              "px",
+              "em",
+              "%",
+              "vh"
+            ],
+            "answer": "em"
+          }
+        ],
+        "language": "fr"
+      },
+      {
+        "title": "Quiz Accessibilité Web",
+        "questions": [
+          {
+            "question": "Qu'est-ce que l'accessibilité web ?",
+            "options": [
+              "Un ensemble de règles pour rendre un site plus rapide",
+              "L'adaptation des sites web pour les utilisateurs en situation de handicap",
+              "Un principe permettant d'améliorer le référencement",
+              "Une technologie pour créer des animations"
+            ],
+            "answer": "L'adaptation des sites web pour les utilisateurs en situation de handicap"
+          },
+          {
+            "question": "Quelle balise HTML est utilisée pour fournir un texte alternatif aux images ?",
+            "options": [
+              "title",
+              "alt",
+              "aria-label",
+              "desc"
+            ],
+            "answer": "alt"
+          },
+          {
+            "question": "Que signifie WCAG ?",
+            "options": [
+              "Web Content Accessibility Guidelines",
+              "Web Compliance and Accessibility Guide",
+              "Worldwide Content Accessibility Guide",
+              "Web Color Accessibility Guidelines"
+            ],
+            "answer": "Web Content Accessibility Guidelines"
+          },
+          {
+            "question": "Quelle couleur de texte offre le meilleur contraste sur un fond blanc ?",
+            "options": [
+              "Jaune",
+              "Bleu clair",
+              "Noir",
+              "Gris clair"
+            ],
+            "answer": "Noir"
+          },
+          {
+            "question": "Quel attribut ARIA est utilisé pour définir une alternative textuelle lorsqu'aucun texte visible n'est disponible ?",
+            "options": [
+              "aria-hidden",
+              "aria-label",
+              "aria-description",
+              "alt"
+            ],
+            "answer": "aria-label"
+          },
+          {
+            "question": "Que permet la navigation au clavier ?",
+            "options": [
+              "Naviguer uniquement dans les formulaires",
+              "Naviguer sur un site sans utiliser la souris",
+              "Modifier l'affichage des pages",
+              "Utiliser des raccourcis clavier pour coder"
+            ],
+            "answer": "Naviguer sur un site sans utiliser la souris"
+          },
+          {
+            "question": "Pourquoi est-il important d'utiliser des balises HTML sémantiques (<header>, <nav>, <main>, <footer>) ?",
+            "options": [
+              "Pour mieux structurer la page et améliorer l'accessibilité",
+              "Pour rendre le site plus rapide",
+              "Pour éviter d'utiliser du CSS",
+              "Pour ajouter des animations"
+            ],
+            "answer": "Pour mieux structurer la page et améliorer l'accessibilité"
+          },
+          {
+            "question": "Quel critère est essentiel pour rendre un site accessible aux personnes malvoyantes ?",
+            "options": [
+              "Un design coloré",
+              "Un texte lisible avec un bon contraste",
+              "Des polices fantaisistes",
+              "L'ajout d'images de grande taille"
+            ],
+            "answer": "Un texte lisible avec un bon contraste"
+          },
+          {
+            "question": "Quelle propriété CSS permet d'améliorer la lisibilité pour les personnes dyslexiques ?",
+            "options": [
+              "letter-spacing: 0;",
+              "font-family: Arial, sans-serif;",
+              "text-transform: uppercase;",
+              "word-spacing: -2px;"
+            ],
+            "answer": "font-family: Arial, sans-serif;"
+          },
+          {
+            "question": "Quel outil peut être utilisé pour tester l'accessibilité d'un site web ?",
+            "options": [
+              "Google PageSpeed",
+              "Lighthouse",
+              "Photoshop",
+              "Figma"
+            ],
+            "answer": "Lighthouse"
+          }
+        ],
+        "language": "fr"
+      }
+    ]
+}
