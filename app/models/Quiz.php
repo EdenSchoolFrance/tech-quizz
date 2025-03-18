@@ -1,5 +1,7 @@
 <?php
 
+namespace App\models;
+
 class Quiz
 {
     private $id;
