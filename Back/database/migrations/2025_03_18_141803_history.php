@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::create('historique', function (Blueprint $table) {
-            $table->id();
+        schema::create('history', function (Blueprint $table) {
+            $table->id('history_id');
             $table->date('date');
             $table->string('score');
-            $table->string('user_id')->references('id')->on('user');
-            $table->string('quiz_id')->references('id')->on('quiz');
+            $table->string('user_id')->references('user_id')->on('user');
+            $table->unsignedBigInteger('quiz_id');
+            $table->foreign('quiz_id')->references('quiz_id')->on('quiz');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('historique');
+        Schema::dropIfExists('history');
     }
 };
