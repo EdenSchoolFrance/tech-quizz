@@ -20,7 +20,7 @@ class UserManager extends Model
     public function insertUser($username, $email, $password, $role = 'user')
     {
         try {
-            $stmt = "INSERT INTO users (id, username, email, password, role, created_at) 
+            $stmt = "INSERT INTO users (id, username, email, password, role) 
                       VALUES (:id, :username, :email, :password, :role)";
 
             $stmt = $this->pdo->prepare($stmt);
