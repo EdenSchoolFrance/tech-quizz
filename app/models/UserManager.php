@@ -20,15 +20,13 @@ class UserManager
     public function insertUser($username, $email, $password, $role = 'user')
     {
         try {
-            $id = uniqid();
-
-            $query = "INSERT INTO users (id, username, email, password, role, created_at) 
+            $stmt = "INSERT INTO users (id, username, email, password, role, created_at) 
                       VALUES (:id, :username, :email, :password, :role)";
 
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->pdo->prepare($stmt);
 
             $stmt->execute([
-                ':id' => $id,
+                ':id' => uniqid(),
                 ':username' => $username,
                 ':email' => $email,
                 ':password' => password_hash($password, PASSWORD_DEFAULT),
@@ -40,12 +38,17 @@ class UserManager
         }
     }
 
-    public function getUser($username, $password)
+    public function getUser($email)
     {
-        $stmt = "SELECT * FROM users WHERE username = :username";
-        $stmt = $this->pdo->prepare($stmt);
-        $stmt->execute([':username' => $username]);
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, User::class);
+        try {
+            $stmt = "SELECT * FROM users WHERE email = :email";
+            $stmt = $this->pdo->prepare($stmt);
+            $stmt->execute([':email' => $email]);
+            $stmt->setFetchMode(\PDO::FETCH_CLASS, User::class);
 
-        $user = $stmt->fetch();
+            return $stmt->fetch();
+        } catch (\PDOException $e) {
+            return "Erreur de base de données: " . $e->getMessage();
+        }
+    }
 }
