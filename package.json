@@ -5,6 +5,7 @@
   },
   "scripts": {
     "dev": "npx @tailwindcss/cli -i ./public/tailwind.css -o ./public/style.css --watch",
-    "serve": "php -S localhost:8000"
+    "serve": "php -S localhost:8000",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
