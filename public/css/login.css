@@ -1,0 +1,27 @@
+* {
+    color: white;
+}
+
+body {
+    background-color: black;
+}
+
+.ellipse {
+    width: 75%;
+    position: absolute;
+    z-index: 0;
+}
+
+.ellipse-1 {
+    top: 0;
+    left: 0;
+}
+
+.ellipse-2 {
+    right: 0;
+    bottom: 0;
+}
+
+.form {
+    z-index: 2;
+}
