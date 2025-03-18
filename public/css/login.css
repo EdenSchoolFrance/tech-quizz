@@ -1,0 +1,50 @@
+.ellipse {
+    width: 75%;
+    position: absolute;
+    z-index: 0;
+}
+
+.ellipse-1 {
+    top: 0;
+    left: 0;
+}
+
+.ellipse-2 {
+    right: 0;
+    bottom: 0;
+}
+
+.form {
+    z-index: 2;
+}
+
+.normal {
+    right: 0;
+    top: 0;
+}
+
+.dashboard {
+    width: 100%;
+    font-size: 30px;
+}
+
+.button {
+    margin: 15px;
+    width: 200px;
+    height: 35px;
+    color: white;
+    border-radius: 10px;
+    background-color: #A729F5;
+}
+
+@media screen and (min-width: 768px) {
+    .ellipse {
+        width: 45%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .ellipse {
+        width: 35%;
+    }
+}
