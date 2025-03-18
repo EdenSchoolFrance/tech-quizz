@@ -1,0 +1,9 @@
+{
+  "name": "tech-quiz",
+  "version": "1.0.0",
+  "description": "Tech Quiz Application",
+  "scripts": {
+    "front": "cd Front && pnpm i && pnpm run dev",
+    "back": "cd Back && composer i && php artisan serve"
+  }
+} 
