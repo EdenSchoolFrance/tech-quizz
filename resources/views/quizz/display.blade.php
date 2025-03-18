@@ -6,9 +6,9 @@
             <p>Pick a subject to get started.</p>
         </div>
         <div class="w-[50%]">
-            @foreach ($quizz as $subject)
-                <a href="{{ route('quiz.start', $subject->id) }}" class="button mt-10 bg-white">
-                    <img class="w-[15px] h-[15px]" src="/public/img/quizz/{{ $subject->img }}">{{ $subject->name }}
+            @foreach ($quizzes as $quizz)
+                <a href="/quizz/{{ $quizz->id }}" class="bg-white my-4 w-[20rem] rounded-xl flex items-center p-2">
+                    <img class="w-[40px] h-[40px] me-8" src="/build/assets/{{ $quizz->img_url }}">{{ $quizz->title }}
                 </a>
             @endforeach
         </div>

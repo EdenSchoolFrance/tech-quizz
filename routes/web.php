@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\QuizController; 
+use App\Http\Controllers\QuizController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -16,4 +16,5 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/quizz', [QuizController::class, 'index']);
+Route::get('/quizzes', [QuizController::class, 'index']);
+Route::get('/quizz/', [QuizController::class, 'quizz']);
