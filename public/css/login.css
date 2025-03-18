@@ -36,3 +36,15 @@
     border-radius: 10px;
     background-color: #A729F5;
 }
+
+@media screen and (min-width: 768px) {
+    .ellipse {
+        width: 45%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .ellipse {
+        width: 35%;
+    }
+}
