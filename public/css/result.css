@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    font-family: "Rubik", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    padding: 32px;
+}
+h1, .name-quiz {
+    font-weight: 500;
+    font-size: 18px;
+}
+.quiz-completed {
+    font-weight: 300;
+    font-size: 40px;
+    margin-top: 32px;
+}
+.you-scored {
+    font-weight: 500;
+    font-size: 40px;
+}
+.container-scored {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+    margin: 16px 0;
+    padding: 32px;
+}
+.scored {
+    font-weight: 500;
+    font-size: 88px;
+}
+.out-of {
+    font-weight: 400;
+    font-size: 18px;
+    color: #626C7F;
+}
+.play-again {
+    font-weight: 500;
+    font-size: 18px;
+    background-color: #A729F5;
+    border-radius: 8px;
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px;
+}
+
+/* background */
+.ellipse {
+    width: 75%;
+    position: absolute;
+    z-index: -1;
+}
+.ellipse-1 {
+    top: 0;
+    left: 0;
+}
+.ellipse-2 {
+    right: 0;
+    bottom: 0;
+}
+.form {
+    z-index: 2;
+    width: 100%;
+}
+
+/* responsive */
+@media screen and (min-width: 768px) {
+    body {
+        padding: 64px;
+    }
+    h1, .name-quiz, .play-again {
+        font-size: 28px;
+    }
+    .quiz-completed, .you-scored {
+        font-size: 64px;
+    }
+    .scored {
+        font-size: 144px;
+    }
+    .out-of {
+        font-size: 24px;
+    }
+
+    .container-scored {
+        padding: 64px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    body {
+        padding: 32px;
+    }
+    .flex {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 32px;
+    }
+    .right{
+        width: 50%;
+    }
+    .container-scored {
+        width: 600px;
+        height: 400px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+    .play-again {
+        width: 600px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+}
