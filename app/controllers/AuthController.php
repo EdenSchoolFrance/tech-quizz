@@ -62,6 +62,7 @@ class AuthController
             exit();
         }
 
+
         $this->validator->validate([
             'username' => ['required', 'min:3', 'max:50'],
             'email' => ['required', 'email'],
@@ -70,7 +71,10 @@ class AuthController
 
         $_SESSION['old'] = $_POST;
 
-        if ($this->validator->errors()) {
+        if ($this->validator->errors() || $_POST['password'] !== $_POST['password_confirmation']) {
+            if ($_POST['password'] !== $_POST['password_confirmation']) {
+                $_SESSION['error']['password_confirmation'] = 'Les mots de passe ne correspondent pas';
+            }
             header('Location: /register');
             exit();
         }

@@ -5,14 +5,14 @@
 
     <form action="/register" method="post" class="flex flex-col gap-5 bg-gray-100 py-15 px-20 rounded-3xl shadow-xl">
             <div class="flex flex-col">
-                <label for="nom">Nom</label>
-                <input type="text" name="nom" id="nom" value="<?=old('nom')?>" >
-                <span class="error"><?=error('nom')?></span>
+                <label for="username">Nom</label>
+                <input type="text" name="username" id="username" value="<?=old('username')?>" >
+                <span class="error"><?=error('username')?></span>
             </div>
             <div class="flex flex-col">
-                <label for="prenom">Prenom</label>
-                <input type="text" name="prenom" id="prenom" value="<?=old('prenom')?>" >
-                <span class="error"><?=error('prenom')?></span>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" value="<?=old('email')?>" >
+                <span class="error"><?=error('email')?></span>
             </div>
             <div class="flex flex-col">
                 <label for="password">Password</label>
