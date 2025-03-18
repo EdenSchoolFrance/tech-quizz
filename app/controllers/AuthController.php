@@ -8,4 +8,9 @@ class AuthController
     {
         require VIEWS . 'auth/register.php';
     }
+
+    public function showLogin()
+    {
+        require VIEWS . 'auth/login.php';
+    }
 }
