@@ -12,6 +12,19 @@ function escape($data) {
     return stripslashes(trim(htmlspecialchars($data)));
 }
 
+function auth() {
+    return isset($_SESSION['user']);
+}
+function user($info) {
+    if (isset($_SESSION['auth'])) {
+        return $_SESSION['auth']->{'get' . $info}();
+    }
+    else {
+        return false;
+    }
+}
+
+
 function slugify($str) {
     // replace non letter or digits by -
     $str = preg_replace('~[^\pL\d]+~u', '-', $str);
@@ -30,3 +43,5 @@ function slugify($str) {
     }
     return $str;
 }
+
+
