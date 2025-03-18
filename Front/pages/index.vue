@@ -1,13 +1,13 @@
 <template>
-  <div class="bg-gray-200 h-screen w-screen flex flex-row justify-center items-center">
-    <div class="flex flex-row gap-40">
+  <div class="bg-gray-200 h-screen w-screen flex flex-col justify-center items-center">
+    <div class="flex flex-col lg:flex-row flex-row gap-40">
       <div class="flex flex-col space-y-8">
         <h1 class="text-5xl font-extralight text-gray-800">
           Welcom to the 
           <br> 
           <span class="font-bold">Frontend Quiz!</span>
         </h1>
-        <p class="text-gray-800">Pick a subject to got started</p>
+        <p class="text-gray-800 italic">Pick a subject to got started</p>
       </div>
 
       <div class="flex flex-col gap-4 w-96">
