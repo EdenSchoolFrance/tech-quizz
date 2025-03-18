@@ -12,8 +12,8 @@ $router->get('/', 'HomeController@index');
 
 $router->get('/login', 'AuthController@showLogin');
 $router->get('/register', 'AuthController@showRegister');
-$router->post('/postRegister', 'AuthController@postRegister');
-$router->post('/postLogin', 'AuthController@postLogin');
+$router->post('/register', 'AuthController@register');
+$router->post('/login', 'AuthController@login');
 
 
 
