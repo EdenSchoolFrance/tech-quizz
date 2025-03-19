@@ -16,21 +16,14 @@ class QuestionManager extends Model
         }
     }
 
-    // public function getAll()
-    // {
-    //     $stmt = 'SELECT * FROM questions';
-    //     $req = $this->pdo->prepare($stmt);
-    //     $req->execute();
-    //     $req->setFetchMode(\PDO::FETCH_CLASS, Question::class);
-
-    //     return $req->fetchAll();
-    // }
-
-    public function index()
+    public function getAll()
     {
-        $questions = $this->qc->getAll();
-        var_dump($questions); // Ajoutez cette ligne pour déboguer
-        require VIEWS . 'content/AffichageQuestion.php';
+        $stmt = 'SELECT * FROM questions';
+        $req = $this->pdo->prepare($stmt);
+        $req->execute();
+        $req->setFetchMode(\PDO::FETCH_CLASS, Question::class);
+
+        return $req->fetchAll();
     }
 
     public function get($id)

@@ -22,7 +22,7 @@ class QuestionController
 
     public function show($id)
     {
-        $questions = $this->qc->get($id);
+        $questions = $this->qc->getall($id);
         require VIEWS . 'content/AffichageQuestion.php';
     }
 
