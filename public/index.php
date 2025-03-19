@@ -19,9 +19,8 @@ $router->get('/result', 'ResultController@index');
 $router->post('/register', 'AuthController@register');
 $router->post('/login', 'AuthController@login');
 
-
-
-
-
+$router->get('/quiz/create', 'QuizController@create');
+$router->post('/quiz/store', 'QuizController@store');
+$router->get('/quiz/:id', 'QuizController@show');
 
 $router->run();
