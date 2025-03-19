@@ -1,29 +1,29 @@
 <?php
 
-// namespace App\controllers;
+namespace App\controllers;
 
-// use App\models\AnswersManager;
+use App\models\AnswersManager;
 
 
-// class AnswersController
-// {
-//     private $ac;
+class AnswersController
+{
+    private $ac;
 
-//     public function __construct()
-//     {
-//         $this->ac = new AnswersManager();
-//     }
+    public function __construct()
+    {
+        $this->ac = new QuestionManager();
+    }
 
-//     public function index()
-//     {
-//         $answers = $this->ac->getAll();
-//         require VIEWS . 'content/answer.php';
-//     }
+    public function index()
+    {
+        $answers = $this->ac->getAll();
+        require VIEWS . 'content/question.php';
+    }
 
-//     public function show($id)
-//     {
-//         $answer = $this->ac->get($id);
-//         require VIEWS . 'content/answer.php';
-//     }
+    public function show($id)
+    {
+        $answer = $this->ac->get($id);
+        require VIEWS . 'content/question.php';
+    }
 
-// }
+}
