@@ -11,15 +11,21 @@
 <body>
     <header>
         <ul>
+            <?php if(!auth()): ?>
             <li>
                 <a href="/register">Register</a>
             </li>
             <li>
                 <a href="/login">Login</a>
             </li>
+            <?php else: ?>
             <li>
                 <a href="/quiz">Quizz</a>
             </li>
+            <li>
+                <a href="/logout">Logout</a>
+            </li>
+            <?php endif; ?>
         </ul>
     </header>
 <main>
