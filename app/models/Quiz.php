@@ -47,6 +47,12 @@ class Quiz
     {
         return $this->created_by;
     }
+    
+    public function setCreatedBy($created_by)
+    {
+        $this->created_by = $created_by;
+        return $this;
+    }
 
     public function getCreatedAt()
     {

@@ -51,4 +51,19 @@ class QuizManager extends Model
         
         return false;
     }
+    
+    public function delete($id)
+    {
+        $req = $this->pdo->prepare('DELETE FROM quizz WHERE id = :id');
+        return $req->execute(['id' => $id]);
+    }
+    
+    public function getQuizzesByUser($userId)
+    {
+        $req = $this->pdo->prepare('SELECT * FROM quizz WHERE created_by = :user_id');
+        $req->execute(['user_id' => $userId]);
+        $req->setFetchMode(\PDO::FETCH_CLASS, Quiz::class);
+        
+        return $req->fetchAll();
+    }
 }

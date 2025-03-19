@@ -67,4 +67,51 @@ class QuizController
             exit();
         }
     }
+    
+    public function delete($id)
+    {
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['error'] = "You need to be connected !";
+            header('Location: /login');
+            exit();
+        }
+        
+        $quiz = $this->qc->get($id);
+        if (!$quiz) {
+            $_SESSION['error'] = "Quiz not found";
+            header('Location: /dashboard');
+            exit();
+        }
+        
+        if (user('role') !== 'admin' && $quiz->getCreatedBy() !== $_SESSION['user']->getId()) {
+            $_SESSION['error'] = "You don't have permission";
+            header('Location: /dashboard');
+            exit();
+        }
+        
+        $result = $this->qc->delete($id);
+        
+        if ($result) {
+            $_SESSION['success'] = "Quiz deleted successfully";
+        } else {
+            $_SESSION['error'] = "Error deleting quiz";
+        }
+        
+        header('Location: /dashboard');
+        exit();
+    }
+    
+    public function dashboard()
+    {
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['error'] = "You need to be connected !";
+            header('Location: /login');
+            exit();
+        }
+        
+        $userId = $_SESSION['user']->getId();
+        $quizzes = $this->qc->getQuizzesByUser($userId);
+        
+        require VIEWS . 'content/admin/index.php';
+    }
 }
