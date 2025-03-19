@@ -73,6 +73,48 @@
             </div>
         <?php endif; ?>
     </div>
+
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-2xl font-semibold mb-4">Manage Your Users</h2>
+        
+        <?php if (empty($quizzes)): ?>
+            <p class="text-gray-500">You haven't have any users.</p>
+        <?php else: ?>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">email</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">password</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">role</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">created_at</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <?php foreach ($users as $user): ?>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><?= $user->getUsername() ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= substr($user->getEmail())?></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $user->getPassword() ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $user->getRole() ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $user->getCreated_at() ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <a href="/quiz/<?= $user->getId() ?>" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                                    <a href="/quiz/edit/<?= $user->getId() ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
+                                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                                    <form id="delete-form-<?= $user->getId() ?>" action="/quiz/delete/<?= $user->getId() ?>" method="POST" class="hidden">
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
+    </div>
+
+
 </div>
 
 <?php 
