@@ -18,7 +18,7 @@
                 <a href="/login">Login</a>
             </li>
             <li>
-                <a href="/quizz">Quizz</a>
+                <a href="/quiz">Quizz</a>
             </li>
         </ul>
     </header>
