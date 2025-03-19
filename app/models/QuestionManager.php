@@ -16,11 +16,11 @@ class QuestionManager extends Model
         }
     }
 
-    public function getAll()
+    public function getAll($id)
     {
-        $stmt = 'SELECT * FROM questions';
+        $stmt = 'SELECT * FROM questions WHERE quizz_id = :id';
         $req = $this->pdo->prepare($stmt);
-        $req->execute();
+        $req->execute([':id' => $id]);
         $req->setFetchMode(\PDO::FETCH_CLASS, Question::class);
 
         return $req->fetchAll();
