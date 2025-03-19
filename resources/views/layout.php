@@ -22,6 +22,9 @@
             <li>
                 <a href="/quiz">Quizz</a>
             </li>
+            <li>
+                <a href="/logout">Logout</a>
+            </li>
             <?php endif; ?>
         </ul>
     </header>
