@@ -105,8 +105,7 @@ class QuizController
         }
         
         $userId = $_SESSION['user']->getId();
-        $quizzes = $this->qc->getQuizzesByUser($userId);
-        
+        $quizzes = $this->qc->getQuizzesByUser($userId);        
         require VIEWS . 'content/admin/index.php';
     }
 }
