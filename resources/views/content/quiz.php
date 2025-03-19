@@ -4,10 +4,10 @@
     <h1 class="text-3xl font-bold mb-6">Welcome to the Frontend Quiz!</h1>
     <article>
         <?php foreach ($quizz as $quiz): ?>
-            <div class="bg-white shadow-md rounded-lg p-6 mb-4">
+            <a href="quiz/<?= $quiz->getId() ?>" class="bg-white shadow-md rounded-lg p-6 mb-4">
                 <h2 class="text-2xl font-semibold mb-2"><?= $quiz->getTitle() ?></h2>
                 <p class="text-gray-700"><?= $quiz->getDescription() ?></p>
-            </div>
+        </a>
         <?php endforeach ?>
     </article>
 </section>

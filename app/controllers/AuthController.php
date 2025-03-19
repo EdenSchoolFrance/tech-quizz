@@ -29,6 +29,12 @@ class AuthController
         require VIEWS . 'auth/login.php';
     }
 
+    public function logout()
+    {
+        session_destroy();
+        header('Location: /');
+    }
+
     public function login()
     {
         $this->validator->validate([

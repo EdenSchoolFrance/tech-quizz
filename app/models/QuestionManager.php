@@ -1,8 +1,9 @@
 <?php
 
 namespace App\models;
+use App\Validator;
 
-class QuizManager extends Model
+class QuestionManager extends Model
 {
     private $pdo;
 
@@ -17,10 +18,10 @@ class QuizManager extends Model
 
     public function getAll($id)
     {
-        $stmt = 'SELECT * FROM questions WHERE quizz_id = :id';
+        $stmt = 'SELECT * FROM questions, user_quizz WHERE questions.id = user_quizz.id ';
         $req = $this->getDatabase()->prepare($stmt);
         $req->execute(['id' => $id]);
-        $req->setFetchMode(\PDO::FETCH_CLASS, Chambre::class);
+        $req->setFetchMode(\PDO::FETCH_CLASS, Question::class);
 
         return $req->fetch();
     }

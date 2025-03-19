@@ -16,7 +16,7 @@
         <input type="password" name="password" id="password">
         <span class="error"><?=error('password')?></span>
     </div>
-    <button type="submit" class="p-2 bg-gray-700 text-white rounded-xl border border-transparent  hover:border-gray-400  hover:bg-gray-100 hover:text-black transition-colors duration-150 cursor-pointer">Register</button>
+    <button type="submit" class="p-2 bg-gray-700 text-white rounded-xl border border-transparent  hover:border-gray-400  hover:bg-gray-100 hover:text-black transition-colors duration-150 cursor-pointer">Login</button>
 </form>
 </section>
 <?php $content = ob_get_clean(); ?>

@@ -3,6 +3,7 @@
 namespace App\controllers;
 
 use App\models\QuestionManager;
+use App\Validator;
 
 class QuestionController
 {
@@ -15,32 +16,14 @@ class QuestionController
 
     public function index()
     {
-        $answers = $this->qc->getAll();
-        require VIEWS . 'content/answer.php';
+        $questions = $this->qc->get($id);
+        require VIEWS . 'content/AffichageQuestion.php';
     }
 
     public function show($id)
     {
-        $answer = $this->qc->get($id);
-        require VIEWS . 'content/answer.php';
+        $questions = $this->qc->getAll($id);
+        require VIEWS . 'content/AffichageQuestion.php';
     }
-
-
-    // public function __construct()
-    // {
-    //     $this->qc = new QuestionManager();
-    // }
-
-    // public function index()
-    // {
-    //     $answers = $this->qc->getAll();
-    //     require VIEWS . 'content/answer.php';
-    // }
-
-    // public function show($id)
-    // {
-    //     $answer = $this->qc->get($id);
-    //     require VIEWS . 'content/answer.php';
-    // }
 
 }
