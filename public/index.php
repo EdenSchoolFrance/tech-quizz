@@ -14,7 +14,6 @@ $router = new Router($_SERVER["REQUEST_URI"]);
 $router->get('/', 'HomeController@index');
 
 if(user('role') == 'admin') {
-    $router->get('/quiz/create', 'QuizController@create');
     $router->get('/dashboard', 'QuizController@dashboard');
     $router->post('/quiz/store', 'QuizController@store');
     $router->post('/quiz/delete/:id', 'QuizController@delete');

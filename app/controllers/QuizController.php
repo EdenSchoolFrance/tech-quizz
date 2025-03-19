@@ -26,11 +26,6 @@ class QuizController
         require VIEWS . 'content/quiz.php';
     }
 
-    public function create()
-    {
-        require VIEWS . 'content/createquiz.php';
-    }
-
     public function store()
     {
         if (!isset($_SESSION['user'])) {
@@ -46,7 +41,7 @@ class QuizController
         
         if (!empty($validator->errors())) {
             $_SESSION['old'] = $_POST;
-            header('Location: /quiz/create');
+            header('Location: /dashboard');
             exit();
         }
         
@@ -63,7 +58,7 @@ class QuizController
         } else {
             $_SESSION['error'] = "Error";
             $_SESSION['old'] = $_POST;
-            header('Location: /quiz/create');
+            header('Location: /dashboard');
             exit();
         }
     }
