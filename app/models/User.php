@@ -7,7 +7,7 @@ class User
     private $id;
     private $username;
     private $email;
-    private $password_hash;
+    private $password;
     private $role;
     private $created_at;
 
@@ -46,12 +46,12 @@ class User
 
     public function getPasswordHash()
     {
-        return $this->password_hash;
+        return $this->password;
     }
 
-    public function setPasswordHash($password_hash)
+    public function setPasswordHash($password)
     {
-        $this->password_hash = $password_hash;
+        $this->password = $password;
         return $this;
     }
 

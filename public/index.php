@@ -1,4 +1,6 @@
 <?php
+require_once '../app/models/User.php';
+
 
 session_start();
 
