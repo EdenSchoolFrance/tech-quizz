@@ -27,18 +27,20 @@
             <li>
                 <a href="/login" class="hover:text-blue-600">Login</a> 
             </li>
-            <?php elseif(user('role') == 'admin'): ?>
+            <?php else: ?>
+                <li>
+                    <a href="/quiz" class="hover:text-blue-600">Quizz</a>
+                </li>
+                <li>
+                    <a href="/logout" class="hover:text-blue-600">Logout</a>
+                </li>
+            <?php endif; ?>
+            <?php if(user('role') == 'admin'): ?>
             <li>
                 <a href="/dashboard" class="hover:text-blue-600">Dashboard</a>
             </li>
-            <?php else: ?>
-            <li>
-                <a href="/quiz" class="hover:text-blue-600">Quizz</a>
-            </li>
-            <li>
-                <a href="/logout" class="hover:text-blue-600">Logout</a>
-            </li>
             <?php endif; ?>
+
         </ul>
     </header>
     <main class="container mx-auto px-4 py-8">

@@ -7,6 +7,7 @@ class Quiz
     private $id;
     private $title;
     private $description;
+    private $created_by;
     private $created_at;
 
     public function getId()
@@ -40,6 +41,11 @@ class Quiz
     {
         $this->description = $description;
         return $this;
+    }
+
+    public function getCreatedBy()
+    {
+        return $this->created_by;
     }
 
     public function getCreatedAt()
