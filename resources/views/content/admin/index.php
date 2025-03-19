@@ -86,7 +86,6 @@
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">email</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">password</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">role</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">created_at</th>
                         </tr>
@@ -96,7 +95,6 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><?= $user->getUsername() ?></td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $user->getEmail()?></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $user->getPasswordHash() ?></td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $user->getRole() ?></td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $user->getCreatedAt() ?></td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
