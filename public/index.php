@@ -26,7 +26,7 @@ if(auth()) {
 
     $router->get('/quiz', 'QuizController@index');
     $router->get('/result', 'ResultController@index');
-    $router->get('/quiz/:id', 'QuestionController@index');
+    $router->get('/quiz/:id', 'QuestionController@show');
 }
 
 if(user('role') == 'admin') {
