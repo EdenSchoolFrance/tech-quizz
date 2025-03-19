@@ -1,6 +1,6 @@
 <?php
 
-class Results
+class AdminResult
 {
     private $id;
     private $user_id;
