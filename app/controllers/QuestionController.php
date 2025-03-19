@@ -16,13 +16,13 @@ class QuestionController
     public function index()
     {
         $answers = $this->qc->getAll();
-        require VIEWS . 'content/answer.php';
+        require VIEWS . 'content/AffichageQuestion.php';
     }
 
     public function show($id)
     {
         $answer = $this->qc->get($id);
-        require VIEWS . 'content/answer.php';
+        require VIEWS . 'content/AffichageQuestion.php';
     }
 
 

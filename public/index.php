@@ -22,11 +22,12 @@ if(!auth() || user('role') == 'admin') {
 if(auth()) {
     $router->get('/quiz', 'QuizController@index');
     $router->get('/result', 'ResultController@index');
+    $router->get('/result', 'ResultController@index');
 }
 
 
 $router->get('/quiz/create', 'QuizController@create');
 $router->post('/quiz/store', 'QuizController@store');
-$router->get('/quiz/:id', 'QuizController@show');
+$router->get('/quiz/:id', 'QuestionController@show');
 
 $router->run();
