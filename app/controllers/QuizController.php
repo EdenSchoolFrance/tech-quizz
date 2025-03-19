@@ -28,12 +28,6 @@ class QuizController
 
     public function create()
     {
-        if (!isset($_SESSION['user'])) {
-            $_SESSION['error'] = "You need to be connected !";
-            header('Location: /login');
-            exit();
-        }
-        
         require VIEWS . 'content/createquiz.php';
     }
 

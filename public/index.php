@@ -12,6 +12,13 @@ $router = new App\Router($_SERVER["REQUEST_URI"]);
 
 $router->get('/', 'HomeController@index');
 
+if(user('role') == 'admin') {
+    $router->get('/quiz/create', 'QuizController@create');
+    $router->get('/dashboard', 'AdminController@index');
+    $router->post('/quiz/store', 'QuizController@store');
+}
+
+
 if(!auth() || user('role') == 'admin') {
 
     $router->get('/login', 'AuthController@showLogin');
@@ -24,19 +31,11 @@ if(!auth() || user('role') == 'admin') {
 
 if(auth()) {
 
-    $router->get('/logout', 'AuthController@logout');
     $router->get('/quiz', 'QuizController@index');
     $router->get('/result', 'ResultController@index');
-    $router->get('/quiz/:id', 'QuestionController@index');
+    $router->get('/quiz/:id', 'QuestionController@show');
 }
 
-if(user('role') == 'admin') {
-
-    $router->get('/quiz/create', 'QuizController@create');
-    $router->get('/dashboard', 'AdminController@index');
-    $router->post('/quiz/store', 'QuizController@store');
-
-}
 
 
 
