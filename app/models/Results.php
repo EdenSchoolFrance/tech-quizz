@@ -1,13 +1,12 @@
 <?php
 
-namespace App\models;
-
-class Question
+class Results
 {
     private $id;
+    private $user_id;
     private $quizz_id;
-    private $question_text;
-    private $created_at;
+    private $score;
+    private $completed_at;
 
     public function getId()
     {
@@ -31,16 +30,6 @@ class Question
         return $this;
     }
 
-    public function getQuestionText()
-    {
-        return $this->question_text;
-    }
-
-    public function setQuestionId()
-    {
-        $this->question_id = $question_id;
-        return $this;
-    }
 
     public function getCreatedAt()
     {
@@ -54,7 +43,6 @@ class Question
     }
 
 
+
 }
-
-
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\models;
+
 class Answers
 {
     private $id;
@@ -50,4 +52,6 @@ class Answers
         $this->is_correct = $is_correct;
         return $this;
     }
+
+
 }
