@@ -11,19 +11,19 @@ class ResultController
 
     public function __construct()
     {
-        $this->rc = new QuizManager();
+        $this->rc = new ResultManager();
     }
 
     public function index()
     {
         $results = $this->rc->getAll();
-        require VIEWS . 'content/result.php';
+        require VIEWS . 'content/resultat.php';
     }
 
     public function show($id)
     {
         $result = $this->rc->get($id);
-        require VIEWS . 'content/result.php';
+        require VIEWS . 'content/resultat.php';
     }
 
 }
