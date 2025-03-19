@@ -16,8 +16,8 @@ function auth() {
     return isset($_SESSION['user']);
 }
 function user($info) {
-    if (isset($_SESSION['auth'])) {
-        return $_SESSION['auth']->{'get' . $info}();
+    if (isset($_SESSION['user'])) {
+        return $_SESSION['user']->{'get' . $info}();
     }
     else {
         return false;
