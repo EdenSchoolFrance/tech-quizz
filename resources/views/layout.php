@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/style.css">
 </head>
-<body class="min-h-screen bg-white relative overflow-hidden">
+<body class="min-h-screen bg-white relative">
     <div class="absolute top-0 left-0 -z-10">
         <img src="/assets/circle-top.png" alt="Background circle" class="w-full max-w-md opacity-10">
     </div>
@@ -51,3 +51,7 @@
 <?php
 unset($_SESSION['error']);
 unset($_SESSION['old']);
+if (isset($_SESSION['success'])) {
+    unset($_SESSION['success']);
+}
+?>
