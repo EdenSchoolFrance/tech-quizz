@@ -20,13 +20,20 @@ if(!auth() || user('role') == 'admin') {
 }
 
 if(auth()) {
+    
     $router->get('/quiz', 'QuizController@index');
     $router->get('/result', 'ResultController@index');
+    $router->get('/quiz/:id', 'QuizController@show');
+    
+}
+
+if(user('role') == 'admin') {
+    
+    $router->get('/quiz/create', 'QuizController@create');
+    $router->post('/quiz/store', 'QuizController@store');
+
 }
 
 
-$router->get('/quiz/create', 'QuizController@create');
-$router->post('/quiz/store', 'QuizController@store');
-$router->get('/quiz/:id', 'QuizController@show');
 
 $router->run();
