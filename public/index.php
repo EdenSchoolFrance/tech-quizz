@@ -21,9 +21,11 @@ $router = new Router($_SERVER["REQUEST_URI"]);
 $router->get('/', 'HomeController@index');
 
 if(user('role') == 'admin') {
+    // il y a 2 router qui ont besoin de /dashboard donc le 2e ne s'active pas
     $router->get('/dashboard', 'QuizController@dashboard');
     $router->post('/quiz/store', 'QuizController@store');
     $router->post('/quiz/delete/:id', 'QuizController@delete');
+    $router->get('/dashboard', 'AdminController@index');
 }
 
 
