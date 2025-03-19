@@ -17,7 +17,7 @@ class QuizController
     public function index()
     {
         $quizz = $this->qc->getAll();
-        require VIEWS . 'content/quizz.php';
+        require VIEWS . 'content/quiz.php';
     }
 
     public function show($id)
