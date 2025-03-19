@@ -26,11 +26,11 @@ class QuestionManager extends Model
         return $req->fetchAll();
     }
 
-    public function get($id)
+    public function getAnswers($questionId)
     {
-        $stmt = 'SELECT * FROM answers WHERE question_id = :id';
+        $stmt = 'SELECT * FROM answers WHERE question_id = :questionId';
         $req = $this->pdo->prepare($stmt);
-        $req->execute([':id' => $id]);
+        $req->execute([':questionId' => $questionId]);
         $req->setFetchMode(\PDO::FETCH_CLASS, Answers::class);
 
         return $req->fetchAll();
