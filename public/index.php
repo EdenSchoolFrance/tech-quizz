@@ -29,8 +29,10 @@ if(!auth() || user('role') == 'admin') {
 }
 
 
-if(auth()) {
+if(auth())
+{
 
+    $router->get('/logout', 'AuthController@logout');
     $router->get('/quiz', 'QuizController@index');
     $router->get('/result', 'ResultController@index');
     $router->get('/quiz/:id', 'QuestionController@show');
