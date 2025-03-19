@@ -13,6 +13,7 @@ $router->get('/', 'HomeController@index');
 $router->get('/login', 'AuthController@showLogin');
 $router->get('/register', 'AuthController@showRegister');
 $router->get('/quizz', 'QuizController@index');
+$router->get('/result', 'ResultController@index');
 $router->post('/register', 'AuthController@register');
 $router->post('/login', 'AuthController@login');
 
