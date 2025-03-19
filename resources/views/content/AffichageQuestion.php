@@ -5,8 +5,13 @@
         <?php foreach ($questions as $question): ?>
             <div class="bg-white shadow-md rounded-lg p-6 mb-4">
                 <h2 class="text-2xl font-semibold mb-2"><?= $question->getQuestionText() ?></h2>
+                <ul class="list-disc pl-6">
+                    <?php foreach ($question->answers as $answer): ?>
+                        <li class="text-gray-700"><?= $answer->getAnswerText() ?></li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
-        <?php endforeach ?>
+        <?php endforeach; ?>
     </article>
 </section>
 

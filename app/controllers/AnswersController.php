@@ -17,13 +17,13 @@ class AnswersController
     public function index()
     {
         $answers = $this->ac->getAll();
-        require VIEWS . 'content/question.php';
+        require VIEWS . 'content/AffichageQuestion.php';
     }
 
     public function show($id)
     {
         $answer = $this->ac->get($id);
-        require VIEWS . 'content/question.php';
+        require VIEWS . 'content/AffichageQuestion.php';
     }
 
 }
