@@ -62,7 +62,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <a href="/quiz/<?= $quiz->getId() ?>" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
                                     <a href="/quiz/edit/<?= $quiz->getId() ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
-                                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                                    <a href="#" onclick="confirmDelete('<?= $quiz->getId() ?>')" class="text-red-600 hover:text-red-900">Delete</a>
                                     <form id="delete-form-<?= $quiz->getId() ?>" action="/quiz/delete/<?= $quiz->getId() ?>" method="POST" class="hidden">
                                     </form>
                                 </td>
@@ -116,6 +116,14 @@
 
 
 </div>
+
+<script>
+function confirmDelete(quizId) {
+    if (confirm('Are you sure about that?')) {
+        document.getElementById('delete-form-' + quizId).submit();
+    }
+}
+</script>
 
 <?php 
 $content = ob_get_clean();
