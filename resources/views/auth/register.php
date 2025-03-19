@@ -3,7 +3,7 @@
 <section>
     <h1>This is the register page</h1>
 
-    <form action="/register" method="post" class="flex flex-col gap-5 bg-gray-100 py-15 px-20 rounded-3xl shadow-xl">
+    <form action="/register" method="post" class="flex flex-col gap-5 bg-gray-100 py-15 px-20 rounded-3xl shadow-xl mx-auto w-1/3">
             <div class="flex flex-col">
                 <label for="username">Nom</label>
                 <input type="text" name="username" id="username" value="<?=old('username')?>" >

@@ -32,7 +32,7 @@ class AuthController
     public function login()
     {
         $this->validator->validate([
-            'username' => ['required', 'min:3', 'max:50'],
+            'email' => ['required', 'email'],
             'password' => ['required']
         ]);
 
@@ -43,7 +43,7 @@ class AuthController
             exit();
         }
 
-        $user = $this->um->getUser($_POST['username']);
+        $user = $this->um->getUser($_POST['email']);
 
         if ($user && password_verify($_POST['password'], $user->getPasswordHash())) {
             $_SESSION['user'] = $user;
