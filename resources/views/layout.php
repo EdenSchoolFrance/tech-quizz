@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/c1d0ab37d6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/style.css">
 </head>
-<body class="min-h-screen bg-white relative flex flex-col">
+<body class="min-h-screen bg-[#F4F6FB] relative flex flex-col">
     <div class="absolute top-0 left-0 -z-10">
         <img src="/assets/circle-top.png" alt="Background circle" class="w-full max-w-md opacity-10">
     </div>

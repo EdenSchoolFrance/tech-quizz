@@ -20,11 +20,11 @@ class QuestionController
         require VIEWS . 'content/AffichageQuestion.php';
     }
 
-    public function show($quizId)
+    public function show($id)
     {
-        $questions = $this->qc->getAll($quizId);
+        $questions = $this->qc->getAll($id);
         foreach ($questions as $question) {
-            $question->answers = $this->qc->getAnswers($question->getId());
+            $question->setAnswers($this->qc->getAnswers($question->getId()));
         }
         require VIEWS . 'content/AffichageQuestion.php';
     }

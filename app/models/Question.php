@@ -8,6 +8,7 @@ class Question
     private $quizz_id;
     private $question_text;
     private $created_at;
+    private $answers;
 
     public function getId()
     {
@@ -53,6 +54,15 @@ class Question
         return $this;
     }
 
+    public function setAnswers($answers)
+    {
+        $this->answers = $answers;
+    }
+
+    public function getAnswers()
+    {
+        return $this->answers;
+    }
 
 }
 

@@ -64,4 +64,6 @@ class Quiz
         $this->created_at = $created_at;
         return $this;
     }
+
+
 }
