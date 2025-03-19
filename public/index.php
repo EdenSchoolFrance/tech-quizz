@@ -32,6 +32,7 @@ if(auth()) {
 if(user('role') == 'admin') {
 
     $router->get('/quiz/create', 'QuizController@create');
+    $router->get('/dashboard', 'AdminController@index');
     $router->post('/quiz/store', 'QuizController@store');
 
 }
