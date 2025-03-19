@@ -20,7 +20,7 @@ class QuestionManager extends Model
     {
         $stmt = 'SELECT * FROM questions, user_quizz WHERE questions.id = user_quizz.id ';
         $req = $this->getDatabase()->prepare($stmt);
-        $req->execute(['id' => $id]);
+        $req->execute();
         $req->setFetchMode(\PDO::FETCH_CLASS, Question::class);
 
         return $req->fetch();
@@ -29,7 +29,7 @@ class QuestionManager extends Model
     public function get($id)
     {
         $req = $this->pdo->query('SELECT * FROM answers WHERE question_id = :id');
-        $req->setFetchMode(\PDO::FETCH_CLASS, Quiz::class);
+        $req->setFetchMode(\PDO::FETCH_CLASS, Answers::class);
 
         return $req->fetchAll();
     }
