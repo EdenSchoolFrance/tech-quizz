@@ -22,22 +22,22 @@
         <ul class="flex gap-6 justify-end">
             <?php if(!auth()): ?>
             <li>
-                <a href="/register" class="hover:text-blue-600">Register</a>
+                <a href="/register" class="aLink">Register</a>
             </li>
             <li>
-                <a href="/login" class="hover:text-blue-600">Login</a> 
+                <a href="/login" class="aLink">Login</a>
             </li>
             <?php else: ?>
                 <li>
-                    <a href="/quiz" class="hover:text-blue-600">Quizz</a>
+                    <a href="/quiz" class="aLink">Quizz</a>
                 </li>
                 <li>
-                    <a href="/logout" class="hover:text-blue-600">Logout</a>
+                    <a href="/logout" class="aLink">Logout</a>
                 </li>
             <?php endif; ?>
             <?php if(user('role') == 'admin'): ?>
             <li>
-                <a href="/dashboard" class="hover:text-blue-600">Dashboard</a>
+                <a href="/dashboard" class="aLink">Dashboard</a>
             </li>
             <?php endif; ?>
 

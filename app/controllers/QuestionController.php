@@ -14,9 +14,9 @@ class QuestionController
         $this->qc = new QuestionManager();
     }
 
-    public function index()
+    public function index($id)
     {
-        $questions = $this->qc->getAll();
+        $questions = $this->qc->getAll($id);
         require VIEWS . 'content/AffichageQuestion.php';
     }
 

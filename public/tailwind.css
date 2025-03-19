@@ -3,3 +3,7 @@
 input {
     @apply border border-gray-500 rounded;
 }
+
+.aLink {
+    @apply hover:text-blue-600;
+}
