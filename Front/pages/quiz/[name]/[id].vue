@@ -11,13 +11,10 @@
       <div>
         <p>{{ questions[currentQuestion].label }}</p>
         <ul>
-          <li v-for="reponse in reponses" :key="reponse.id_reponse">
-            <input type="radio" name="reponse" :id="reponse.id_reponse" :value="reponse.label" v-model="selectedReponse">
-            <label :for="reponse.id_reponse">{{ reponse.label }}</label>
-          </li>
+          <InputDefault v-for="reponse in reponses" :key="reponse.id_reponse" :reponse="reponse" :selectedReponse="selectedReponse" :updateSelectedReponse="updateSelectedReponse"/>
         </ul>
-        <button v-if="currentQuestion < questions.length - 1" @click="nextQuestion">Suivant</button>
-        <button v-else @click="submitQuiz">Terminer</button>
+        <button v-if="currentQuestion < questions.length - 1" @click="nextQuestion" class="cursor-pointer">Suivant</button>
+        <button v-else @click="submitQuiz" class="cursor-pointer">Terminer</button>
       </div>
     </div>
     <div v-else>
@@ -41,7 +38,11 @@ const questions = ref(null);
 const score = ref(0);
 const currentQuestion = ref(0);
 const reponses = ref(null);
-const selectedReponse = ref('');
+const selectedReponse = ref(null);
+
+const updateSelectedReponse = (id_reponse) => {
+  selectedReponse.value = id_reponse;
+};
 
 const nextQuestion = async () => {
   currentQuestion.value++;
