@@ -32,7 +32,18 @@ class AuthController
     public function logout()
     {
         session_destroy();
+        setcookie('remember', '', time() - 3600);
         header('Location: /');
+    }
+
+    public function remember($email)
+    {
+        setcookie('remember', $email, time() + 3600 * 24 * 30);
+    }
+
+    public function setUser($email)
+    {
+        $_SESSION['user'] = $this->um->getUser($email);
     }
 
     public function login()
@@ -52,7 +63,10 @@ class AuthController
         $user = $this->um->getUser($_POST['email']);
 
         if ($user && password_verify($_POST['password'], $user->getPasswordHash())) {
-            $_SESSION['user'] = $user;
+            if (isset($_POST['remember'])) {
+                $this->remember($_POST['email']);
+            }
+            $this->setUser($_POST['email']);
             header('Location: /');
             exit();
         }
@@ -87,7 +101,7 @@ class AuthController
 
         $this->um->insertUser($_POST['username'], $_POST['email'], $_POST['password']);
 
-        $_SESSION['user'] = $this->um->getUser($_POST['email']);
+        $this->setUser($_POST['email']);
 
         header('Location: /');
     }

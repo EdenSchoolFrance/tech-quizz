@@ -8,6 +8,12 @@ require '../config/config.php';
 require '../vendor/autoload.php';
 require APP . 'helper.php';
 
+if (isset($_COOKIE['remember']) && !isset($_SESSION['user'])) {
+    $user = new App\Models\UserManager();
+    $user = $user->getUser($_COOKIE['remember']);
+    $_SESSION['user'] = $user;
+}
+
 $router = new App\Router($_SERVER["REQUEST_URI"]);
 
 $router->get('/', 'HomeController@index');
