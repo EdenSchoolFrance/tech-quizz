@@ -51,4 +51,14 @@ class UserManager extends Model
             return "Erreur de base de données: " . $e->getMessage();
         }
     }
+
+    public function getAllUsers()
+    {
+        $stmt = 'SELECT * FROM users';
+        $req = $this->pdo->prepare($stmt);
+        $req->execute();
+        $req->setFetchMode(\PDO::FETCH_CLASS, User::class);
+
+        return $req->fetchAll();
+    }
 }
