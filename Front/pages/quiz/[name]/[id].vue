@@ -11,13 +11,13 @@
       <div>
         <p>{{ questions[currentQuestion].label }}</p>
         <ul>
-          <li v-for="reponse in reponses" :key="reponse.id_reponse">
-            <input type="radio" name="reponse" :id="reponse.id_reponse" :value="reponse.label" v-model="selectedReponse">
-            <label :for="reponse.id_reponse">{{ reponse.label }}</label>
+          <li v-for="reponse in reponses" :key="reponse.id_reponse" class="border-2 rounded-lg"  v-bind:class="{ 'border-[#A729F5]': selectedReponse === reponse.label, 'border-white': selectedReponse !== reponse.label }">
+            <input type="radio" class="invisible" name="reponse" :id="reponse.id_reponse" :value="reponse.label" v-model="selectedReponse">
+            <label :for="reponse.id_reponse" class="cursor-pointer" >{{ reponse.label }}</label>
           </li>
         </ul>
-        <button v-if="currentQuestion < questions.length - 1" @click="nextQuestion">Suivant</button>
-        <button v-else @click="submitQuiz">Terminer</button>
+        <button v-if="currentQuestion < questions.length - 1" @click="nextQuestion" class="cursor-pointer">Suivant</button>
+        <button v-else @click="submitQuiz" class="cursor-pointer">Terminer</button>
       </div>
     </div>
     <div v-else>
