@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class UserController
 {
@@ -12,9 +14,7 @@ class UserController
      */
     public function index()
     {
-        return response()->json([
-            'message' => 'Hello World!'
-        ]); 
+        return User::all();
     }
 
     /**
@@ -22,7 +22,33 @@ class UserController
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'role_id' => 'required',
+        ]);
+
+        if(User::where('email', $request->email)->exists()) {
+            return response()->json([
+                'message' => 'Cet email est déjà utilisé.'
+            ], 400);
+        }
+
+        $user = User::create([
+            'user_id' => Str::uuid(),
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role_id,
+        ]);
+
+        return response()->json([
+            'message' => 'Utilisateur créé avec succès',
+            'user' => [
+                'id' => $user->id,
+                'email' => $user->email,
+                'role_id' => $user->role_id,
+            ],
+        ]);
     }
 
     /**
@@ -30,7 +56,7 @@ class UserController
      */
     public function show(string $id)
     {
-        //
+        return User::findOrFail($id);
     }
 
     /**
@@ -38,7 +64,28 @@ class UserController
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'role_id' => 'required',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->update([
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role_id,
+        ]);
+
+        return response()->json([
+            'message' => 'Utilisateur modifié avec succès',
+            'user' => [
+                'id' => $user->id,
+                'email' => $user->email,
+                'role_id' => $user->role_id,
+            ],
+        ]);
     }
 
     /**
@@ -46,6 +93,12 @@ class UserController
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->forceDelete();   
+
+        return response()->json([
+            'message' => 'Utilisateur supprimé avec succès',
+        ]);
     }
 }

@@ -29,9 +29,42 @@ class AuthController
         // Vous pouvez stocker le token dans la base de données ou dans un cache si nécessaire
 
         return response()->json([
+            'message' => 'Connexion réussie',
             'user' => [
                 'id' => $user->id,
-                'name' => $user->name,
+                'email' => $user->email,
+                'role_id' => $user->role_id,
+            ],
+            'token' => $token,
+        ]);
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if(User::where('email', $request->email)->exists()) {
+            return response()->json([
+                'message' => 'Cet email est déjà utilisé.'
+            ], 400);
+        }
+
+        $user = User::create([
+            'user_id' => Str::uuid(),
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            // 'role_id' => 1,
+        ]);
+
+        $token = Str::random(60);
+
+        return response()->json([
+            'message' => 'Utilisateur enregistré avec succès',
+            'user' => [
+                'id' => $user->id,
                 'email' => $user->email,
             ],
             'token' => $token,
