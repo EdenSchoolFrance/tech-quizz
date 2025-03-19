@@ -10,10 +10,11 @@
       </div>
       <div>
         <p>{{ questions[currentQuestion].label }}</p>
-        <ul>
+        <ul :class="validatedReponse !== null ? 'pointer-events-none' : ''">
           <InputDefault v-for="reponse in reponses" :key="reponse.id_reponse" :reponse="reponse" :selectedReponse="selectedReponse" :updateSelectedReponse="updateSelectedReponse"/>
         </ul>
-        <button v-if="currentQuestion < questions.length - 1" @click="nextQuestion" class="cursor-pointer">Suivant</button>
+        <button v-if="validatedReponse === null" :disabled="!selectedReponse" @click="validateQuestion" class="cursor-pointer disabled:cursor-default">Valider</button>
+        <button v-else-if="currentQuestion < questions.length - 1" @click="nextQuestion" class="cursor-pointer">Suivant</button>
         <button v-else @click="submitQuiz" class="cursor-pointer">Terminer</button>
       </div>
     </div>
@@ -39,14 +40,28 @@ const score = ref(0);
 const currentQuestion = ref(0);
 const reponses = ref(null);
 const selectedReponse = ref(null);
+const validatedReponse = ref(null);
 
 const updateSelectedReponse = (id_reponse) => {
   selectedReponse.value = id_reponse;
 };
 
+const validateQuestion = () => {
+  if(selectedReponse) {
+    validatedReponse.value = reponses.value.find((reponse) => reponse.id_reponse === selectedReponse.value).is_correct;
+
+    if (validatedReponse) {
+      score.value++;
+    }
+  }
+};
+
 const nextQuestion = async () => {
+  validatedReponse.value = null;
+  selectedReponse.value = null;
   currentQuestion.value++;
   reponses.value = await fetchReponses(questions.value[currentQuestion.value].id_question);
+  
 }
 
 onMounted(async () => {
