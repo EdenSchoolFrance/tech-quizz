@@ -58,7 +58,7 @@ class QuizController
         
         if ($quizId) {
             $_SESSION['success'] = "Quiz created successfully";
-            header('Location: /quiz/' . $quizId);
+            header('Location: /dashboard');
             exit();
         } else {
             $_SESSION['error'] = "Error";
