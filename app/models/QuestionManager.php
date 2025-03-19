@@ -16,19 +16,21 @@ class QuestionManager extends Model
         }
     }
 
-    public function getAll($id)
+    public function getAll()
     {
-        $stmt = 'SELECT * FROM questions, user_quizz WHERE questions.id = user_quizz.id ';
-        $req = $this->getDatabase()->prepare($stmt);
+        $stmt = 'SELECT * FROM questions';
+        $req = $this->pdo->prepare($stmt);
         $req->execute();
         $req->setFetchMode(\PDO::FETCH_CLASS, Question::class);
 
-        return $req->fetch();
+        return $req->fetchAll();
     }
 
     public function get($id)
     {
-        $req = $this->pdo->query('SELECT * FROM answers WHERE question_id = :id');
+        $stmt = 'SELECT * FROM answers WHERE question_id = :id';
+        $req = $this->pdo->prepare($stmt);
+        $req->execute([':id' => $id]);
         $req->setFetchMode(\PDO::FETCH_CLASS, Answers::class);
 
         return $req->fetchAll();
