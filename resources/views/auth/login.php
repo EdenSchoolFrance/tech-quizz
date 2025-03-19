@@ -22,20 +22,21 @@
             <div class="flex flex-col">
                 <div class="flex justify-between mb-2">
                     <label for="password" class="text-sm">Password</label>
-                    <a href="/forgot-password" class="text-sm text-blue-500 hover:underline">Forget Password?</a>
+                    <a href="/forgot-password" class="text-sm text-blue-500 hover:underline">Forgot Password?</a>
                 </div>
                 <input 
                     type="password" 
                     name="password" 
                     id="password"
                     class="p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Your password"
                 >
                 <span class="text-red-500 text-xs mt-1"><?=error('password')?></span>
             </div>
             
             <div class="flex items-center gap-2 mb-2">
                 <input type="checkbox" name="remember" id="remember" class="w-4 h-4 text-blue-500">
-                <label for="remember" class="text-sm text-gray-600">Remember Password</label>
+                <label for="remember" class="text-sm text-gray-600">Remember me</label>
             </div>
             
             <button 

@@ -6,8 +6,15 @@ require '../vendor/autoload.php';
 require APP . 'helper.php';
 
 use App\Router;
+use App\Models\UserManager;
 
 session_start();
+
+if (isset($_COOKIE['remember']) && !isset($_SESSION['user'])) {
+    $user = new UserManager();
+    $user = $user->getUser($_COOKIE['remember']);
+    $_SESSION['user'] = $user;
+}
 
 $router = new Router($_SERVER["REQUEST_URI"]);
 
@@ -26,7 +33,7 @@ if(!auth() || user('role') == 'admin') {
     $router->post('/login', 'AuthController@login');
     $router->get('/register', 'AuthController@showRegister');
     $router->post('/register', 'AuthController@register');
-    
+
 }
 
 
