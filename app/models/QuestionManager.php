@@ -17,7 +17,7 @@ class QuizManager extends Model
 
     public function getAll($id)
     {
-        $stmt = 'SELECT * FROM questions WHERE quizz_id = :id';
+        $stmt = 'SELECT * FROM questions, userquizz WHERE questions.id = userquizz.question_id AND userquizz.user_id = :id';
         $req = $this->getDatabase()->prepare($stmt);
         $req->execute(['id' => $id]);
         $req->setFetchMode(\PDO::FETCH_CLASS, Chambre::class);
