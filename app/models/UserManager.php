@@ -61,4 +61,53 @@ class UserManager extends Model
 
         return $req->fetchAll();
     }
+    
+    public function getUserById($id)
+    {
+        try {
+            $stmt = "SELECT * FROM users WHERE id = :id";
+            $stmt = $this->pdo->prepare($stmt);
+            $stmt->execute([':id' => $id]);
+            $stmt->setFetchMode(\PDO::FETCH_CLASS, User::class);
+
+            return $stmt->fetch();
+        } catch (\PDOException $e) {
+            return null;
+        }
+    }
+    
+    public function updateUser($id, $username, $email, $role)
+    {
+        try {
+            $stmt = "UPDATE users SET username = :username, email = :email, role = :role WHERE id = :id";
+            $stmt = $this->pdo->prepare($stmt);
+            
+            return $stmt->execute([
+                ':id' => $id,
+                ':username' => $username,
+                ':email' => $email,
+                ':role' => $role
+            ]);
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+    
+    public function updateUserWithPassword($id, $username, $email, $password, $role)
+    {
+        try {
+            $stmt = "UPDATE users SET username = :username, email = :email, password = :password, role = :role WHERE id = :id";
+            $stmt = $this->pdo->prepare($stmt);
+            
+            return $stmt->execute([
+                ':id' => $id,
+                ':username' => $username,
+                ':email' => $email,
+                ':password' => password_hash($password, PASSWORD_DEFAULT),
+                ':role' => $role
+            ]);
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
 }

@@ -31,6 +31,8 @@ if(user('role') == 'admin') {
     $router->post('/quiz/delete/:id', 'QuizController@delete');
     $router->get('/dashboard/quiz/edit/:id', 'QuizController@editInDashboard');
     $router->post('/dashboard/quiz/update/:id', 'QuizController@updateInDashboard');
+    $router->get('/dashboard/user/edit/:id', 'AdminController@editUser');
+    $router->post('/dashboard/user/update/:id', 'AdminController@updateUser');
 }
 
 
@@ -49,7 +51,7 @@ if(auth())
     $router->get('/logout', 'AuthController@logout');
     $router->get('/quiz', 'QuizController@index');
     $router->get('/result', 'ResultController@index');
-    $router->get('/quiz/:id', 'QuestionController@show');
+    $router->get('/quiz/:id/:limit', 'QuestionController@show');
 }
 
 
