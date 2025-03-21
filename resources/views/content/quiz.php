@@ -12,7 +12,7 @@
                 $count = 1;
                 foreach($quizz as $quiz):
                     ?>
-                    <a href="quiz/<?php echo $quiz->getId(); ?>" class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 text-gray-900 font-medium">
+                    <a href="quiz/<?php echo $quiz->getId(); ?>/1" class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 text-gray-900 font-medium">
                         <?php echo $quiz->getTitle(); ?>
                     </a>
                     <?php

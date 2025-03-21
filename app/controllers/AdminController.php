@@ -40,6 +40,9 @@ class AdminController
         unset($_SESSION['success']);
         unset($_SESSION['old']);
         
+        $quizManager = new \App\models\QuizManager();
+        $quizzes = $quizManager->getQuizzesByUser($_SESSION['user']->getId());
+        
         $users = $this->um->getAllUsers();
         $editUser = $user;
         
@@ -109,5 +112,39 @@ class AdminController
             header('Location: /dashboard/user/edit/' . $id);
             exit();
         }
+    }
+
+    public function deleteUser($id)
+    {
+        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
+            $_SESSION['error'] = "You need to be an admin!";
+            header('Location: /login');
+            exit();
+        }
+        
+        if ($_SESSION['user']->getId() === $id) {
+            $_SESSION['error'] = "You cannot delete your own account!";
+            header('Location: /dashboard');
+            exit();
+        }
+        
+        $user = $this->um->getUserById($id);
+        
+        if (!$user) {
+            $_SESSION['error'] = "User not found";
+            header('Location: /dashboard');
+            exit();
+        }
+        
+        $result = $this->um->deleteUser($id);
+        
+        if ($result) {
+            $_SESSION['success'] = "User deleted successfully";
+        } else {
+            $_SESSION['error'] = "Error deleting user";
+        }
+        
+        header('Location: /dashboard');
+        exit();
     }
 }

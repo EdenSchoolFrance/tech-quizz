@@ -156,7 +156,7 @@
                                     <a href="/user/<?= $user->getId() ?>" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
                                     <a href="/dashboard/user/edit/<?= $user->getId() ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
                                     <a href="#" onclick="confirmUserDelete('<?= $user->getId() ?>')" class="text-red-600 hover:text-red-900">Delete</a>
-                                    <form id="user-delete-form-<?= $user->getId() ?>" action="/user/delete/<?= $user->getId() ?>" method="POST" class="hidden">
+                                    <form id="user-delete-form-<?= $user->getId() ?>" action="/dashboard/user/delete/<?= $user->getId() ?>" method="POST" class="hidden">
                                     </form>
                                 </td>
                             </tr>

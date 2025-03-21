@@ -87,7 +87,6 @@ CREATE TABLE `user_answers` (
                                 `user_id` varchar(20) DEFAULT NULL,
                                 `question_id` varchar(20) DEFAULT NULL,
                                 `answer_id` varchar(20) DEFAULT NULL,
-                                `is_correct` varchar(10) DEFAULT NULL,
                                 `answered_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
