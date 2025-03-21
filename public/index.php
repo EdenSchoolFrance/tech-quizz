@@ -10,8 +10,12 @@ use App\Models\UserManager;
 
 session_start();
 
-if (strpos($_SERVER['REQUEST_URI'], '/fetch.php') ) {
-    require API . 'fetch.php';
+if (strpos($_SERVER['REQUEST_URI'], '.php') ) {
+    if (strpos($_SERVER['REQUEST_URI'], 'fetch')) {
+        require '../api/fetch.php';
+    } elseif (strpos($_SERVER['REQUEST_URI'], 'store')) {
+        require '../api/store.php';
+    }
     exit;
 }
 
@@ -55,7 +59,8 @@ if(auth())
     $router->get('/logout', 'AuthController@logout');
     $router->get('/quiz', 'QuizController@index');
     $router->get('/result', 'ResultController@index');
-    $router->get('/quiz/:id/:limit', 'QuestionController@show');
+    $router->get('/quiz/:id', 'QuestionController@show');
+    $router->get('/quiz/:id/result', 'ResultController@store');
     $router->get('/result', 'ResultController@index');
 }
 

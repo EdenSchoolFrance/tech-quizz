@@ -1,5 +1,8 @@
-<?php ob_start(); ?>
-    <?php $limit = $limit[0]?>
+<?php
+ob_start();
+$_SESSION['result'] = [];
+
+?>
     <section class="flex flex-col md:flex-row md:items-start gap-12 w-3/4 mx-auto">
         <div class="md:w-1/2 h-[400px] flex flex-col justify-between">
             <div>
@@ -13,7 +16,7 @@
         </div>
 
         <div class="md:w-1/2 flex flex-col space-y-4">
-            <form action="/quiz/<?=$id?>/<?=$limit+1?>" method="GET">
+            <form class="quiz-form" action="" method="GET">
 
                     <div class="option-container space-y-4">
 
@@ -27,55 +30,79 @@
     </section>
     <script>
         $(document).ready(function() {
-            $.ajax({
-                url: '../api/fetch.php?id=<?=$id?>&limit=<?=$limit?>',
-                method: 'GET',
-                success: function(data) {
-                    const optionsContainer = $('.option-container');
+            let limit = 1;
+            let max;
+            function store(answer) {
+                $.ajax({
+                    url: `../api/store.php?result=${answer}&index=${limit-1}`,
+                    method: 'GET',
+                });
+            }
+            function fetch() {
+                $.ajax({
+                    url: `../api/fetch.php?id=<?=$id?>&limit=${limit}`,
+                    method: 'GET',
+                    success: function(data) {
+                        max = data[4];
+                        const optionsContainer = $('.option-container');
+                        optionsContainer.empty()
 
-                    const questionText = $('.question-text');
-                    questionText.append(data[0].question_text);
+                        const questionText = $('.question-text');
+                        questionText.empty()
+                        questionText.append(data[0].question_text);
 
-                    const questionNum = $('.question-num');
-                    questionNum.append('Question <?=$limit?> of ' + data[4]);
+                        const questionNum = $('.question-num');
+                        questionNum.empty()
+                        questionNum.append(`Question ${limit} of ` + data[4]);
 
-                    const progressBar = $('.progress-bar');
-                    progressBar.css({'transition': 'width ease 1s', 'width': (<?=$limit?> / data[4]) * 100 + '%'});
+                        const progressBar = $('.progress-bar');
+                        progressBar.css({'transition': 'width ease 1s', 'width': (limit / data[4]) * 100 + '%'});
 
-                    optionsContainer.empty();
-                    const LetterArray = ['A', 'B', 'C', 'D']
-                    data.forEach(function(item, index) {
-                        if (index === 4) return;
-                        const optionId = 'option' + index;
+                        optionsContainer.empty();
+                        const LetterArray = ['A', 'B', 'C', 'D']
+                        data.forEach(function(item, index) {
+                            if (index === 4) return;
+                            const optionId = 'option' + index;
 
-                        const optionHtml = `
-                    <div class="option-containers">
-                        <input type="radio" name="answer" id="${optionId}" value="${item.Id_reponse}" class="hidden peer">
-                        <label for="${optionId}" class="bg-white w-full rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 text-gray-900 font-medium flex justify-between items-center cursor-pointer border-2 border-transparent peer-checked:border-purple-600">
-                            <div class="flex items-center">
-                                <span class="mr-3 px-4 py-2 rounded-xl bg-[#F4F6FA]">${LetterArray[index]}</span>
-                                <span>${item.answer_text}</span>
-                            </div>
-                        </label>
-                    </div>
-                `;
+                            const optionHtml = `
+                                <div class="option-containers">
+                                    <input type="radio" name="answer" id="${optionId}" value="${item.Id_reponse}" class="hidden peer">
+                                    <label for="${optionId}" class="bg-white w-full rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 text-gray-900 font-medium flex justify-between items-center cursor-pointer border-2 border-transparent peer-checked:border-purple-600">
+                                        <div class="flex items-center">
+                                            <span class="mr-3 px-4 py-2 rounded-xl bg-[#F4F6FA]">${LetterArray[index]}</span>
+                                            <span>${item.answer_text}</span>
+                                        </div>
+                                    </label>
+                                </div>`;
 
-                        optionsContainer.append(optionHtml);
-                    });
+                            optionsContainer.append(optionHtml);
+                        });
+                        limit++;
 
-                    // Disable the submit button initially
-                    const submitButton = $('button[type="submit"]');
-                    submitButton.prop('disabled', true);
+                        // Disable the submit button initially
+                        const submitButton = $('button[type="submit"]');
+                        submitButton.prop('disabled', true);
 
-                    // Enable the submit button when an answer is selected
-                    $('input[name="answer"]').on('change', function() {
-                        submitButton.prop('disabled', false);
-                    });
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.error('Error fetching data:', textStatus, errorThrown);
+                        // Enable the submit button when an answer is selected
+                        $('input[name="answer"]').on('change', function() {
+                            submitButton.prop('disabled', false);
+                        });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error fetching data:', textStatus, errorThrown);
+                    }
+                });
+            }
+            $('.quiz-form').on('submit', function(e) {
+                e.preventDefault();
+                store($('input[name="answer"]:checked').val());
+                if (limit-1 === max) {
+                    window.location.href = '/quiz/<?=$id?>/result';
+                    return;
                 }
+                fetch();
             });
+            fetch();
         });
     </script>
 
