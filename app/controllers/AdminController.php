@@ -93,6 +93,14 @@ class AdminController
             $_SESSION['success'] = "User updated successfully";
             unset($_SESSION['error']);
             unset($_SESSION['old']);
+            
+            if (isset($_SESSION['user']) && $_SESSION['user']->getId() === $id) {
+                $updatedUser = $this->um->getUserById($id);
+                if ($updatedUser) {
+                    $_SESSION['user'] = $updatedUser;
+                }
+            }
+            
             header('Location: /dashboard');
             exit();
         } else {
