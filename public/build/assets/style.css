@@ -23,3 +23,11 @@
 .login {
     font-size: 36px;
 }
+
+.errorMessage {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.btn404 {
+    background-color: var(--purple-color);
+}
