@@ -34,7 +34,11 @@ export default {
         "support-warning-light": "var(--support-warning-light)",
         "support-error-dark": "var(--support-error-dark)",
         "support-error-medium": "var(--support-error-medium)",
-        "support-error-light": "var(--support-error-light)"
+        "support-error-light": "var(--support-error-light)",
+        "bg-primary": "var(--bg-primary)",
+        "bg-secondary": "var(--bg-secondary)",
+        "text-primary": "var(--text-primary)",
+        "text-secondary": "var(--text-secondary)"
       },
     },
   },

@@ -32,4 +32,18 @@
   --support-error-dark: rgba(237, 50, 65, 1);
   --support-error-medium: rgba(255, 97, 109, 1);
   --support-error-light: rgba(255, 226, 229, 1);
+
+  /* Background Colors */
+  --bg-primary: var(--neutral-light-lightest);
+  --bg-secondary: var(--neutral-light-light);
+  --text-primary: var(--neutral-dark-darkest);
+  --text-secondary: var(--neutral-dark-medium);
+}
+
+.dark {
+  /* Background Colors */
+  --bg-primary: var(--neutral-dark-darkest);
+  --bg-secondary: var(--neutral-dark-dark);
+  --text-primary: var(--neutral-light-lightest);
+  --text-secondary: var(--neutral-light-medium);
 }

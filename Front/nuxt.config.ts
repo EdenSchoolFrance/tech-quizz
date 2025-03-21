@@ -14,4 +14,11 @@ export default defineNuxtConfig({
   css: [
     "@/assets/scss/global.scss",
   ],
+
+  colorMode: {
+    preference: 'system',
+    fallback: 'light',
+    classSuffix: '',
+    storageKey: 'nuxt-color-mode'
+  }
 })
