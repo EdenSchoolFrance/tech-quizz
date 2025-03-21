@@ -1,18 +1,23 @@
 {
-  "resources/css/app.css": {
-    "file": "assets/app-n4vZfZI2.css",
-    "src": "resources/css/app.css",
-    "isEntry": true
-  },
-  "resources/css/style.css": {
-    "file": "assets/style.css",
-    "src": "resources/css/style.css",
-    "isEntry": true
-  },
-  "resources/js/app.js": {
-    "file": "assets/app-Cl5RxutH.js",
-    "name": "app",
-    "src": "resources/js/app.js",
-    "isEntry": true
-  }
+     "resources/css/app.css": {
+          "file": "assets/app-n4vZfZI2.css",
+          "src": "resources/css/app.css",
+          "isEntry": true
+     },
+     "resources/css/style.css": {
+          "file": "assets/style.css",
+          "src": "resources/css/style.css",
+          "isEntry": true
+     },
+     "ressources/css/quizz.css": {
+          "file": "assets/quizz.css",
+          "src": "resources/css/quizz.css",
+          "isEntry": true
+     },
+     "resources/js/app.js": {
+          "file": "assets/app-Cl5RxutH.js",
+          "name": "app",
+          "src": "resources/js/app.js",
+          "isEntry": true
+     }
 }
