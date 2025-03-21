@@ -37,6 +37,37 @@
             </div>
         </form>
     </div>
+    <?php elseif (isset($editUser)): ?>
+    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Edit User</h2>
+        
+        <form action="/dashboard/user/update/<?= $editUser->getId() ?>" method="POST">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username *</label>
+                <input type="text" name="username" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
+                       value="<?= isset($_SESSION['old']['username']) ? $_SESSION['old']['username'] : $editUser->getUsername() ?>">
+            </div>
+            
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                <input type="email" name="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
+                       value="<?= isset($_SESSION['old']['email']) ? $_SESSION['old']['email'] : $editUser->getEmail() ?>">
+            </div>
+            
+            <div class="mb-4">
+                <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Role *</label>
+                <select name="role" id="role" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <option value="user" <?= (isset($_SESSION['old']['role']) ? $_SESSION['old']['role'] : $editUser->getRole()) === 'user' ? 'selected' : '' ?>>User</option>
+                    <option value="admin" <?= (isset($_SESSION['old']['role']) ? $_SESSION['old']['role'] : $editUser->getRole()) === 'admin' ? 'selected' : '' ?>>Admin</option>
+                </select>
+            </div>
+            
+            <div class="flex gap-3">
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Update User</button>
+                <a href="/dashboard" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">Cancel</a>
+            </div>
+        </form>
+    </div>
     <?php else: ?>
     <div class="bg-white shadow-md rounded-lg p-6 mb-8">
         <h2 class="text-2xl font-semibold mb-4">Create a new Quiz</h2>
@@ -123,7 +154,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $user->getCreatedAt() ?></td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <a href="/user/<?= $user->getId() ?>" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
-                                    <a href="/user/edit/<?= $user->getId() ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
+                                    <a href="/dashboard/user/edit/<?= $user->getId() ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
                                     <a href="#" onclick="confirmUserDelete('<?= $user->getId() ?>')" class="text-red-600 hover:text-red-900">Delete</a>
                                     <form id="user-delete-form-<?= $user->getId() ?>" action="/user/delete/<?= $user->getId() ?>" method="POST" class="hidden">
                                     </form>

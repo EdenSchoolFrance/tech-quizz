@@ -31,6 +31,8 @@ if(user('role') == 'admin') {
     $router->post('/quiz/delete/:id', 'QuizController@delete');
     $router->get('/dashboard/quiz/edit/:id', 'QuizController@editInDashboard');
     $router->post('/dashboard/quiz/update/:id', 'QuizController@updateInDashboard');
+    $router->get('/dashboard/user/edit/:id', 'AdminController@editUser');
+    $router->post('/dashboard/user/update/:id', 'AdminController@updateUser');
 }
 
 
