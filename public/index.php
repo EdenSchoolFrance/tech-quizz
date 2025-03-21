@@ -15,9 +15,9 @@ if (strpos($_SERVER['REQUEST_URI'], '/fetch.php') ) {
     exit;
 }
 
-if (isset($_COOKIE['remember']) && !isset($_SESSION['user'])) {
+if (isset($_COOKIE['remember']) || isset($_SESSION['user'])) {
     $user = new UserManager();
-    $user = $user->getUser($_COOKIE['remember']);
+    $user = $user->getUser($_COOKIE['remember'] ?? user('email'));
     $_SESSION['user'] = $user;
 }
 

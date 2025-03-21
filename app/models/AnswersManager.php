@@ -36,5 +36,11 @@ class AnswersManager extends Model
         return $req->fetchAll();
     }
 
+    public function storeUserAnswer($quiz_id, $user_id, $question_id, $answer_id) {
+        $stmt = 'INSERT INTO user_answers (id, user_id, question_id, answer_id) VALUES (:id, :user_id, :question_id, :answer_id)';
+        $req = $this->pdo->prepare($stmt);
+        $req->execute([':id' => uniqid(), ':user_id' => $user_id, ':question_id' => $question_id, ':answer_id' => $answer_id]);
 
+        header('Location: /quiz/' . $quiz_id . '/' . ($question_id + 1));
+    }
 }
