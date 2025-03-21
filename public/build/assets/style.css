@@ -8,6 +8,7 @@
     --white-color: #FFFFFF;
     --green-color: #26D782;
     --red-color: #EE5454;
+    --blue-color: #4880FF;
 }
 
 * {
@@ -21,7 +22,21 @@
 }
 
 .login {
-    font-size: 36px;
+    font-size: 32px;
+}
+
+.login, .btn {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.btn {
+    background-color: var(--blue-color) !important;
+    color: white !important;
+    font-size: 16px !important;
+}
+
+.account {
+    color: var(--blue-color) !important;
 }
 
 .errorMessage {

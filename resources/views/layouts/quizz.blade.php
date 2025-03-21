@@ -15,7 +15,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
         @vite(['ressources/css/quizz.css'])
     </head>
-    <body class="font-sans text-gray-900 antialiased background">
+    <body class="font-sans text-gray-900 antialiased h-full background">
                 @yield('body')
     </body>
 </html>
