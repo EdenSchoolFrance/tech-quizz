@@ -9,7 +9,7 @@
 
         <div class="text-center mb-8">
             <h1 class="login font-bold mb-1">Login to Account</h1>
-            <p class="opacity-80">Please enter your email and password to continue</p>
+            <p class="opacity-80">Please enter your email and p assword to continue</p>
         </div>
 
         <!-- Email Address -->
