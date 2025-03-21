@@ -31,6 +31,18 @@ class AdminResult
     }
 
 
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    public function setScore()
+    {
+        $this->score = $score;
+        return $this;
+    }
+
+
     public function getCreatedAt()
     {
         return $this->created_at;

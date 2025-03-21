@@ -2,7 +2,7 @@
 
 namespace App\models;
 
-class ResultsManager extends Model
+class AdminResultManager extends Model
 {
     private $pdo;
 
@@ -18,7 +18,15 @@ class ResultsManager extends Model
     public function getAll()
     {
         $req = $this->pdo->query('SELECT * FROM user_quizz');
-        $req->setFetchMode(\PDO::FETCH_CLASS, Results::class);
+        $req->setFetchMode(\PDO::FETCH_CLASS, AdminResult::class);
+
+        return $req->fetchAll();
+    }
+
+    public function get()
+    {
+        $req = $this->pdo->query('SELECT * FROM user_quizz WHERE user_id = :id');
+        $req->setFetchMode(\PDO::FETCH_CLASS, AdminResult::class);
 
         return $req->fetchAll();
     }
