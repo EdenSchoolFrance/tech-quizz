@@ -15,6 +15,29 @@
         </div>
     <?php endif; ?>
     
+    <?php if (isset($editQuiz)): ?>
+    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Edit Quiz</h2>
+        
+        <form action="/dashboard/quiz/update/<?= $editQuiz->getId() ?>" method="POST">
+            <div class="mb-4">
+                <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Quiz Title *</label>
+                <input type="text" name="title" id="title" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
+                       value="<?= isset($_SESSION['old']['title']) ? $_SESSION['old']['title'] : $editQuiz->getTitle() ?>">
+            </div>
+            
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <textarea name="description" id="description" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="5"><?= isset($_SESSION['old']['description']) ? $_SESSION['old']['description'] : $editQuiz->getDescription() ?></textarea>
+            </div>
+            
+            <div class="flex gap-3">
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Update Quiz</button>
+                <a href="/dashboard" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">Cancel</a>
+            </div>
+        </form>
+    </div>
+    <?php else: ?>
     <div class="bg-white shadow-md rounded-lg p-6 mb-8">
         <h2 class="text-2xl font-semibold mb-4">Create a new Quiz</h2>
         
@@ -35,6 +58,7 @@
             </div>
         </form>
     </div>
+    <?php endif; ?>
     
     <div class="bg-white shadow-md rounded-lg p-6 mb-8">
         <h2 class="text-2xl font-semibold mb-4">Manage Your Quizzes</h2>
@@ -60,7 +84,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $quiz->getCreatedAt() ?></td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <a href="/quiz/<?= $quiz->getId() ?>" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
-                                    <a href="/quiz/edit/<?= $quiz->getId() ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
+                                    <a href="/dashboard/quiz/edit/<?= $quiz->getId() ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
                                     <a href="#" onclick="confirmDelete('<?= $quiz->getId() ?>')" class="text-red-600 hover:text-red-900">Delete</a>
                                     <form id="delete-form-<?= $quiz->getId() ?>" action="/quiz/delete/<?= $quiz->getId() ?>" method="POST" class="hidden">
                                     </form>
@@ -72,7 +96,7 @@
             </div>
         <?php endif; ?>
     </div>
-
+    
     <div class="bg-white shadow-md rounded-lg p-6">
         <h2 class="text-2xl font-semibold mb-4">Manage Users</h2>
         

@@ -66,4 +66,15 @@ class QuizManager extends Model
         
         return $req->fetchAll();
     }
+    
+    public function update($id, $title, $description)
+    {
+        $req = $this->pdo->prepare('UPDATE quizz SET title = :title, description = :description WHERE id = :id');
+        
+        return $req->execute([
+            'id' => $id,
+            'title' => $title,
+            'description' => $description
+        ]);
+    }
 }
