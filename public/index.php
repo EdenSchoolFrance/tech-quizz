@@ -52,6 +52,7 @@ if(auth())
     $router->get('/quiz', 'QuizController@index');
     $router->get('/result', 'ResultController@index');
     $router->get('/quiz/:id/:limit', 'QuestionController@show');
+    $router->get('/result', 'ResultController@index');
 }
 
 

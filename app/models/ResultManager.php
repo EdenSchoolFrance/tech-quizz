@@ -15,13 +15,14 @@ class ResultManager extends Model
         }
     }
 
-    public function getAll()
+    public function getResultsByUser($userId)
     {
-        $req = $this->pdo->query('SELECT * FROM user_quizz, quizz WHERE user_quizz.quizz_id = quizz.id');
+        $stmt = 'SELECT * FROM user_quizz WHERE user_id = :userId';
+        $req = $this->pdo->prepare($stmt);
+        $req->execute([':userId' => $userId]);
         $req->setFetchMode(\PDO::FETCH_CLASS, Result::class);
 
         return $req->fetchAll();
     }
-
 
 }

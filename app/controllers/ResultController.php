@@ -7,16 +7,18 @@ use App\models\ResultManager;
 
 class ResultController
 {
-    private $rc;
+
+    private $rm;
 
     public function __construct()
     {
-        $this->rc = new ResultManager();
+        $this->rm = new ResultManager();
     }
 
     public function index()
     {
-        $results = $this->rc->getAll();
+        $userId = $_SESSION['user']->getId();
+        $results = $this->rm->getResultsByUser($userId);
         require VIEWS . 'content/resultat.php';
     }
 

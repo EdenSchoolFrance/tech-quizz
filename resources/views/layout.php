@@ -40,7 +40,9 @@
                 <a href="/dashboard" class="aLink">Dashboard</a>
             </li>
             <?php endif; ?>
-
+            <li>
+                <a href="/result" class="aLink">Result</a>
+            </li>
         </ul>
     </header>
     <main class="container mx-auto px-4 py-8 grow flex flex-col justify-center">
