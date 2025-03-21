@@ -57,13 +57,49 @@
             <div class="mb-4">
                 <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Role *</label>
                 <select name="role" id="role" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    <option value="user" <?= (isset($_SESSION['old']['role']) ? $_SESSION['old']['role'] : $editUser->getRole()) === 'user' ? 'selected' : '' ?>>User</option>
-                    <option value="admin" <?= (isset($_SESSION['old']['role']) ? $_SESSION['old']['role'] : $editUser->getRole()) === 'admin' ? 'selected' : '' ?>>Admin</option>
+                    <option value="user" <?= (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] === 'user') || (!isset($_SESSION['old']['role']) && $editUser->getRole() === 'user') ? 'selected' : '' ?>>User</option>
+                    <option value="admin" <?= (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] === 'admin') || (!isset($_SESSION['old']['role']) && $editUser->getRole() === 'admin') ? 'selected' : '' ?>>Admin</option>
                 </select>
             </div>
             
             <div class="flex gap-3">
                 <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Update User</button>
+                <a href="/dashboard" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">Cancel</a>
+            </div>
+        </form>
+    </div>
+    <?php elseif (isset($createUser)): ?>
+    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Create New User</h2>
+        
+        <form action="/dashboard/user/store" method="POST">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username *</label>
+                <input type="text" name="username" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
+                       value="<?= isset($_SESSION['old']['username']) ? $_SESSION['old']['username'] : '' ?>">
+            </div>
+            
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                <input type="email" name="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
+                       value="<?= isset($_SESSION['old']['email']) ? $_SESSION['old']['email'] : '' ?>">
+            </div>
+            
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password *</label>
+                <input type="password" name="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            
+            <div class="mb-4">
+                <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Role *</label>
+                <select name="role" id="role" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <option value="user" <?= isset($_SESSION['old']['role']) && $_SESSION['old']['role'] === 'user' ? 'selected' : '' ?>>User</option>
+                    <option value="admin" <?= isset($_SESSION['old']['role']) && $_SESSION['old']['role'] === 'admin' ? 'selected' : '' ?>>Admin</option>
+                </select>
+            </div>
+            
+            <div class="flex gap-3">
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Create User</button>
                 <a href="/dashboard" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">Cancel</a>
             </div>
         </form>
@@ -129,7 +165,10 @@
     </div>
     
     <div class="bg-white shadow-md rounded-lg p-6">
-        <h2 class="text-2xl font-semibold mb-4">Manage Users</h2>
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold">Manage Users</h2>
+            <a href="/dashboard/user/create" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">Create New User</a>
+        </div>
         
         <?php if (empty($users)): ?>
             <p class="text-gray-500">No users found.</p>
@@ -176,7 +215,7 @@ function confirmDelete(quizId) {
 }
 
 function confirmUserDelete(userId) {
-    if (confirm('Are you sure you want to delete this user?')) {
+    if (confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
         document.getElementById('user-delete-form-' + userId).submit();
     }
 }

@@ -147,4 +147,81 @@ class AdminController
         header('Location: /dashboard');
         exit();
     }
+    
+    public function createUser()
+    {
+        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
+            $_SESSION['error'] = "You need to be an admin!";
+            header('Location: /login');
+            exit();
+        }
+        
+        unset($_SESSION['error']);
+        unset($_SESSION['success']);
+        unset($_SESSION['old']);
+        
+        $quizManager = new \App\models\QuizManager();
+        $quizzes = $quizManager->getQuizzesByUser($_SESSION['user']->getId());
+        
+        $users = $this->um->getAllUsers();
+        $createUser = true;
+        
+        require VIEWS . 'content/admin/index.php';
+    }
+    
+    public function storeUser()
+    {
+        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
+            $_SESSION['error'] = "You need to be an admin!";
+            header('Location: /login');
+            exit();
+        }
+        
+        if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['role'])) {
+            $_SESSION['error'] = "All inputs are required";
+            $_SESSION['old'] = $_POST;
+            header('Location: /dashboard/user/create');
+            exit();
+        }
+        
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['error'] = "Invalid email format";
+            $_SESSION['old'] = $_POST;
+            header('Location: /dashboard/user/create');
+            exit();
+        }
+        
+        if ($_POST['role'] !== 'user' && $_POST['role'] !== 'admin') {
+            $_SESSION['error'] = "Role must be 'user' or 'admin'";
+            $_SESSION['old'] = $_POST;
+            header('Location: /dashboard/user/create');
+            exit();
+        }
+        
+        $username = htmlspecialchars($_POST['username']);
+        $email = htmlspecialchars($_POST['email']);
+        $password = $_POST['password'];
+        $role = $_POST['role'];
+        
+        $existingUser = $this->um->getUser($email);
+        if ($existingUser) {
+            $_SESSION['error'] = "Email already exists";
+            $_SESSION['old'] = $_POST;
+            header('Location: /dashboard/user/create');
+            exit();
+        }
+        
+        $result = $this->um->insertUser($username, $email, $password, $role);
+        
+        if (!is_string($result)) {
+            $_SESSION['success'] = "User created successfully";
+            header('Location: /dashboard');
+            exit();
+        } else {
+            $_SESSION['error'] = "Error creating user: " . $result;
+            $_SESSION['old'] = $_POST;
+            header('Location: /dashboard/user/create');
+            exit();
+        }
+    }
 }

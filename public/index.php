@@ -34,6 +34,8 @@ if(user('role') == 'admin') {
     $router->get('/dashboard/user/edit/:id', 'AdminController@editUser');
     $router->post('/dashboard/user/update/:id', 'AdminController@updateUser');
     $router->post('/dashboard/user/delete/:id', 'AdminController@deleteUser');
+    $router->get('/dashboard/user/create', 'AdminController@createUser');
+    $router->post('/dashboard/user/store', 'AdminController@storeUser');
     $router->get('/content/admin/result/:id', 'AdminResultController@show');
 }
 
