@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
+    <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
     
     <?php if (isset($_SESSION['success'])): ?>
         <div class="bg-green-100 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-6">
@@ -36,7 +36,7 @@
         </form>
     </div>
     
-    <div class="bg-white shadow-md rounded-lg p-6">
+    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
         <h2 class="text-2xl font-semibold mb-4">Manage Your Quizzes</h2>
         
         <?php if (empty($quizzes)): ?>
@@ -74,19 +74,20 @@
     </div>
 
     <div class="bg-white shadow-md rounded-lg p-6">
-        <h2 class="text-2xl font-semibold mb-4">Manage Your Users</h2>
+        <h2 class="text-2xl font-semibold mb-4">Manage Users</h2>
         
         <?php if (empty($users)): ?>
-            <p class="text-gray-500">You haven't have any users.</p>
+            <p class="text-gray-500">No users found.</p>
         <?php else: ?>
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">email</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">role</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">created_at</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created At</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -99,8 +100,8 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <a href="/user/<?= $user->getId() ?>" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
                                     <a href="/user/edit/<?= $user->getId() ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
-                                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
-                                    <form id="delete-form-<?= $user->getId() ?>" action="/user/delete/<?= $user->getId() ?>" method="POST" class="hidden">
+                                    <a href="#" onclick="confirmUserDelete('<?= $user->getId() ?>')" class="text-red-600 hover:text-red-900">Delete</a>
+                                    <form id="user-delete-form-<?= $user->getId() ?>" action="/user/delete/<?= $user->getId() ?>" method="POST" class="hidden">
                                     </form>
                                 </td>
                             </tr>
@@ -110,14 +111,18 @@
             </div>
         <?php endif; ?>
     </div>
-
-
 </div>
 
 <script>
 function confirmDelete(quizId) {
-    if (confirm('Are you sure about that?')) {
+    if (confirm('Are you sure you want to delete this quiz?')) {
         document.getElementById('delete-form-' + quizId).submit();
+    }
+}
+
+function confirmUserDelete(userId) {
+    if (confirm('Are you sure you want to delete this user?')) {
+        document.getElementById('user-delete-form-' + userId).submit();
     }
 }
 </script>

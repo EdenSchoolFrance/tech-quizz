@@ -108,4 +108,21 @@ class QuizController
         $quizzes = $this->qc->getQuizzesByUser($userId);        
         require VIEWS . 'content/admin/index.php';
     }
+
+    public function adminDashboard()
+    {
+        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
+            $_SESSION['error'] = "You need to be an admin!";
+            header('Location: /login');
+            exit();
+        }
+        
+        $userId = $_SESSION['user']->getId();
+        $quizzes = $this->qc->getQuizzesByUser($userId);
+        
+        $userManager = new \App\models\UserManager();
+        $users = $userManager->getAllUsers();
+        
+        require VIEWS . 'content/admin/index.php';
+    }
 }
