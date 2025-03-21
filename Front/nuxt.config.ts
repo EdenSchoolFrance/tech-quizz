@@ -11,5 +11,7 @@ export default defineNuxtConfig({
     '@formkit/auto-animate'
   ],
 
-  css: ["@/assets/scss/global.scss"],
+  css: [
+    "@/assets/scss/global.scss",
+  ],
 })
