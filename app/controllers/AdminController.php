@@ -40,6 +40,9 @@ class AdminController
         unset($_SESSION['success']);
         unset($_SESSION['old']);
         
+        $quizManager = new \App\models\QuizManager();
+        $quizzes = $quizManager->getQuizzesByUser($_SESSION['user']->getId());
+        
         $users = $this->um->getAllUsers();
         $editUser = $user;
         
