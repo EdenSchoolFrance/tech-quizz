@@ -110,4 +110,16 @@ class UserManager extends Model
             return false;
         }
     }
+    
+    public function deleteUser($id)
+    {
+        try {
+            $stmt = "DELETE FROM users WHERE id = :id";
+            $stmt = $this->pdo->prepare($stmt);
+            
+            return $stmt->execute([':id' => $id]);
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
 }
