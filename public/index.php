@@ -33,6 +33,7 @@ if(user('role') == 'admin') {
     $router->post('/dashboard/quiz/update/:id', 'QuizController@updateInDashboard');
     $router->get('/dashboard/user/edit/:id', 'AdminController@editUser');
     $router->post('/dashboard/user/update/:id', 'AdminController@updateUser');
+    $router->get('/content/admin/result/:id', 'AdminResultController@show');
 }
 
 
