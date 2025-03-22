@@ -27,15 +27,23 @@ class ResultManager extends Model
 
     public function storeAnswers($index, $id)
     {
-        $stmt = 'SELECT * FROM questions JOIN answers ON questions.id = answers.question_id WHERE quizz_id = :id';
+        $stmt = 'SELECT * FROM questions WHERE quizz_id = :id LIMIT 1 OFFSET :offset';
         $req = $this->pdo->prepare($stmt);
-        $req->execute([':id' => $id]);
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+        $req->bindValue(':offset', $index, \PDO::PARAM_INT);
+        $req->execute();
+
+        $question = $req->fetch();
+
+        $stmt = 'SELECT * FROM questions JOIN answers ON questions.id = answers.question_id WHERE quizz_id = :id AND questions.id = :question_id';
+        $req = $this->pdo->prepare($stmt);
+        $req->execute([':id' => $id, ':question_id' => $question['id']]);
 
         $result = $req->fetchAll();
 
         $stmt = 'INSERT INTO user_answers (id, user_id, question_id, answer_id) VALUES (:id, :user_id, :question_id, :answer_id)';
         $req = $this->pdo->prepare($stmt);
-        $req->execute([':id' => uniqid(), ':user_id' => $_SESSION['user']->getId(), ':question_id' => $result[$index*4]['question_id'], ':answer_id' => $_SESSION['result'][$index]]);
+        $req->execute([':id' => uniqid(), ':user_id' => $_SESSION['user']->getId(), ':question_id' => $result[0]['question_id'], ':answer_id' => $_SESSION['result'][$index]]);
     }
 
     public function storeQuiz($id, $score)

@@ -24,6 +24,7 @@ class QuestionController
 
     public function show($id)
     {
+        $questions = $this->qc->getAll($id);
         require VIEWS . 'content/AffichageQuestion.php';
     }
 

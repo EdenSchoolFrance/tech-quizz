@@ -19,13 +19,20 @@ try {
     $stmt->execute();
     $count = $stmt->fetchColumn();
 
-    $stmt = 'SELECT questions.id Id_question, answers.id Id_reponse, question_text, answer_text FROM questions JOIN answers ON questions.id = answers.question_id WHERE quizz_id = ? LIMIT ? OFFSET ?';
+    $stmt = 'SELECT * FROM questions WHERE quizz_id = :id LIMIT 1 OFFSET :offset';
+    $stmt = $pdo->prepare($stmt);
+    $stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+    $stmt->bindValue(':offset', (int)$_GET['limit']-1, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $question = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $stmt = 'SELECT questions.id Id_question, answers.id Id_reponse, question_text, answer_text '. (isset($_GET['answers']) ? ', is_correct' : '') .' FROM questions JOIN answers ON questions.id = answers.question_id WHERE quizz_id = ? AND questions.id = ?';
     $stmt = $pdo->prepare($stmt);
     $limit = (int)$_GET['limit'] * 4;
     $offset = (int)$_GET['limit'] * 4 - 4;
     $stmt->bindValue(1, $_GET['id'], PDO::PARAM_INT);
-    $stmt->bindValue(2, $limit, PDO::PARAM_INT);
-    $stmt->bindValue(3, $offset, PDO::PARAM_INT);
+    $stmt->bindValue(2, $question['id'], PDO::PARAM_INT);
     $stmt->execute();
 
     $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
