@@ -22,7 +22,7 @@ $_SESSION['result'] = [];
 
                     </div>
 
-                <button type="submit" class="w-full bg-purple-600 text-white font-medium py-4 px-6 rounded-xl mt-8 hover:bg-purple-700 transition-colors ">
+                <button type="submit" name="submit-button" class="w-full bg-purple-600 text-white font-medium py-4 px-6 rounded-xl mt-8 hover:bg-purple-700 transition-colors ">
                     Submit Answer
                 </button>
             </form>
@@ -36,6 +36,46 @@ $_SESSION['result'] = [];
                 $.ajax({
                     url: `../api/store.php?result=${answer}&index=${limit-1}`,
                     method: 'GET',
+                });
+            }
+            function fetchAnswers() {
+                $.ajax({
+                    url: `../api/fetch.php?id=<?=$id?>&limit=${limit-1}&answers=true`,
+                    method: 'GET',
+                    success: function(data) {
+                        const answer = $('input[name="answer"]:checked').val();
+                        let correct = false;
+                        $('input[name="answer"]').prop('disabled', true);
+                        data.forEach(function(item) {
+                            if (item.Id_reponse === answer && item.is_correct === 1) {
+                                correct = true;
+                                let id = $('input[name="answer"]:checked').attr('id');
+                                $(`label[for=${id}]`).removeClass('peer-checked:border-purple-600');
+                                $(`label[for=${id}]`).removeClass('border-transparent');
+                                $(`label[for=${id}]`).addClass('border-green-500');
+                            }
+                        });
+                        if (!correct) {
+                            let id = $('input[name="answer"]:checked').attr('id');
+                            $(`label[for=${id}]`).removeClass('peer-checked:border-purple-600');
+                            $(`label[for=${id}]`).removeClass('border-transparent');
+                            $(`label[for=${id}]`).addClass('border-red-500');
+                            data.forEach(function (item) {
+                                if (item.is_correct == 1) {
+                                    id = $(`input[value=${item.Id_reponse}]`).attr('id');
+                                    $(`label[for=${id}]`).removeClass('peer-checked:border-purple-600');
+                                    $(`label[for=${id}]`).removeClass('border-transparent');
+                                    $(`label[for=${id}]`).addClass('border-green-500');
+                                }
+                            });
+                        }
+                        const button = $('button[type="submit"]');
+                        button.text('Next Question');
+                        button.prop('name', 'next-button');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error fetching data:', textStatus, errorThrown);
+                    }
                 });
             }
             function fetch() {
@@ -82,6 +122,8 @@ $_SESSION['result'] = [];
                         // Disable the submit button initially
                         const submitButton = $('button[type="submit"]');
                         submitButton.prop('disabled', true);
+                        submitButton.prop('name', 'submit-button');
+                        submitButton.text('Submit Answer');
 
                         // Enable the submit button when an answer is selected
                         $('input[name="answer"]').on('change', function() {
@@ -95,12 +137,17 @@ $_SESSION['result'] = [];
             }
             $('.quiz-form').on('submit', function(e) {
                 e.preventDefault();
-                store($('input[name="answer"]:checked').val());
-                if (limit-1 === max) {
-                    window.location.href = '/quiz/<?=$id?>/result';
-                    return;
+                if(e.originalEvent.submitter.name === 'submit-button') {
+                    store($('input[name="answer"]:checked').val());
+                    fetchAnswers();
                 }
-                fetch();
+                else {
+                    if (limit-1 === max) {
+                        window.location.href = '/quiz/<?=$id?>/result';
+                        return;
+                    }
+                    fetch();
+                }
             });
             fetch();
         });
