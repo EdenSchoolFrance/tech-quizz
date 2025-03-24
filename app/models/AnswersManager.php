@@ -43,4 +43,38 @@ class AnswersManager extends Model
 
         header('Location: /quiz/' . $quiz_id . '/' . ($question_id + 1));
     }
+    
+    public function create($questionId, $answerText, $isCorrect)
+    {
+        $id = uniqid();
+        
+        $stmt = 'INSERT INTO answers (id, question_id, answer_text, is_correct) VALUES (:id, :question_id, :answer_text, :is_correct)';
+        $req = $this->pdo->prepare($stmt);
+        $result = $req->execute([
+            ':id' => $id,
+            ':question_id' => $questionId,
+            ':answer_text' => $answerText,
+            ':is_correct' => $isCorrect
+        ]);
+        
+        if ($result) {
+            return $id;
+        }
+        
+        return false;
+    }
+    
+    public function delete($id)
+    {
+        $stmt = 'DELETE FROM answers WHERE id = :id';
+        $req = $this->pdo->prepare($stmt);
+        return $req->execute([':id' => $id]);
+    }
+    
+    public function deleteByQuestionId($questionId)
+    {
+        $stmt = 'DELETE FROM answers WHERE question_id = :question_id';
+        $req = $this->pdo->prepare($stmt);
+        return $req->execute([':question_id' => $questionId]);
+    }
 }

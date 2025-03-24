@@ -41,6 +41,9 @@ if(user('role') == 'admin') {
     $router->get('/dashboard/user/create', 'AdminController@createUser');
     $router->post('/dashboard/user/store', 'AdminController@storeUser');
     $router->get('/content/admin/result/:id', 'AdminResultController@show');
+    $router->get('/quiz/:id/questions', 'QuestionController@manageQuestions');
+    $router->post('/quiz/:id/questions/store', 'QuestionController@storeQuestion');
+    $router->get('/quiz/:id/questions/delete/:questionId', 'QuestionController@deleteQuestion');
 }
 
 
