@@ -57,5 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
-    Route::get('/all', [\App\Http\Controllers\QuzzController::class, 'displayAll']);
+    Route::get('/quiz', [\App\Http\Controllers\QuzzController::class, 'displayAll']);
+
+    Route::get('/quiz/{id}', [\App\Http\Controllers\QuzzController::class, 'displayOne']);
 });
