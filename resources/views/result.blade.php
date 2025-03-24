@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Result</title>
     <link rel="stylesheet" href="{{ asset('css/result.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
 
@@ -29,7 +30,7 @@
                     <p class="scored">8</p>
                     <p class="out-of">out of 10</p>
                 </div>
-                <a href="/" class="play-again">Play Again</a>
+                <a href="/all" class="play-again">Play Again</a>
             </div>
         </div>
     </div>
