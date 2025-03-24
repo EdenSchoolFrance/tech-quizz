@@ -17,10 +17,10 @@ class QuzzController extends Controller
 
     public function displayOne(int $id_quiz, int $nb_question)
     {
-        $quizData = Question::where('ID_QUIZ', $id_quiz)
+        $quizData = Question::where('id_quiz', $id_quiz)
             ->where('nb_question', $nb_question)
             ->first();
-        $nameQuiz = Quiz::where('ID_QUIZ', $id_quiz)->first();
+        $nameQuiz = Quiz::where('id_quiz', $id_quiz)->first();
 
         return view('quizGame', ['quiz' => $quizData->toArray(), 'nameQuiz' => $nameQuiz->toArray()['name_quiz']]);
     }

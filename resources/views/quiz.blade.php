@@ -33,7 +33,6 @@
                     <a href="/quiz/{{$quiz->id_quiz}}" class="quiz-button">
                         <p>{{ $quiz->name_quiz }}</p>
 
-
                     </a>
 
                 @endforeach
