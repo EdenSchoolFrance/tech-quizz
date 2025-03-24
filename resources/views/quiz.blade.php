@@ -29,8 +29,8 @@
 
             <div class="second-div">
                 @foreach($quizzes as $quiz)
-                    <a href="/{{$quiz->ID_QUIZ}}" class="quiz-button">
-                        <p>{{ $quiz->NAME_QUIZ }}</p>
+                    <a href="/{{$quiz->id_quiz}}" class="quiz-button">
+                        <p>{{ $quiz->name_quiz }}</p>
                     </a>
 
                 @endforeach
