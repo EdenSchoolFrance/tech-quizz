@@ -1,7 +1,7 @@
 @vite(['resources/css/app.css', 'resources/css/style.css'])
 @extends("layouts.quizz")
 <div class="h-full flex items-center">
-    <div class="bg-white w-[40%] rounded shadow-md mx-auto flex p-10 flex-col items-center">
+    <div class="bg-white w-[30%] rounded-lg shadow-md mx-auto flex p-10 flex-col items-center">
         <div>
             <img src="/build/assets/img/404.svg" alt="404 image">
             <p class="errorMessage text-center text font-[700] text-[28px] mt-[4rem] mb-[2rem]">Looks like you've got lost...</p>
