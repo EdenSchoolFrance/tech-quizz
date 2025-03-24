@@ -29,7 +29,7 @@
 
             <div class="second-div">
                 @foreach($quizzes as $quiz)
-                    <a href="/{{$quiz->NAME_QUIZ}}" class="quiz-button">
+                    <a href="/{{$quiz->ID_QUIZ}}" class="quiz-button">
                         <p>{{ $quiz->NAME_QUIZ }}</p>
                     </a>
 
