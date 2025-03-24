@@ -27,7 +27,7 @@ class QuizController extends Controller
             ->get();
 
         $responses = Responses::query()
-            ->select("responses.response_text", "responses.id")
+            ->select("responses.response_text", "responses.id", "responses.order")
             ->join("questions", "responses.question_id", "=", "questions.id")
             ->join("quiz_question", "questions.id", "=", "quiz_question.question_id")
             ->where("quiz_question.quiz_id", $idQuiz)
