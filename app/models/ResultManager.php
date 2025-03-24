@@ -46,14 +46,14 @@ class ResultManager extends Model
         $req->execute([':id' => uniqid(), ':user_id' => $_SESSION['user']->getId(), ':question_id' => $result[0]['question_id'], ':answer_id' => $_SESSION['result'][$index]]);
     }
 
-    public function storeQuiz($id, $score)
+    public function storeQuiz($id, $score, $tryId)
     {
-        $stmt = 'INSERT INTO user_quizz (id, user_id, quizz_id, score) VALUES (:id, :user_id, :quizz_id, :score)';
+        $stmt = 'INSERT INTO user_quizz (id, try_id, user_id, quizz_id, score) VALUES (:id, :tryId , :user_id, :quizz_id, :score)';
         $req = $this->pdo->prepare($stmt);
-        $req->execute([':id' => uniqid(), ':user_id' => $_SESSION['user']->getId(), ':quizz_id' => $id, ':score' => $score]);
+        $req->execute([':id' => uniqid(), ':tryId' => $tryId, ':user_id' => $_SESSION['user']->getId(), ':quizz_id' => $id, ':score' => $score]);
     }
 
-    public function score($id)
+    public function score($id, $tryId)
     {
         $stmt = 'SELECT answers.id, is_correct FROM questions JOIN answers ON questions.id = answers.question_id WHERE quizz_id = :id';
         $req = $this->pdo->prepare($stmt);
@@ -61,17 +61,23 @@ class ResultManager extends Model
 
         $result = $req->fetchAll();
 
+        $stmt = 'SELECT answer_id FROM user_answers WHERE try_id = :tryId';
+        $req = $this->pdo->prepare($stmt);
+        $req->execute([':tryId' => $tryId]);
+
+        $answers = $req->fetchAll();
+
         $score = 0;
 
-        foreach($_SESSION['result'] as $key => $value) {
-            foreach ($result as $k => $v) {
-                if ($result[$k]['is_correct'] == 1 && $result[$k]['id'] == $value) {
+        foreach ($result as $key => $value) {
+            foreach ($answers as $answer) {
+                if ($value['id'] == $answer['answer_id'] && $value['is_correct'] == 1) {
                     $score++;
-                    break;
                 }
             }
         }
 
-        return $score .' / '. count($_SESSION['result']);
+
+        return $score .' / '. count($answers);
     }
 }

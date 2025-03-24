@@ -31,16 +31,13 @@ class ResultController
         require VIEWS . 'content/resultat.php';
     }
 
-    public function store($id)
+    public function store($id, $tryId)
     {
 
         if (isset($_SESSION['result'])) {
-            foreach($_SESSION['result'] as $key => $value) {
-                $this->rm->storeAnswers($key, $id);
-            }
-            $score = $this->rm->score($id);
+            $score = $this->rm->score($id, $tryId);
             $_SESSION['score'] = $score;
-            $this->rm->storeQuiz($id, $score);
+            $this->rm->storeQuiz($id, $score, $tryId);
         }
         $quiz = $this->qm->get($id);
 

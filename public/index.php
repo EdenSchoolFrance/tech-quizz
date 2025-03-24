@@ -10,14 +10,6 @@ use App\Models\UserManager;
 
 session_start();
 
-if (strpos($_SERVER['REQUEST_URI'], '.php') ) {
-    if (strpos($_SERVER['REQUEST_URI'], 'fetch')) {
-        require '../api/fetch.php';
-    } elseif (strpos($_SERVER['REQUEST_URI'], 'store')) {
-        require '../api/store.php';
-    }
-    exit;
-}
 
 if (isset($_COOKIE['remember']) || isset($_SESSION['user'])) {
     $user = new UserManager();
@@ -63,7 +55,7 @@ if(auth())
     $router->get('/quiz', 'QuizController@index');
     $router->get('/result', 'ResultController@index');
     $router->get('/quiz/:id', 'QuestionController@show');
-    $router->get('/quiz/:id/result', 'ResultController@store');
+    $router->get('/quiz/:id/result/:tryid', 'ResultController@store');
     $router->get('/result', 'ResultController@index');
 }
 

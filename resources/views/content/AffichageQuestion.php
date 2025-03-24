@@ -1,6 +1,7 @@
 <?php
 ob_start();
-$_SESSION['result'] = [];
+
+$tryId = uniqid();
 
 ?>
     <section class="flex flex-col md:flex-row md:items-start gap-12 w-3/4 mx-auto">
@@ -10,7 +11,7 @@ $_SESSION['result'] = [];
             </div>
             <div>
                 <p class="text-gray-600 mb-4 italic question-num"></p>
-                <h1 class="text-3xl font-bold text-gray-800 mb-8 question-text"></h1>
+                <h1 class="text-3xl font-bold text-gray-800 mb-8 question-text" ></h1>
             </div>
 
             <div class="w-full bg-gray-200 rounded-full h-2 mb-6">
@@ -38,14 +39,15 @@ $_SESSION['result'] = [];
             let limit = 1;
             let max;
             function store(answer) {
+                const id = $('.question-text').id
                 $.ajax({
-                    url: `../api/store.php?result=${answer}&index=${limit-1}`,
+                    url: `http://localhost:8001/store.php?result=${answer}&questionId=${id}&userId=<?=user('id')?>&tryId=<?=$tryId?>`,
                     method: 'GET',
                 });
             }
             function fetchAnswers() {
                 $.ajax({
-                    url: `../api/fetch.php?id=<?=$id?>&limit=${limit-1}&answers=true`,
+                    url: `http://localhost:8001/fetch.php?id=<?=$id?>&limit=${limit-1}&answers=true`,
                     method: 'GET',
                     success: function(data) {
                         const answer = $('input[name="answer"]:checked').val();
@@ -85,7 +87,7 @@ $_SESSION['result'] = [];
             }
             function fetch() {
                 $.ajax({
-                    url: `../api/fetch.php?id=<?=$id?>&limit=${limit}`,
+                    url: `http://localhost:8001/fetch.php?id=<?=$id?>&limit=${limit}`,
                     method: 'GET',
                     success: function(data) {
                         max = data[4];
@@ -99,6 +101,7 @@ $_SESSION['result'] = [];
                         const questionText = $('.question-text');
                         questionText.empty()
                         questionText.append(data[0].question_text);
+                        questionText.attr('id', data[0].Id_question);
 
                         const questionNum = $('.question-num');
                         questionNum.empty()
@@ -157,7 +160,7 @@ $_SESSION['result'] = [];
                 }
                 else {
                     if (limit-1 === max) {
-                        window.location.href = '/quiz/<?=$id?>/result';
+                        window.location.href = '/quiz/<?=$id?>/result/<?=$tryId?>';
                         return;
                     }
                     fetch();
