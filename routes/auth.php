@@ -59,5 +59,5 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/quiz', [\App\Http\Controllers\QuzzController::class, 'displayAll']);
 
-    Route::get('/quiz/{id}', [\App\Http\Controllers\QuzzController::class, 'displayOne']);
+    Route::get('/quiz/{id_quiz}/{nb_question}', [\App\Http\Controllers\QuzzController::class, 'displayOne']);
 });
