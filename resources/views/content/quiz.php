@@ -1,13 +1,13 @@
 <?php ob_start(); ?>
 
     <section class="flex flex-col md:flex-row md:items-start gap-12">
-        <article class="w-full flex flex-row justify-between">
-            <div class="md:w-1/2 mb-10">
-                <h1 class="text-4xl text-gray-700 font-normal mb-4 leading-tight">Welcome to the<br><span class="font-bold text-gray-900">Frontend Quiz!</span></h1>
-                <p class="text-lg text-gray-600">Pick a subject to get started.</p>
+        <article class="w-full grid md:grid-cols-2 md:justify-items-center">
+            <div class="mb-10">
+                <h1 class="md:text-4xl text-5xl text-gray-700 font-normal mb-4 leading-tight">Welcome to the<br><span class="font-bold text-gray-900">Frontend Quiz!</span></h1>
+                <p class="md:text-lg text-xl text-gray-600">Pick a subject to get started.</p>
             </div>
 
-            <div class="md:w-1/2 flex flex-col space-y-4">
+            <div class="flex flex-col space-y-4 2xl overflow-y-auto h-76 md:w-2/3">
                 <?php
                 $count = 1;
                 foreach($quizz as $quiz):

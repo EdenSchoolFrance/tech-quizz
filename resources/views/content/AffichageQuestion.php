@@ -4,7 +4,10 @@ $_SESSION['result'] = [];
 
 ?>
     <section class="flex flex-col md:flex-row md:items-start gap-12 w-3/4 mx-auto">
-        <div class="md:w-1/2 h-[400px] flex flex-col justify-between">
+        <div class="md:w-1/2 md:h-[400px] flex flex-col justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-8 quizz-text"></h1>
+            </div>
             <div>
                 <p class="text-gray-600 mb-4 italic question-num"></p>
                 <h1 class="text-3xl font-bold text-gray-800 mb-8 question-text"></h1>
@@ -18,13 +21,15 @@ $_SESSION['result'] = [];
         <div class="md:w-1/2 flex flex-col space-y-4">
             <form class="quiz-form" action="" method="GET">
 
-                    <div class="option-container space-y-4">
+                <div class="option-container space-y-4">
 
-                    </div>
+                </div>
 
                 <button type="submit" name="submit-button" class="w-full bg-purple-600 text-white font-medium py-4 px-6 rounded-xl mt-8 hover:bg-purple-700 transition-colors ">
                     Submit Answer
                 </button>
+                <div class="text-center mt-4 text-red-500 submit-error">
+                </div>
             </form>
         </div>
     </section>
@@ -84,6 +89,10 @@ $_SESSION['result'] = [];
                     method: 'GET',
                     success: function(data) {
                         max = data[4];
+                        const quizzText = $('.quizz-text');
+                        quizzText.empty()
+                        quizzText.append(data[5]);
+
                         const optionsContainer = $('.option-container');
                         optionsContainer.empty()
 
@@ -101,7 +110,7 @@ $_SESSION['result'] = [];
                         optionsContainer.empty();
                         const LetterArray = ['A', 'B', 'C', 'D']
                         data.forEach(function(item, index) {
-                            if (index === 4) return;
+                            if (index > 3) return;
                             const optionId = 'option' + index;
 
                             const optionHtml = `
@@ -137,7 +146,12 @@ $_SESSION['result'] = [];
             }
             $('.quiz-form').on('submit', function(e) {
                 e.preventDefault();
+                if ($('button[type="submit"]').is(':disabled')) {
+                    $('.submit-error').text('Please select an answer');
+                    console.log('hello')
+                }
                 if(e.originalEvent.submitter.name === 'submit-button') {
+                    $('.submit-error').text('');
                     store($('input[name="answer"]:checked').val());
                     fetchAnswers();
                 }
