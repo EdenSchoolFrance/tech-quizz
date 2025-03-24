@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('quiz_question', function (Blueprint $table) {
             $table->foreignId('question_id')->constrained("questions")->onDelete('cascade');
             $table->foreignId('quiz_id')->constrained("quizzes")->onDelete('cascade');
+            $table->integer('order');
         });
     }
 

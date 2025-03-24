@@ -18,4 +18,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/quizzes', [QuizController::class, 'index']);
 Route::get('/quizz/', [QuizController::class, 'quizz']);
 
+Route::get('/quizz/{id}/question/{idQuestion}', [QuizController::class, 'showQuestions']);
+
 require __DIR__. '/auth.php';
