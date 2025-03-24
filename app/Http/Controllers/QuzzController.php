@@ -12,4 +12,11 @@ class QuzzController extends Controller
         return view('quiz', ['quizzes' => $all]);
     }
 
+    public function displayOne(string $id)
+    {
+        $quizData = Quiz::where('ID_QUIZ', $id)->first();
+
+
+        return view('quizGame', ['quiz' => $quizData]);
+    }
 }

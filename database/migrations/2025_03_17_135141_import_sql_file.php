@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         // Chemin du fichier SQL
-        $path = database_path('sql/dump.sql');
+        $path = database_path('sql/quiz.sql');
 
         // Vérifier si le fichier existe
         if (File::exists($path)) {
