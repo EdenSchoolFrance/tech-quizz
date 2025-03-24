@@ -1,5 +1,7 @@
 <?php
 
+namespace App\models;
+
 class AdminResult
 {
     private $id;
