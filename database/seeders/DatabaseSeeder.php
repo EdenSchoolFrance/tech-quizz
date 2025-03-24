@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         // Insertion des quiz initiaux
         DB::table('quizzes')->insert([
-            ['title' => 'JavaScript', 'img_url' => 'img/quizz/javascript.svg'],
             ['title' => 'HTML', 'img_url' => 'img/quizz/html.svg'],
             ['title' => 'CSS', 'img_url' => 'img/quizz/css.svg'],
+            ['title' => 'JavaScript', 'img_url' => 'img/quizz/javascript.svg'],
             ['title' => 'Accessibility', 'img_url' => 'img/quizz/accessibility.svg'],
         ]);
 
