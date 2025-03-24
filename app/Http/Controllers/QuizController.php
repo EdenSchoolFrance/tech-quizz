@@ -63,4 +63,8 @@ class QuizController extends Controller
         }
         return response()->json(["success" => true, "correctAnswer" => $correctAnswer]);
     }
+     public function score() {
+         return view('quizz.score');
+     }
+
 }

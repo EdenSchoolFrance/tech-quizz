@@ -1,15 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-
 :root {
-     --purple-color: #A729F5;
-     --first-deep-blue-color: #313E51;
-     --second-deep-blue-color: #3B4D66;
-     --deep-grey-color: #626C7F;
-     --sky-blue-color: #ABC1E1;
-     --deep-white-color: #F4F6FA;
-     --white-color: #FFFFFF;
-     --green-color: #26D782;
-     --red-color: #EE5454;
+    --purple-color: #A729F5;
+    --first-deep-blue-color: #313E51;
+    --second-deep-blue-color: #3B4D66;
+    --deep-grey-color: #626C7F;
+    --sky-blue-color: #ABC1E1;
+    --deep-white-color: #F4F6FA;
+    --white-color: #FFFFFF;
+    --green-color: #26D782;
+    --red-color: #EE5454;
+    --blue-color: #4880FF;
 }
 
 * {
@@ -69,3 +68,18 @@
     display: none;
 }
 
+.font-rubik {
+    font-family: "Rubik", sans-serif;
+}
+
+.bg-purple {
+    background-color: var(--purple-color);
+}
+
+.text-deepl-blue {
+    color: var(--first-deep-blue-color);
+}
+
+.text-deep-grey {
+    color: var(--deep-grey-color);
+}
