@@ -24,10 +24,11 @@
             <input type="range" name="range" min="0" max="10" value="{{ $quiz['nb_question'] }}" disabled>
         </div>
         <div>
-            <form action="/quiz/{{ $quiz['id_quiz'] }}/{{ $quiz['nb_question'] }}/result">
+            <form action="/quiz/{{ $quiz['id_quiz'] }}/{{ $quiz['nb_question'] }}">
+                @csrf
                 <div class="input">
                     <label for="f_answer">{{ $quiz['f_answer'] }}</label>
-                    <input class="hidden" type="radio" name="answer" id="f_answer" class="hidden">
+                    <input class="hidden" type="radio" name="answer" id="f_answer" value="50cm" class="hidden">
                 </div>
                 <div class="input">
                     <label for="s_answer">{{ $quiz['s_answer'] }}</label>
