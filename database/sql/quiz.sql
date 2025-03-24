@@ -2,6 +2,7 @@ CREATE TABLE `quiz` (
 	`id_quiz` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
 	`name_quiz` VARCHAR(255),
 	PRIMARY KEY(`id_quiz`)
+
 );
 
 
@@ -19,5 +20,7 @@ CREATE TABLE `question` (
 
 
 ALTER TABLE `quiz`
+
 ADD FOREIGN KEY(`id_quiz`) REFERENCES `question`(`id_quiz`)
 ON UPDATE NO ACTION ON DELETE NO ACTION;
+

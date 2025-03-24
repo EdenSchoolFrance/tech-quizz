@@ -20,26 +20,7 @@
         <a href="/dashboard"  class="account-icon">
             <i class="ri-account-circle-fill"></i>
         </a>
-
-        <div class="container">
-            <div class="first-div">
-                <h1>Welcome to the <span class="bold">Front-end Quiz !</span></h1>
-                <p class="second-text">pick a subject to get started</p>
-            </div>
-
-            <div class="second-div">
-                @foreach($quizzes as $quiz)
-
-                    <a href="/quiz/{{$quiz->id_quiz}}" class="quiz-button">
-                        <p>{{ $quiz->name_quiz }}</p>
-
-
-                    </a>
-
-                @endforeach
-            </div>
-        </div>
-
+        <p>{{$quiz->name_quiz}}</p>
     </div>
 
     <div>
