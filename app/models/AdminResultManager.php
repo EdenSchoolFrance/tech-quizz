@@ -23,13 +23,13 @@ class AdminResultManager extends Model
         return $req->fetchAll();
     }
 
-    public function get($id)
+    public function get($userId)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM user_quizz WHERE user_id = :id');
-        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-        $stmt->execute(['id' => $id]);
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, AdminResult::class);
+        $stmt = 'SELECT score, title FROM user_quizz JOIN quizz ON user_quizz.quizz_id = quizz.id WHERE user_id = :userId';
+        $req = $this->pdo->prepare($stmt);
+        $req->execute([':userId' => $userId]);
+        $req->setFetchMode(\PDO::FETCH_CLASS, Result::class);
     
-        return $stmt->fetchAll();
+        return $req->fetchAll();
     }
 }
