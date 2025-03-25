@@ -17,7 +17,7 @@ try {
 }
 
 try {
-    $stmt = 'INSERT INTO user_answers (id, try_id, user_id, question_id, answer_id) VALUES (:id,:try_id, :user_id, :question_id, :answer_id)';
+    $stmt = 'INSERT INTO user_answers (id, try_id, user_id, question_id, answer_id) VALUES (:id, :try_id, :user_id, :question_id, :answer_id)';
     $req = $pdo->prepare($stmt);
     $req->execute([':id' => uniqid(), ':user_id' => $_GET['userId'], ':try_id' => $_GET['tryId'], ':question_id' => $_GET['questionId'], ':answer_id' => $_GET['result']]);
 } catch (PDOException $e) {

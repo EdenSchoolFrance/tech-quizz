@@ -21,7 +21,7 @@ if (isset($_SESSION['result'])) {
 
             <div class="text-center">
                 <span class="text-8xl font-bold text-gray-800 block"><?php echo $_SESSION['score'][0]; ?></span>
-                <span class="text-lg text-gray-500">out of <?php echo $_SESSION['score'][-1]; ?></span>
+                <span class="text-lg text-gray-500">out of <?php echo $_SESSION['score'][1]; ?></span>
             </div>
         </div>
 
