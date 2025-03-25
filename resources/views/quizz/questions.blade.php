@@ -24,7 +24,7 @@
                         {{ $question->question_text }}
                     </p>
                 </div>
-                <progress class="w-full bg-white text-white w-56" value="{{ $question->order }}"
+                <progress class="w-full" value="{{ $question->order }}"
                           max="10"></progress>
             </div>
 

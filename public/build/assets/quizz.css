@@ -83,3 +83,14 @@
 .text-deep-grey {
     color: var(--deep-grey-color);
 }
+
+progress::-webkit-progress-value {
+    background-color: var(--purple-color);
+    border-radius: calc(infinity * 1px);
+}
+
+progress::-webkit-progress-bar {
+    border: 4px white solid;
+    background-color: white;
+    border-radius: calc(infinity * 1px);
+}
