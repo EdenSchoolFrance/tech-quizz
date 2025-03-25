@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Questions;
 use App\Models\Quizzes;
 use App\Models\Responses;
-use http\Env\Response;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
