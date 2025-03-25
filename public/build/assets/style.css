@@ -8,11 +8,13 @@
     --white-color: #FFFFFF;
     --green-color: #26D782;
     --red-color: #EE5454;
+    --grey-black-color: #202224;
     --blue-color: #4880FF;
 }
 
 * {
     font-family: "Rubik", sans-serif;
+    color: var(--grey-black-color) !important;
 }
 
 .background {
@@ -37,6 +39,7 @@
 
 .account {
     color: var(--blue-color) !important;
+<<<<<<< HEAD
 }
 
 .errorMessage {
@@ -45,4 +48,6 @@
 
 .btn404 {
     background-color: var(--purple-color);
+=======
+>>>>>>> c369bdb (the front of the login page is finished, need to do the same for the register (Jules will do it))
 }
