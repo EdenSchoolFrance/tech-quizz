@@ -15,7 +15,7 @@ class Question
         return $this->id;
     }
 
-    public function setId()
+    public function setId($id)
     {
         $this->id = $id;
         return $this;
@@ -26,7 +26,7 @@ class Question
         return $this->quizz_id;
     }
 
-    public function setQuizzId()
+    public function setQuizzId($quizz_id)
     {
         $this->quizz_id = $quizz_id;
         return $this;
@@ -37,9 +37,9 @@ class Question
         return $this->question_text;
     }
 
-    public function setQuestionId()
+    public function setQuestionText($question_text)
     {
-        $this->question_id = $question_id;
+        $this->question_text = $question_text;
         return $this;
     }
 
@@ -48,7 +48,7 @@ class Question
         return $this->created_at;
     }
 
-    public function setCreatedAt()
+    public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
         return $this;
@@ -65,6 +65,3 @@ class Question
     }
 
 }
-
-
-

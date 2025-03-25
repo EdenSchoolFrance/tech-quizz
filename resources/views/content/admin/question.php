@@ -70,7 +70,8 @@
                             <?php endforeach; ?>
                         </div>
                         
-                        <div class="mt-3 flex">
+                        <div class="mt-3 flex space-x-4">
+                            <a href="/quiz/<?= $quiz->getId() ?>/questions/edit/<?= $question->getId() ?>" class="text-blue-600 hover:text-blue-900 text-sm">Edit Question</a>
                             <a href="/quiz/<?= $quiz->getId() ?>/questions/delete/<?= $question->getId() ?>" onclick="return confirm('Are you sure you want to delete this question?')" class="text-red-600 hover:text-red-900 text-sm">Delete Question</a>
                         </div>
                     </div>

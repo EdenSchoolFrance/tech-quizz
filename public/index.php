@@ -36,6 +36,8 @@ if(user('role') == 'admin') {
     $router->get('/quiz/:id/questions', 'QuestionController@manageQuestions');
     $router->post('/quiz/:id/questions/store', 'QuestionController@storeQuestion');
     $router->get('/quiz/:id/questions/delete/:questionId', 'QuestionController@deleteQuestion');
+    $router->get('/quiz/:id/questions/edit/:questionId', 'QuestionController@editQuestion');
+    $router->post('/quiz/:id/questions/update/:questionId', 'QuestionController@updateQuestion');
 }
 
 

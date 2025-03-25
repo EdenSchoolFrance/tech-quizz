@@ -71,4 +71,14 @@ class QuestionManager extends Model
 
         return $req->fetch();
     }
+    
+    public function update($id, $questionText)
+    {
+        $stmt = 'UPDATE questions SET question_text = :question_text WHERE id = :id';
+        $req = $this->pdo->prepare($stmt);
+        return $req->execute([
+            ':id' => $id,
+            ':question_text' => $questionText
+        ]);
+    }
 }
