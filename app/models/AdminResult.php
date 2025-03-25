@@ -47,12 +47,12 @@ class AdminResult
 
     public function getCreatedAt()
     {
-        return $this->created_at;
+        return $this->completed_at;
     }
 
     public function setCreatedAt()
     {
-        $this->created_at = $created_at;
+        $this->completed_at = $completed_at;
         return $this;
     }
 
