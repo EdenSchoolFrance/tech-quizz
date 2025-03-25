@@ -14,7 +14,7 @@
                 </svg>
             </a>
         </div>
-        <div class="flex flex-wrap justify-between md:flex-column">
+        <div class="flex flex-wrap justify-between">
             @foreach($question as $questions)
                 <div class="w-[45%] flex flex-col justify-between">
                     <div class="textDiv">
@@ -34,9 +34,9 @@
                     @foreach($responses as $response)
                         <label for="response_{{ $response->id }}" class="block">
                             <input type="radio" id="response_{{ $response->id }}" name="response"
-                                   value="{{ $response->response_text }}" class="hidden peer">
+                                   value="{{ $response->id }}" class="hidden peer">
                             <div
-                                class="flex text-[24px] items-center h-full p-5 bg-white rounded-[20px] shadow-sm hover:shadow-md border cursor-pointer transition peer-checked:bg-blue-500 peer-checked:text-white">
+                                class="flex text-[24px] items-center h-full p-5 bg-white rounded-[20px] shadow-sm hover:shadow-md border cursor-pointer transition peer-checked:bg-indigo-600 peer-checked:text-white">
                                 <span
                                     class="flex items-center justify-center p-5 w-6 h-6 mr-4 bg-gray-200 text-gray-700 font-bold rounded">{{ $response->order }} </span>
                                 <span class="text-lg font-semibold">{{ $response->response_text }}</span>
