@@ -6,6 +6,8 @@ use App\Models\Questions;
 use App\Models\Quizzes;
 use App\Models\Responses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Results;
 
 class QuizController extends Controller
 {
@@ -45,19 +47,25 @@ class QuizController extends Controller
         ]);
     }
 
-    public function showQuestions($idQuiz, $idOrder)
+    public function showQuestions($idQuiz, $idOrder, Request $request)
     {
+        if ($idOrder == 1) {
+            $request->session()->put('score', 0);
+        }
         return $this->getResponsesAndQuestions($idQuiz, $idOrder);
     }
 
     public function chooseAnswer(Request $request)
     {
-        $currentScore = $request->session()->get('score') ?? 0;
         $questionId = $request->input("questionId");
         $answerId = $request->input('selectedAnswerId');
 
-        $getAnswer = Responses::query()
-            ->find($answerId);
+        if (!$request->session()->has('score')) {
+            $request->session()->put('score', 0);
+        }
+
+        $getAnswer = Responses::query()->find($answerId);
+
         $correctAnswer = Responses::query()
             ->select("id")
             ->where("is_correct", "=", 1)
@@ -65,16 +73,39 @@ class QuizController extends Controller
             ->get();
 
         if (!$getAnswer || $getAnswer->is_correct !== 1) {
-            return response()->json(["success" => false, "correctAnswer" => $correctAnswer]);
+            $currentScore = $request->session()->get('score');
+            return response()->json([
+                "success" => false,
+                "correctAnswer" => $correctAnswer,
+                "currentScore" => $currentScore
+            ]);
+        }
+        $request->session()->increment('score');
+
+        $currentScore = $request->session()->get('score');
+
+        return response()->json([
+            "success" => true,
+            "correctAnswer" => $correctAnswer,
+            "currentScore" => $currentScore
+        ]);
+    }
+
+    public function score(Request $request, $idQuiz)
+    {
+        $score = $request->session()->get('score');
+        $userId = Auth::id();
+
+        try {
+            Results::query()->insert([
+                'quiz_id' => $idQuiz,
+                'score' => $score,
+                'user_id' => $userId
+            ]);
+        } catch (\Exception $e) {
+            dd('Erreur lors de l’insertion : ' . $e->getMessage());
         }
 
-        $currentScore++;
-        $request->session()->put('score', $currentScore);
-
-        return response()->json(["success" => true, "correctAnswer" => $correctAnswer]);
+        return view('quizz.score', ['score' => $score]);
     }
-     public function score() {
-         return view('quizz.score');
-     }
-
 }

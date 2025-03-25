@@ -54,6 +54,7 @@
                             </div>
                         </label>
                     @endforeach
+                    <input type="hidden" id="quizId" name="quizId" value="{{ $quizz->id }}">
                     <button type="submit" id="submitBtn"
                             class="bg-indigo-700 text-white p-4 rounded-[1rem] cursor-pointer"
                     >Submit answer
@@ -65,7 +66,7 @@
 </main>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function (event) {
         const answerDivs = document.querySelectorAll('.answerDiv');
 
         answerDivs.forEach(div => {
@@ -82,9 +83,17 @@
         // Sélectionner le formulaire
         const form = document.querySelector(".answerForm");
 
+        let alreadySubmitted = false;
+
         // Ajouter un écouteur d'événement pour intercepter l'envoi du formulaire
         form.addEventListener("submit", function (e) {
             e.preventDefault(); // Empêcher l'envoi normal du formulaire
+
+            if (alreadySubmitted) {
+                return;
+            }
+
+            alreadySubmitted = true;
 
             // Récupérer les valeurs des champs
             let questionId = document.querySelector("#questionId").value;
@@ -140,6 +149,7 @@
                 let orderElement = answerDiv.querySelector('span.order');
                 let check = answerDiv.querySelector(".check");
                 let mark = answerDiv.querySelector(".mark");
+                let quizId = document.querySelector("#quizId").value;
 
                 const parentElement = selectedInput.parentElement;
 
@@ -166,7 +176,7 @@
                     if (currentQuestion === 10) {
                         submitBtn.textContent = "Check my Score";
                         submitBtn.addEventListener("click", function () {
-                            window.location.href = "/score";
+                            window.location.href = "/score/quizz/" + quizId;
                         })
                         return;
                     }
@@ -190,7 +200,7 @@
                 if (currentQuestion === 10) {
                     submitBtn.textContent = "Check my score";
                     submitBtn.addEventListener("click", function () {
-                        window.location.href = "/score";
+                        window.location.href = "/score/quizz/" + quizId;
                     })
                 }
             };
