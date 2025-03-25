@@ -9,7 +9,7 @@
 
         <div class="text-center mb-8">
             <h1 class="login font-bold mb-1">Login to Account</h1>
-            <p class="opacity-80">Please enter your email and password to continue</p>
+            <p class="opacity-80">Please enter your email and p assword to continue</p>
         </div>
 
         <!-- Email Address -->
@@ -73,8 +73,8 @@
                 {{ __('Sign In') }}
             </x-primary-button>
             <div class="flex items-center mt-2 justify-center">
-                <p class="opacity-65 me-1">Don't have an account?</p>
-                <a href="/register" class="underline opacity-100 account">Create account</a>
+            <p class="opacity-65 me-1">Don't have an account?</p>
+            <a href="/register" class="underline opacity-100 account">Create account</a>
             </div>
         </div>
     </form>
