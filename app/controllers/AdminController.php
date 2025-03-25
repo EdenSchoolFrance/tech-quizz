@@ -2,21 +2,29 @@
 
 namespace App\controllers;
 
+use App\models\QuizManager;
 use App\models\UserManager;
 use App\Validator;
 
 class AdminController 
 {
     private $um;
+    private $qc;
 
     public function __construct()
     {
         $this->um = new UserManager();
+        $this->qc = new QuizManager();
     }
 
     public function index()
     {
-        $users = $this->um->getAllUsers();
+        $userId = $_SESSION['user']->getId();
+        $quizzes = $this->qc->getQuizzesByUser($userId);
+
+        $userManager = new \App\models\UserManager();
+        $users = $userManager->getAllUsers();
+
         require VIEWS . 'content/admin/index.php';
     }
     
