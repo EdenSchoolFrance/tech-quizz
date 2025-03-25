@@ -95,45 +95,10 @@ class QuizController
         header('Location: /dashboard');
         exit();
     }
-    
-    public function dashboard()
-    {
-        if (!isset($_SESSION['user'])) {
-            $_SESSION['error'] = "You need to be connected !";
-            header('Location: /login');
-            exit();
-        }
-        
-        $userId = $_SESSION['user']->getId();
-        $quizzes = $this->qc->getQuizzesByUser($userId);        
-        require VIEWS . 'content/admin/index.php';
-    }
 
-    public function adminDashboard()
-    {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
-        
-        $userId = $_SESSION['user']->getId();
-        $quizzes = $this->qc->getQuizzesByUser($userId);
-        
-        $userManager = new \App\models\UserManager();
-        $users = $userManager->getAllUsers();
-        
-        require VIEWS . 'content/admin/index.php';
-    }
     
     public function editInDashboard($id)
     {
-        if (!isset($_SESSION['user'])) {
-            $_SESSION['error'] = "You need to be connected !";
-            header('Location: /login');
-            exit();
-        }
-        
         $quiz = $this->qc->get($id);
         
         if (!$quiz) {
@@ -142,7 +107,7 @@ class QuizController
             exit();
         }
         
-        if (user('role') !== 'admin' && $quiz->getCreatedBy() !== $_SESSION['user']->getId()) {
+        if ($quiz->getCreatedBy() !== user('id')) {
             $_SESSION['error'] = "You don't have permission to edit this quiz";
             header('Location: /dashboard');
             exit();

@@ -34,12 +34,6 @@ class QuestionController
 
     public function manageQuestions($quizId)
     {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
-        
         $quiz = $this->qm->get($quizId);
         
         if (!$quiz) {
