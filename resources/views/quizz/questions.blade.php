@@ -96,6 +96,8 @@
                 return;
             }
 
+            document.getElementById('errorMessage').textContent = "";
+
             let selectedAnswerId = selectedAnswer.value;
             let submitBtn = document.querySelector("#submitBtn");
 
