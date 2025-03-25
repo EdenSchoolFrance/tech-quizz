@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+    --breakpoint-xs: 375px;
+}
+
 input {
     @apply border border-gray-500 rounded;
 }
@@ -8,3 +12,11 @@ input {
     @apply hover:text-blue-600;
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
