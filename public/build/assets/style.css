@@ -39,7 +39,6 @@
 
 .account {
     color: var(--blue-color) !important;
-<<<<<<< HEAD
 }
 
 .errorMessage {
@@ -48,6 +47,4 @@
 
 .btn404 {
     background-color: var(--purple-color);
-=======
->>>>>>> c369bdb (the front of the login page is finished, need to do the same for the register (Jules will do it))
 }

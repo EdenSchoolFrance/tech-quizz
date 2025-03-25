@@ -33,7 +33,7 @@
             </div>
 
             <a href="/quizzes">
-                <div class="bg-purple text-center py-6 rounded-[24px]">
+                <div class="bg-purple text-center py-5 rounded-[24px]">
                     <p class="font-rubik text-white text-[22px]">Play again</p>
                 </div>
             </a>
