@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->boolean('is_correct');
             $table->timestamps();
         });
+        $_POST[""]
     }
 
     public function down()
