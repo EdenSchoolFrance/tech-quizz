@@ -16,14 +16,15 @@ class AdminResultController
 
     public function index()
     {
-        $userResults = $this->arc->getAll();
-        require VIEWS . 'content/admin/result';
+        $userId = $_SESSION['user']->getId();
+        $results = $this->arc->getResultsByUser($userId);
+        require VIEWS . 'content/admin/result.php';
     }
 
     public function show($id)
     {
-        $userResult = $this->arc->get($id);
-        require VIEWS . 'content/admin/result/' . $id;
+        $userResults = $this->arc->get($id);
+        require VIEWS . 'content/admin/result.php';
     }
 
 }
