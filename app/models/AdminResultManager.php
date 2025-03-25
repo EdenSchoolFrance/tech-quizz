@@ -27,7 +27,7 @@ class AdminResultManager extends Model
     {
         $stmt = $this->pdo->prepare('SELECT * FROM user_quizz WHERE user_id = :id');
         $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->execute(['id' => $id]);
         $stmt->setFetchMode(\PDO::FETCH_CLASS, AdminResult::class);
     
         return $stmt->fetchAll();

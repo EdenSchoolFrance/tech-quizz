@@ -193,7 +193,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $user->getRole() ?></td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $user->getCreatedAt() ?></td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <a href="/user/<?= $user->getId() ?>" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                                <a href="/content/admin/result/<?= $user->getId() ?>" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
                                     <a href="/dashboard/user/edit/<?= $user->getId() ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
                                     <a href="#" onclick="confirmUserDelete('<?= $user->getId() ?>')" class="text-red-600 hover:text-red-900">Delete</a>
                                     <form id="user-delete-form-<?= $user->getId() ?>" action="/dashboard/user/delete/<?= $user->getId() ?>" method="POST" class="hidden">
