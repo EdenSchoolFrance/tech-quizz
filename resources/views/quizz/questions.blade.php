@@ -31,8 +31,8 @@
             <div class="w-[45%]">
                 <p class="text-red-500" id="errorMessage"></p>
                 <form class="answerForm h-full mb-0 flex justify-between flex-col gap-8" method="POST">
-                    <input type="hidden" id="questionId" value="{{ $question->id }}">
                     @csrf
+                    <input type="hidden" id="questionId" value="{{ $question->id }}">
 
                     @if ($errors->any())
                         @foreach ($errors->all() as $error)
@@ -66,7 +66,6 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-
         const answerDivs = document.querySelectorAll('.answerDiv');
 
         answerDivs.forEach(div => {
@@ -112,6 +111,7 @@
             // Définir le type de contenu de la requête
             xhr.setRequestHeader("Content-Type", "application/json");
 
+            xhr.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
             xhr.onload = function () {
                 const response = JSON.parse(xhr.responseText);
                 const correctAnswer = response.correctAnswer[0].id;

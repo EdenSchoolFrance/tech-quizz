@@ -52,15 +52,25 @@ class QuizController extends Controller
 
     public function chooseAnswer(Request $request)
     {
+        $currentScore = $request->session()->get('score') ?? 0;
         $questionId = $request->input("questionId");
         $answerId = $request->input('selectedAnswerId');
 
-        $getAnswer = Responses::query()->find($answerId);
-        $correctAnswer = Responses::query()->select("id")->where("is_correct", "=", 1)->where("question_id", "=", $questionId)->get();
+        $getAnswer = Responses::query()
+            ->find($answerId);
+        $correctAnswer = Responses::query()
+            ->select("id")
+            ->where("is_correct", "=", 1)
+            ->where("question_id", "=", $questionId)
+            ->get();
 
-        if ($getAnswer->is_correct !== 1) {
+        if (!$getAnswer || $getAnswer->is_correct !== 1) {
             return response()->json(["success" => false, "correctAnswer" => $correctAnswer]);
         }
+
+        $currentScore++;
+        $request->session()->put('score', $currentScore);
+
         return response()->json(["success" => true, "correctAnswer" => $correctAnswer]);
     }
 }
