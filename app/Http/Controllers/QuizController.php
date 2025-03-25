@@ -52,37 +52,10 @@ class QuizController extends Controller
         return $this->getResponsesAndQuestions($idQuiz, $idOrder);
     }
 
-    public function chooseAnswer($idQuiz, $idOrder, Request $request)
-    {
-        $validated = $request->validate([
-            'response' => 'required',
-        ], [
-            'response.required' => 'You must select at least one answer'
-        ]);
-
-        if ($validated) {
-            $getResponse = Responses::query()->find($validated['response']);
-            if ($getResponse->is_correct !== 1) {
-                return redirect("quizz/$idQuiz/question/$idOrder");
-            }
-            $count = 1;
-            $idOrder += $count;
-            return redirect("quizz/$idQuiz/question/$idOrder");
-        }
-        return redirect("quizz/$idQuiz/question/$idOrder");
-    }
-
-    public function chooseAnswer1(Request $request)
+    public function chooseAnswer(Request $request)
     {
         $questionId = $request->input("questionId");
         $answerId = $request->input('selectedAnswerId');
-
-        // Vérifier en bdd si la réponse est bonne.
-        // Gérer le renvoi d'erreur
-
-        if (!$answerId) {
-           return response()->json(["errorMessage" => "You must select one answer"]);
-        }
 
         $getAnswer = Responses::query()->find($answerId);
         $correctAnswer = Responses::query()->select("id")->where("is_correct", "=", 1)->where("question_id", "=", $questionId)->get();
