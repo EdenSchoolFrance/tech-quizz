@@ -9,7 +9,7 @@
             <?php foreach ($results as $result): ?>
                 <div class="bg-white shadow-md rounded-lg p-6 mb-4">
                     <h2 class="text-2xl font-semibold mb-2"><?= $result->getTitle() ?></h2>
-                    <p class="text-gray-700"><?= $result->getScore() ?> / 10</p>
+                    <p class="text-gray-700"><?= $result->getScore() ?></p>
                 </div>
             <?php endforeach ?>
         <?php endif; ?>
