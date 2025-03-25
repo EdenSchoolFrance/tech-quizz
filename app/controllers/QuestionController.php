@@ -54,11 +54,7 @@ class QuestionController
     
     public function storeQuestion($quizId)
     {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
+        
         
         $quiz = $this->qm->get($quizId);
         
@@ -120,11 +116,7 @@ class QuestionController
     
     public function deleteQuestion($quizId, $questionId)
     {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
+        
         
         $quiz = $this->qm->get($quizId);
         
@@ -148,11 +140,7 @@ class QuestionController
     
     public function editQuestion($quizId, $questionId)
     {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
+        
         
         $quiz = $this->qm->get($quizId);
         
@@ -178,11 +166,7 @@ class QuestionController
     
     public function updateQuestion($quizId, $questionId)
     {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
+        
         
         $quiz = $this->qm->get($quizId);
         
