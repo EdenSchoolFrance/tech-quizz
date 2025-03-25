@@ -20,7 +20,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/quizzes', [QuizController::class, 'index']);
 Route::get('/quizz/', [QuizController::class, 'index']);
 
-Route::get('/quizz/{id}/question/{idQuestion}', [QuizController::class, 'showQuestions']);
+Route::get('/quizz/{id}/question/{idQuestion}', [QuizController::class, 'showQuestions'])->middleware('auth');
+Route::post('/quizz/{id}/question/{idQuestion}', [QuizController::class, 'chooseAnswer']);
 
 require __DIR__ . '/auth.php';
 

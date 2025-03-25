@@ -22,6 +22,50 @@
      background-size: cover;
 }
 
-progress {
-
+.border-error {
+    border: 1px solid #EE5454;
 }
+
+.order-error {
+    background-color: #EE5454;
+    color: white;
+}
+
+.border-success {
+    border: 1px solid #26D782;
+}
+
+.order-success {
+    background-color: #26D782;
+    color: white;
+}
+
+.checkSuccess {
+    font-size: 17px;
+    color: #26D782;
+    border: 1px solid #26D782;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.markError {
+    font-size: 17px;
+    color: #EE5454;
+    border: 1px solid #EE5454;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.answerDiv.active {
+    border: 1px solid #6366f1;
+    background-color: #eef2ff;
+}
+
+.disabledInputs {
+    cursor: inherit;
+}
+
+.hidden {
+    display: none;
+}
+
