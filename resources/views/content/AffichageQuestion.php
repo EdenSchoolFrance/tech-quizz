@@ -5,14 +5,14 @@ $_SESSION['result'] = true;
 $tryId = uniqid();
 
 ?>
-    <section class="flex flex-col md:flex-row md:items-start gap-12 w-3/4 mx-auto">
+    <section class="flex flex-col md:flex-row md:items-start gap-12 xs:w-3/4 w-full mx-auto ">
         <div class="md:w-1/2 md:h-[400px] flex flex-col justify-between">
             <div>
-                <h1 class="text-3xl font-bold text-gray-800 mb-8 quizz-text"></h1>
+                <h1 class="xs:text-3xl text-xl font-bold text-gray-800 mb-8 quizz-text"></h1>
             </div>
             <div>
                 <p class="text-gray-600 mb-4 italic question-num"></p>
-                <h1 class="text-3xl font-bold text-gray-800 mb-8 question-text" ></h1>
+                <h1 class="xs:text-3xl text-xl font-bold text-gray-800 mb-8 question-text" ></h1>
             </div>
 
             <div class="w-full bg-gray-200 rounded-full h-2 mb-6">
@@ -30,7 +30,8 @@ $tryId = uniqid();
                 <button type="submit" name="submit-button" class="w-full bg-purple-600 text-white font-medium py-4 px-6 rounded-xl mt-8 hover:bg-purple-700 transition-colors ">
                     Submit Answer
                 </button>
-                <div class="text-center mt-4 text-red-500 submit-error">
+                <div class="text-center mt-4 text-red-500 submit-error hidden">
+                    Please select an answer
                 </div>
             </form>
         </div>
@@ -53,7 +54,7 @@ $tryId = uniqid();
                     success: function(data) {
                         const answer = $('input[name="answer"]:checked').val();
                         let correct = false;
-                        const answers = $('input[name="answer"]')
+                        const answers = $('label')
                         answers.prop('disabled', true);
                         answers.removeClass('hover:shadow-md');
                         answers.removeClass('hover:-translate-y-1');
@@ -145,7 +146,7 @@ $tryId = uniqid();
 
                         // Disable the submit button initially
                         const submitButton = $('button[type="submit"]');
-                        submitButton.prop('disabled', true);
+                        submitButton.addClass('disabled');
                         submitButton.removeClass('cursor-pointer')
                         submitButton.removeClass('hover:bg-purple-700');
                         submitButton.prop('name', 'submit-button');
@@ -153,7 +154,7 @@ $tryId = uniqid();
 
                         // Enable the submit button when an answer is selected
                         $('input[name="answer"]').on('change', function() {
-                            submitButton.prop('disabled', false);
+                            submitButton.removeClass('disabled');
                             submitButton.addClass('cursor-pointer');
                             submitButton.addClass('hover:bg-purple-700');
 
@@ -166,20 +167,22 @@ $tryId = uniqid();
             }
             $('.quiz-form').on('submit', function(e) {
                 e.preventDefault();
-                if ($('button[type="submit"]').attr('disabled') === true) {
-                    $('.submit-error').text('Please select an answer');
-                }
-                if(e.originalEvent.submitter.name === 'submit-button') {
-                    $('.submit-error').text('');
-                    store($('input[name="answer"]:checked').val());
-                    fetchAnswers();
+                if ($('button[type="submit"]').hasClass('disabled')) {
+                    $('.submit-error').removeClass('hidden');
                 }
                 else {
-                    if (limit-1 === max) {
-                        window.location.href = '/quiz/<?=$id?>/result/<?=$tryId?>';
-                        return;
+                    if(e.originalEvent.submitter.name === 'submit-button') {
+                        $('.submit-error').addClass('hidden')
+                        store($('input[name="answer"]:checked').val());
+                        fetchAnswers();
                     }
-                    fetch();
+                    else {
+                        if (limit-1 === max) {
+                            window.location.href = '/quiz/<?=$id?>/result/<?=$tryId?>';
+                            return;
+                        }
+                        fetch();
+                    }
                 }
             });
             fetch();
