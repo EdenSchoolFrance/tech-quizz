@@ -2,11 +2,16 @@
 
 <section class="container mx-auto p-6">
     <article>
-        <?php foreach ($userResults as $userResult): ?>
+    <?php if (empty($userResults)): ?>
+            <p class="text-gray-500">This user haven't done quiz yet.</p>
+        <?php else: ?>
+            <?php foreach ($userResults as $userResult): ?>
             <div class="bg-white shadow-md rounded-lg p-6 mb-4">
-                <p><?= $userResult->getScore() ?></p>
+                <p>Quiz number : <?= $userResult->getQuizzId() ?></p>
+                <p>Score : <?= $userResult->getScore() ?></p>
             </div>
         <?php endforeach; ?>
+        <?php endif; ?>
     </article>
 </section>
 

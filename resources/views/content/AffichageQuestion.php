@@ -1,5 +1,6 @@
 <?php
 ob_start();
+$_SESSION['result'] = true;
 
 $tryId = uniqid();
 
@@ -39,7 +40,7 @@ $tryId = uniqid();
             let limit = 1;
             let max;
             function store(answer) {
-                const id = $('.question-text').id
+                const id = $('.question-text').attr('id');
                 $.ajax({
                     url: `http://localhost:8001/store.php?result=${answer}&questionId=${id}&userId=<?=user('id')?>&tryId=<?=$tryId?>`,
                     method: 'GET',

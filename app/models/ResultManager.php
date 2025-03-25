@@ -50,7 +50,7 @@ class ResultManager extends Model
     {
         $stmt = 'INSERT INTO user_quizz (id, try_id, user_id, quizz_id, score) VALUES (:id, :tryId , :user_id, :quizz_id, :score)';
         $req = $this->pdo->prepare($stmt);
-        $req->execute([':id' => uniqid(), ':tryId' => $tryId, ':user_id' => $_SESSION['user']->getId(), ':quizz_id' => $id, ':score' => $score]);
+        $req->execute([':id' => uniqid(), ':tryId' => $tryId, ':user_id' => $_SESSION['user']->getId(), ':quizz_id' => $id, ':score' => $score[0] . '/' . $score[1]]);
     }
 
     public function score($id, $tryId)
@@ -78,6 +78,6 @@ class ResultManager extends Model
         }
 
 
-        return $score .' / '. count($answers);
+        return [ $score, count($answers)];
     }
 }
