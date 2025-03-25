@@ -17,7 +17,7 @@ class ResultManager extends Model
 
     public function getResultsByUser($userId)
     {
-        $stmt = 'SELECT * FROM user_quizz WHERE user_id = :userId';
+        $stmt = 'SELECT * FROM user_quizz, quizz WHERE user_id = :userId AND quizz_id = quizz.id';
         $req = $this->pdo->prepare($stmt);
         $req->execute([':userId' => $userId]);
         $req->setFetchMode(\PDO::FETCH_CLASS, Result::class);
