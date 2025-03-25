@@ -22,7 +22,7 @@ $router = new Router($_SERVER["REQUEST_URI"]);
 $router->get('/', 'HomeController@index');
 
 if(user('role') == 'admin') {
-    $router->get('/dashboard', 'QuizController@adminDashboard');
+    $router->get('/dashboard', 'AdminController@index');
     $router->post('/quiz/store', 'QuizController@store');
     $router->post('/quiz/delete/:id', 'QuizController@delete');
     $router->get('/dashboard/quiz/edit/:id', 'QuizController@editInDashboard');
@@ -36,6 +36,8 @@ if(user('role') == 'admin') {
     $router->get('/quiz/:id/questions', 'QuestionController@manageQuestions');
     $router->post('/quiz/:id/questions/store', 'QuestionController@storeQuestion');
     $router->get('/quiz/:id/questions/delete/:questionId', 'QuestionController@deleteQuestion');
+    $router->get('/quiz/:id/questions/edit/:questionId', 'QuestionController@editQuestion');
+    $router->post('/quiz/:id/questions/update/:questionId', 'QuestionController@updateQuestion');
 }
 
 

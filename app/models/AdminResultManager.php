@@ -18,7 +18,7 @@ class AdminResultManager extends Model
     public function getAll()
     {
         $req = $this->pdo->query('SELECT * FROM user_quizz');
-        $req->setFetchMode(\PDO::FETCH_CLASS, AdminResult::class);
+        $req->setFetchMode(\PDO::FETCH_CLASS, Result::class);
 
         return $req->fetchAll();
     }

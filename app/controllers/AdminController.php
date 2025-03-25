@@ -2,31 +2,35 @@
 
 namespace App\controllers;
 
+use App\models\QuizManager;
 use App\models\UserManager;
 use App\Validator;
 
 class AdminController 
 {
     private $um;
+    private $qc;
 
     public function __construct()
     {
         $this->um = new UserManager();
+        $this->qc = new QuizManager();
     }
 
     public function index()
     {
-        $users = $this->um->getAllUsers();
+        $userId = $_SESSION['user']->getId();
+        $quizzes = $this->qc->getQuizzesByUser($userId);
+
+        $userManager = new \App\models\UserManager();
+        $users = $userManager->getAllUsers();
+
         require VIEWS . 'content/admin/index.php';
     }
     
     public function editUser($id)
     {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
+        
         
         $user = $this->um->getUserById($id);
         
@@ -51,11 +55,7 @@ class AdminController
     
     public function updateUser($id)
     {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
+        
         
         $user = $this->um->getUserById($id);
         
@@ -116,11 +116,7 @@ class AdminController
 
     public function deleteUser($id)
     {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
+        
         
         if ($_SESSION['user']->getId() === $id) {
             $_SESSION['error'] = "You cannot delete your own account!";
@@ -150,11 +146,7 @@ class AdminController
     
     public function createUser()
     {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
+        
         
         unset($_SESSION['error']);
         unset($_SESSION['success']);
@@ -171,11 +163,7 @@ class AdminController
     
     public function storeUser()
     {
-        if (!isset($_SESSION['user']) || user('role') !== 'admin') {
-            $_SESSION['error'] = "You need to be an admin!";
-            header('Location: /login');
-            exit();
-        }
+        
         
         if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['role'])) {
             $_SESSION['error'] = "All inputs are required";

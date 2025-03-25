@@ -53,7 +53,12 @@ $tryId = uniqid();
                     success: function(data) {
                         const answer = $('input[name="answer"]:checked').val();
                         let correct = false;
-                        $('input[name="answer"]').prop('disabled', true);
+                        const answers = $('input[name="answer"]')
+                        answers.prop('disabled', true);
+                        answers.removeClass('hover:shadow-md');
+                        answers.removeClass('hover:-translate-y-1');
+                        answers.removeClass('cursor-pointer');
+
                         data.forEach(function(item) {
                             if (item.Id_reponse === answer && item.is_correct === 1) {
                                 correct = true;
@@ -78,8 +83,14 @@ $tryId = uniqid();
                             });
                         }
                         const button = $('button[type="submit"]');
-                        button.text('Next Question');
-                        button.prop('name', 'next-button');
+                        if(limit-1 === max) {
+                            button.text('View Results');
+                            button.prop('name', 'results-button');
+                        }
+                        else {
+                            button.text('Next Question');
+                            button.prop('name', 'next-button');
+                        }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error('Error fetching data:', textStatus, errorThrown);
@@ -135,12 +146,17 @@ $tryId = uniqid();
                         // Disable the submit button initially
                         const submitButton = $('button[type="submit"]');
                         submitButton.prop('disabled', true);
+                        submitButton.removeClass('cursor-pointer')
+                        submitButton.removeClass('hover:bg-purple-700');
                         submitButton.prop('name', 'submit-button');
                         submitButton.text('Submit Answer');
 
                         // Enable the submit button when an answer is selected
                         $('input[name="answer"]').on('change', function() {
                             submitButton.prop('disabled', false);
+                            submitButton.addClass('cursor-pointer');
+                            submitButton.addClass('hover:bg-purple-700');
+
                         });
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -150,9 +166,8 @@ $tryId = uniqid();
             }
             $('.quiz-form').on('submit', function(e) {
                 e.preventDefault();
-                if ($('button[type="submit"]').is(':disabled')) {
+                if ($('button[type="submit"]').attr('disabled') === true) {
                     $('.submit-error').text('Please select an answer');
-                    console.log('hello')
                 }
                 if(e.originalEvent.submitter.name === 'submit-button') {
                     $('.submit-error').text('');

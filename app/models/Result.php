@@ -5,32 +5,53 @@ namespace App\models;
 class Result
 {
     private $id;
-    private $title;
+    private $try_id;
+    private $user_id;
+    private $quizz_id;
     private $score;
-    private $created_at;
+    private $completed_at;
+    private $title;
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function setId()
+    public function setId($id)
     {
         $this->id = $id;
-        return $this;
     }
 
-    public function getTitle()
+    public function getTryId()
     {
-        return $this->title;
+        return $this->try_id;
     }
 
-    public function setTitle()
+    public function setTryId($try_id)
     {
-        $this->title = $title;
-        return $this;
+        $this->try_id = $try_id;
     }
-    
+
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
+    }
+
+    public function getQuizzId()
+    {
+        return $this->quizz_id;
+    }
+
+    public function setQuizzId($quizz_id)
+    {
+        $this->quizz_id = $quizz_id;
+    }
+
     public function getScore()
     {
         return $this->score;
@@ -39,17 +60,25 @@ class Result
     public function setScore($score)
     {
         $this->score = $score;
-        return $this;
     }
 
-    public function getCreatedAt()
+    public function getCompletedAt()
     {
-        return $this->created_at;
+        return $this->completed_at;
     }
 
-    public function setCreatedAt($created_at)
+    public function setCompletedAt($completed_at)
     {
-        $this->created_at = $created_at;
-        return $this;
+        $this->completed_at = $completed_at;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 }

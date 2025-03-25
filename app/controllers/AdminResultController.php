@@ -14,13 +14,6 @@ class AdminResultController
         $this->arc = new AdminResultManager();
     }
 
-    public function index()
-    {
-        $userId = $_SESSION['user']->getId();
-        $results = $this->arc->getResultsByUser($userId);
-        require VIEWS . 'content/admin/result.php';
-    }
-
     public function show($id)
     {
         $userResults = $this->arc->get($id);
