@@ -20,7 +20,7 @@
                         <?php foreach ($userResults as $userResult): ?>
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $userResult->getId() ?></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $userResult->getCreatedAt() ?>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $userResult->getCompletedAt() ?>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $userResult->getTitle() ?></td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $userResult->getScore() ?></td>
 
