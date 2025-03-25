@@ -18,4 +18,5 @@
     <body class="font-sans text-gray-900 antialiased h-full background">
                 @yield('body')
     </body>
+
 </html>
