@@ -89,8 +89,14 @@
 
             // Récupérer les valeurs des champs
             let questionId = document.querySelector("#questionId").value;
-            let selectedAnswerId = document.querySelector('input[name="response"]:checked').value;
+            let selectedAnswer = document.querySelector('input[name="response"]:checked');
 
+            if (!selectedAnswer) {
+                document.getElementById('errorMessage').textContent = "Please select an answer.";
+                return;
+            }
+
+            let selectedAnswerId = selectedAnswer.value;
             let submitBtn = document.querySelector("#submitBtn");
 
             let currentQuestion = {{ $question->order }};
