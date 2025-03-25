@@ -5,6 +5,7 @@ namespace App\models;
 class AdminResult
 {
     private $id;
+    private $try_id;
     private $user_id;
     private $quizz_id;
     private $score;
@@ -15,10 +16,29 @@ class AdminResult
         return $this->id;
     }
 
-    public function setId()
+    public function setId($id)
     {
         $this->id = $id;
-        return $this;
+    }
+
+    public function getTryId()
+    {
+        return $this->try_id;
+    }
+
+    public function setTryId($try_id)
+    {
+        $this->try_id = $try_id;
+    }
+
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
     }
 
     public function getQuizzId()
@@ -26,36 +46,30 @@ class AdminResult
         return $this->quizz_id;
     }
 
-    public function setQuizzId()
+    public function setQuizzId($quizz_id)
     {
         $this->quizz_id = $quizz_id;
-        return $this;
     }
-
 
     public function getScore()
     {
         return $this->score;
     }
 
-    public function setScore()
+    public function setScore($score)
     {
         $this->score = $score;
-        return $this;
     }
 
-
-    public function getCreatedAt()
+    public function getCompletedAt()
     {
-        return $this->created_at;
+        return $this->completed_at;
     }
 
-    public function setCreatedAt()
+    public function setCompletedAt($completed_at)
     {
-        $this->created_at = $created_at;
-        return $this;
+        $this->completed_at = $completed_at;
     }
-
 
 
 }
