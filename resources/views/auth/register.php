@@ -6,6 +6,20 @@
         <p class="text-gray-500 text-center text-sm mb-6">Please fill in your information to register</p>
         
         <form action="/register" method="post" class="flex flex-col gap-5">
+
+        <div class="flex flex-col">
+                <label for="email" class="mb-2 text-sm">Email address:</label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    value="<?=old('email')?>" 
+                    class="p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="your.email@example.com"
+                >
+                <span class="text-red-500 text-xs mt-1"><?=error('email')?></span>
+            </div>
+
             <div class="flex flex-col">
                 <label for="username" class="mb-2 text-sm">Full Name:</label>
                 <input 
@@ -20,19 +34,6 @@
             </div>
             
             <div class="flex flex-col">
-                <label for="email" class="mb-2 text-sm">Email address:</label>
-                <input 
-                    type="email" 
-                    name="email" 
-                    id="email" 
-                    value="<?=old('email')?>" 
-                    class="p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="your.email@example.com"
-                >
-                <span class="text-red-500 text-xs mt-1"><?=error('email')?></span>
-            </div>
-            
-            <div class="flex flex-col">
                 <label for="password" class="mb-2 text-sm">Password:</label>
                 <input 
                     type="password" 
@@ -41,17 +42,6 @@
                     class="p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                 <span class="text-red-500 text-xs mt-1"><?=error('password')?></span>
-            </div>
-            
-            <div class="flex flex-col">
-                <label for="password_confirmation" class="mb-2 text-sm">Confirm Password:</label>
-                <input 
-                    type="password" 
-                    name="password_confirmation" 
-                    id="password_confirmation"
-                    class="p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                <span class="text-red-500 text-xs mt-1"><?=error('password_confirmation')?></span>
             </div>
             
             <button 
