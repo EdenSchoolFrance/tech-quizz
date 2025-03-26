@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+
     --breakpoint-xs: 376px;
     --breakpoint-md: 769px;
 }
@@ -21,4 +22,5 @@ html {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
 

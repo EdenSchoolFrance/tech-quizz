@@ -1,6 +1,7 @@
 <?php ob_start(); ?>
-<h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
-<section class="w-full mx-auto ">
+
+<h1 class="text-3xl font-bold mb-6 max-[376px]:hidden">Admin Dashboard</h1>
+<section class="w-full mx-auto">
     
     <article>
     <?php if (empty($userResults)): ?>
