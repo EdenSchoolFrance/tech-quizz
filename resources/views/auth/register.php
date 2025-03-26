@@ -1,20 +1,20 @@
 <?php ob_start(); ?>
 
 <section class="flex justify-center items-center min-h-[80vh]">
-    <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md">
+    <div class="bg-white dark:bg-[#313E51] rounded-2xl shadow-lg p-8 w-full max-w-md">
         <h1 class="text-2xl font-medium text-center mb-3">Create Account</h1>
         <p class="text-gray-500 text-center text-sm mb-6">Please fill in your information to register</p>
         
         <form action="/register" method="post" class="flex flex-col gap-5">
             <div class="flex flex-col">
-                <label for="username" class="mb-2 text-sm">Full Name:</label>
+                <label for="username" class="mb-2 text-sm">Username:</label>
                 <input 
                     type="text" 
                     name="username" 
                     id="username" 
                     value="<?=old('username')?>" 
-                    class="p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="John Doe"
+                    class="dark:bg-[#313E51] p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Username"
                 >
                 <span class="text-red-500 text-xs mt-1"><?=error('username')?></span>
             </div>
@@ -26,7 +26,7 @@
                     name="email" 
                     id="email" 
                     value="<?=old('email')?>" 
-                    class="p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="dark:bg-[#313E51] p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="your.email@example.com"
                 >
                 <span class="text-red-500 text-xs mt-1"><?=error('email')?></span>
@@ -38,7 +38,8 @@
                     type="password" 
                     name="password" 
                     id="password"
-                    class="p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="dark:bg-[#313E51] p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Your password"
                 >
                 <span class="text-red-500 text-xs mt-1"><?=error('password')?></span>
             </div>
@@ -49,7 +50,8 @@
                     type="password" 
                     name="password_confirmation" 
                     id="password_confirmation"
-                    class="p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="dark:bg-[#313E51] p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Confirm your password"
                 >
                 <span class="text-red-500 text-xs mt-1"><?=error('password_confirmation')?></span>
             </div>
