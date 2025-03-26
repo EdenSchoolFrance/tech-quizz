@@ -16,11 +16,11 @@ if (isset($_SESSION['result'])) {
     <div class="md:w-1/2">
         <div class="bg-white dark:bg-[#3B4D66] rounded-xl p-8 shadow-sm mb-6">
             <div class="flex items-center justify-center mb-4">
-                <span class="text-lg font-medium text-gray-800 dark:text-gray-400"><?=$quiz->getTitle()?></span>
+                <span class="text-lg font-medium text-gray-800 dark:text-gray-200"><?=$quiz->getTitle()?></span>
             </div>
 
             <div class="text-center">
-                <span class="text-8xl font-bold text-gray-800 dark:text-gray-400 block"><?php echo $_SESSION['score'][0]; ?></span>
+                <span class="text-8xl font-bold text-gray-800 dark:text-gray-200 block"><?php echo $_SESSION['score'][0]; ?></span>
                 <span class="text-lg text-gray-500 dark:text-gray-100">out of <?php echo $_SESSION['score'][1]; ?></span>
             </div>
         </div>

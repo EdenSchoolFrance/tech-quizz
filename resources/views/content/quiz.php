@@ -3,7 +3,7 @@
     <section class="flex flex-col md:flex-row md:items-start gap-12">
         <article class="w-full grid md:grid-cols-2 md:justify-items-center">
             <div class="mb-10">
-                <h1 class="md:text-4xl text-5xl text-gray-700 dark:text-gray-400 font-normal mb-4 leading-tight">Welcome to the<br><span class="font-bold text-gray-900">Frontend Quiz!</span></h1>
+                <h1 class="md:text-4xl text-5xl text-gray-700 dark:text-gray-400 font-normal mb-4 leading-tight">Welcome to the<br><span class="font-bold text-gray-900 dark:text-gray-200">Frontend Quiz!</span></h1>
                 <p class="md:text-lg text-xl text-gray-600 dark:text-gray-300">Pick a subject to get started.</p>
             </div>
 

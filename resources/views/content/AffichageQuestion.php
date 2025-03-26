@@ -8,14 +8,14 @@ $tryId = uniqid();
     <section class="flex flex-col md:flex-row md:items-start gap-12 xs:w-3/4 w-full mx-auto ">
         <div class="md:w-1/2 md:h-[400px] flex flex-col justify-between">
             <div>
-                <h1 class="xs:text-3xl text-xl font-bold text-gray-800 dark:text-gray-400 mb-8 quizz-text"></h1>
+                <h1 class="xs:text-3xl text-xl font-bold text-gray-800 dark:text-gray-200 mb-8 quizz-text"></h1>
             </div>
             <div>
                 <p class="text-gray-600 dark:text-gray-300 mb-4 italic question-num"></p>
-                <h1 class="xs:text-3xl text-xl font-bold text-gray-800 dark:text-gray-400 mb-8 question-text" ></h1>
+                <h1 class="xs:text-3xl text-xl font-bold text-gray-800 dark:text-gray-200 mb-8 question-text" ></h1>
             </div>
 
-            <div class="w-full bg-gray-200 rounded-full h-2 mb-6">
+            <div class="w-full bg-gray-200 dark:bg-[#3B4D66] rounded-full h-2 mb-6">
                 <div class="bg-purple-600 h-2 rounded-full progress-bar" style="width: 0"></div>
             </div>
         </div>
@@ -132,9 +132,9 @@ $tryId = uniqid();
                             const optionHtml = `
                                 <div class="option-containers">
                                     <input type="radio" name="answer" id="${optionId}" value="${item.Id_reponse}" class="hidden peer">
-                                    <label for="${optionId}" class="bg-white w-full rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 text-gray-900 font-medium flex justify-between items-center cursor-pointer border-2 border-transparent peer-checked:border-purple-600">
+                                    <label for="${optionId}" class="bg-white dark:bg-[#3B4D66] dark:text-gray-300 w-full rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 text-gray-900 font-medium flex justify-between items-center cursor-pointer border-2 border-transparent peer-checked:border-purple-600">
                                         <div class="flex items-center">
-                                            <span class="mr-3 px-4 py-2 rounded-xl bg-[#F4F6FA]">${LetterArray[index]}</span>
+                                            <span class="mr-3 px-4 py-2 rounded-xl bg-[#F4F6FA] dark:bg-[#626C7F] dark:text-gray-300">${LetterArray[index]}</span>
                                             <span>${item.answer_text}</span>
                                         </div>
                                     </label>
