@@ -28,7 +28,7 @@
             </button>
         </div>
 
-        <div id="sidebar" class="hidden md:flex fixed md:static inset-0 z-40 md:z-auto bg-white dark:bg-[#3B4D66] dark:text-white flex-col w-64 h-screen md:h-auto transition-all duration-300 ease-in-out">
+        <div id="sidebar" class="hidden md:flex fixed md:static inset-0 z-40 md:z-auto bg-white dark:bg-[#3B4D66] dark:text-white flex-col w-64 h-screen md:h-auto">
             <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700 md:p-6">
                 <h1 class="text-xl font-bold text-blue-600">DashQuiz</h1>
                 <button id="sidebar-close" class="md:hidden text-gray-700 dark:text-white">
@@ -60,17 +60,17 @@
                         <span>Logout</span>
                     </a>
                     <div class="flex items-center mt-4 px-6">
-                        <i class="fas fa-moon fa-lg"></i>
-                        <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch flex justify-start transition-all duration-100">
+                        <i class="fas fa-moon fa-lg transition-none"></i>
+                        <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch flex justify-start">
                             <div class="w-6 h-6 rounded-[50%] bg-white transition-all duration-100"></div>
                         </div>
-                        <i class="fas fa-sun fa-xl"></i>
+                        <i class="fas fa-sun fa-lg transition-none"></i>
                     </div>
                 </div>
             </div>
         </div>
 
-        <main class="flex-grow p-4 md:p-6 md:ml-0 transition-all duration-300 overflow-auto">
+        <main class="flex-grow p-4 md:p-6 md:ml-0 overflow-auto">
             <?php echo $content; ?>
         </main>
     </div>
@@ -98,8 +98,8 @@
         </ul>
         <div class="flex flex-row items-center">
             <i class="fas fa-moon fa-lg" ></i>
-            <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch transition-all duration-100">
-                <div class="w-6 h-6 rounded-[50%] bg-white duration-200 ease-out"></div>
+            <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch">
+                <div class="w-6 h-6 rounded-[50%] bg-white transition-transform duration-200 ease-out"></div>
             </div>
             <i class="fas fa-sun fa-xl" ></i>
         </div>
