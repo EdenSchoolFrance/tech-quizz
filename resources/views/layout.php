@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/style.css">
 </head>
-<body class="min-h-screen bg-[#F4F6FB] relative flex flex-col">
+<body class="min-h-screen bg-[#F4F6FB] relative flex flex-col dark:bg-[#313E51] dark:text-neutral-50">
     <div class="absolute top-0 left-0 -z-10">
         <img src="/assets/circle-top.png" alt="Background circle" class="w-full max-w-md opacity-10">
     </div>

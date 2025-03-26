@@ -15,28 +15,28 @@
         </div>
     <?php endif; ?>
 
-    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+    <div class="bg-white dark:bg-[#3B4D66] dark:text-neutral-50 shadow-md rounded-lg p-6 mb-8">
         <h2 class="text-2xl font-semibold mb-4">Add a New Question</h2>
         
         <form action="/quiz/<?= $quiz->getId() ?>/questions/store" method="POST">
             <div class="mb-4">
-                <label for="question_text" class="block text-sm font-medium text-gray-700 mb-1">Question Text *</label>
+                <label for="question_text" class="block text-sm font-medium text-gray-700 dark:text-neutral-50 mb-1">Question Text *</label>
                 <input type="text" name="question_text" id="question_text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
             
-            <div class="mb-6">
-                <h3 class="text-lg font-medium mb-2">Answers (4 required)</h3>
-                <p class="text-sm text-gray-500 mb-3">Select one answer as correct.</p>
+            <div class="mb-6 ">
+                <h3 class="text-lg font-medium mb-2 dark:text-neutral-50">Answers (4 required)</h3>
+                <p class="text-sm text-gray-500 dark:text-neutral-50 mb-3">Select one answer as correct.</p>
                 
                 <?php for ($i = 1; $i <= 4; $i++): ?>
                 <div class="mb-3 flex items-center">
                     <div class="flex-1">
-                        <label for="answer_<?= $i ?>" class="block text-sm font-medium text-gray-700 mb-1">Answer <?= $i ?> *</label>
+                        <label for="answer_<?= $i ?>" class="block text-sm font-medium text-gray-700 dark:text-neutral-50 mb-1">Answer <?= $i ?> *</label>
                         <input type="text" name="answers[<?= $i-1 ?>][text]" id="answer_<?= $i ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
                     <div class="ml-4 flex items-center">
                         <input type="radio" name="correct_answer" value="<?= $i-1 ?>" id="correct_<?= $i ?>" <?= $i === 1 ? 'checked' : '' ?> class="h-4 w-4 text-blue-600 focus:ring-blue-500">
-                        <label for="correct_<?= $i ?>" class="ml-2 text-sm text-gray-700">Correct</label>
+                        <label for="correct_<?= $i ?>" class="ml-2 text-sm text-gray-700 dark:text-neutral-50">Correct</label>
                     </div>
                 </div>
                 <?php endfor; ?>
@@ -48,11 +48,11 @@
         </form>
     </div>
     
-    <div class="bg-white shadow-md rounded-lg p-6">
+    <div class=" shadow-md rounded-lg p-6 dark:bg-[#3B4D66] dark:text-white">
         <h2 class="text-2xl font-semibold mb-4">Existing Questions</h2>
         
         <?php if (empty($questions)): ?>
-            <p class="text-gray-500">No questions have been added to this quiz yet.</p>
+            <p class="text-gray-500 dark:text-neutral-50">No questions have been added to this quiz yet.</p>
         <?php else: ?>
             <div class="space-y-6">
                 <?php foreach ($questions as $index => $question): ?>
