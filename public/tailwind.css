@@ -1,9 +1,13 @@
 @import "tailwindcss";
 
-@theme {
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
     --breakpoint-xs: 376px;
     --breakpoint-md: 769px;
+    --font-rubik: 'Rubik', sans-serif;
 }
 
 input {
@@ -11,7 +15,7 @@ input {
 }
 
 .aLink {
-    @apply hover:text-blue-600;
+    @apply hover:text-blue-600 duration-300 transition-colors;
 }
 
 html::-webkit-scrollbar {
@@ -22,5 +26,4 @@ html {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-
 
