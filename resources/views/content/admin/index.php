@@ -20,12 +20,12 @@
                     <h2 class="text-2xl font-semibold mb-4">Edit Quiz</h2>
                     <form action="/dashboard/quiz/update/<?= $editQuiz->getId() ?>" method="POST">
                         <div class="mb-4">
-                            <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Quiz Title *</label>
+                            <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Quiz Title *</label>
                             <input type="text" name="title" id="title" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
                                    value="<?= isset($_SESSION['old']['title']) ? $_SESSION['old']['title'] : $editQuiz->getTitle() ?>">
                         </div>
                         <div class="mb-4">
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Description</label>
                             <textarea name="description" id="description" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="5"><?= isset($_SESSION['old']['description']) ? $_SESSION['old']['description'] : $editQuiz->getDescription() ?></textarea>
                         </div>
                         <div class="flex gap-3">
@@ -39,17 +39,17 @@
                     <h2 class="text-2xl font-semibold mb-4">Edit User</h2>
                     <form action="/dashboard/user/update/<?= $editUser->getId() ?>" method="POST">
                         <div class="mb-4">
-                            <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username *</label>
+                            <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Username *</label>
                             <input type="text" name="username" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
                                    value="<?= isset($_SESSION['old']['username']) ? $_SESSION['old']['username'] : $editUser->getUsername() ?>">
                         </div>
                         <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Email *</label>
                             <input type="email" name="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
                                    value="<?= isset($_SESSION['old']['email']) ? $_SESSION['old']['email'] : $editUser->getEmail() ?>">
                         </div>
                         <div class="mb-4">
-                            <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Role *</label>
+                            <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Role *</label>
                             <select name="role" id="role" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option value="user" <?= (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] === 'user') || (!isset($_SESSION['old']['role']) && $editUser->getRole() === 'user') ? 'selected' : '' ?>>User</option>
                                 <option value="admin" <?= (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] === 'admin') || (!isset($_SESSION['old']['role']) && $editUser->getRole() === 'admin') ? 'selected' : '' ?>>Admin</option>
@@ -66,21 +66,21 @@
                     <h2 class="text-2xl font-semibold mb-4">Create New User</h2>
                     <form action="/dashboard/user/store" method="POST">
                         <div class="mb-4">
-                            <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username *</label>
+                            <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Username *</label>
                             <input type="text" name="username" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
                                    value="<?= isset($_SESSION['old']['username']) ? $_SESSION['old']['username'] : '' ?>">
                         </div>
                         <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Email *</label>
                             <input type="email" name="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
                                    value="<?= isset($_SESSION['old']['email']) ? $_SESSION['old']['email'] : '' ?>">
                         </div>
                         <div class="mb-4">
-                            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password *</label>
+                            <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Password *</label>
                             <input type="password" name="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         </div>
                         <div class="mb-4">
-                            <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Role *</label>
+                            <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Role *</label>
                             <select name="role" id="role" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option value="user" <?= isset($_SESSION['old']['role']) && $_SESSION['old']['role'] === 'user' ? 'selected' : '' ?>>User</option>
                                 <option value="admin" <?= isset($_SESSION['old']['role']) && $_SESSION['old']['role'] === 'admin' ? 'selected' : '' ?>>Admin</option>
@@ -97,12 +97,12 @@
                     <h2 class="text-2xl font-semibold mb-4">Create a new Quiz</h2>
                     <form action="/quiz/store" method="POST">
                         <div class="mb-4">
-                            <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Quiz Title *</label>
+                            <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Quiz Title *</label>
                             <input type="text" name="title" id="title" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required 
                                    value="<?= isset($_SESSION['old']['title']) ? $_SESSION['old']['title'] : '' ?>">
                         </div>
                         <div class="mb-4">
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">Description</label>
                             <textarea name="description" id="description" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="5"><?= isset($_SESSION['old']['description']) ? $_SESSION['old']['description'] : '' ?></textarea>
                         </div>
                         <div class="flex gap-3">
@@ -115,7 +115,7 @@
             <div class="bg-white dark:bg-[#3B4D66] shadow-md rounded-lg p-6 mb-8">
                 <h2 class="text-2xl font-semibold mb-4">Manage Your Quizzes</h2>
                 <?php if (empty($quizzes)): ?>
-                    <p class="text-gray-500">You haven't created any quizzes yet.</p>
+                    <p class="text-gray-500 dark:text-gray-100">You haven't created any quizzes yet.</p>
                 <?php else: ?>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -155,7 +155,7 @@
                     <a href="/dashboard/user/create" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">Create New User</a>
                 </div>
                 <?php if (empty($users)): ?>
-                    <p class="text-gray-500">No users found.</p>
+                    <p class="text-gray-500 dark:text-gray-100">No users found.</p>
                 <?php else: ?>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
