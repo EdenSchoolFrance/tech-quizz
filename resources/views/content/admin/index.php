@@ -2,7 +2,7 @@
 
 <div class="flex min-h-screen">
     <!-- Sidebar -->
-    <nav class="w-64 bg-white text-black flex flex-col p-4 fixed top-24 left-0 h-full">
+    <!-- <nav class="w-64 bg-white text-black flex flex-col p-4 fixed top-24 left-0 h-full">
         <h2 class="text-2xl font-semibold mb-6">Admin Dashboard</h2>
         <ul class="flex flex-col gap-4">
             <li>
@@ -12,10 +12,10 @@
                 <a href="/dashboard/user/create" class="block px-4 py-2 rounded hover:bg-gray-700">Users</a>
             </li>
         </ul>
-    </nav>
+    </nav> -->
 
     <!-- Main Content -->
-    <div class="flex-1 p-8 ml-64">
+    <div class="flex-1 p-8">
         <div class="container mx-auto">
             <?php if (isset($_SESSION['success'])): ?>
                 <div class="bg-green-100 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-6">
