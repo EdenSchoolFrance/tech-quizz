@@ -157,6 +157,9 @@
                 <?php if (empty($users)): ?>
                     <p class="text-gray-500 dark:text-gray-100">No users found.</p>
                 <?php else: ?>
+                    <?php usort($users, function($a, $b) {
+                        return strcmp($a->getUsername(), $b->getUsername());
+                    }); ?>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50 dark:bg-[#3B4D66]">
