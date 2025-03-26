@@ -55,7 +55,7 @@ $tryId = uniqid();
                         const answer = $('input[name="answer"]:checked').val();
                         let correct = false;
                         const answers = $('label')
-                        answers.prop('disabled', true);
+                        $('input[name="answer"]').prop('disabled', true);
                         answers.removeClass('hover:shadow-md');
                         answers.removeClass('hover:-translate-y-1');
                         answers.removeClass('cursor-pointer');
