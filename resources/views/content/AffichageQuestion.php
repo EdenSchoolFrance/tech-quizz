@@ -8,11 +8,11 @@ $tryId = uniqid();
     <section class="flex flex-col md:flex-row md:items-start gap-12 xs:w-3/4 w-full mx-auto ">
         <div class="md:w-1/2 md:h-[400px] flex flex-col justify-between">
             <div>
-                <h1 class="xs:text-3xl text-xl font-bold text-gray-800 mb-8 quizz-text"></h1>
+                <h1 class="xs:text-3xl text-xl font-bold text-gray-800 dark:text-gray-400 mb-8 quizz-text"></h1>
             </div>
             <div>
-                <p class="text-gray-600 mb-4 italic question-num"></p>
-                <h1 class="xs:text-3xl text-xl font-bold text-gray-800 mb-8 question-text" ></h1>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 italic question-num"></p>
+                <h1 class="xs:text-3xl text-xl font-bold text-gray-800 dark:text-gray-400 mb-8 question-text" ></h1>
             </div>
 
             <div class="w-full bg-gray-200 rounded-full h-2 mb-6">
