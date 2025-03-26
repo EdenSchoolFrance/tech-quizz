@@ -35,7 +35,7 @@
                     <i class="fas fa-times fa-lg"></i>
                 </button>
             </div>
-            
+
             <div class="flex flex-col h-full justify-between">
                 <div class="py-4">
                     <ul class="space-y-2">
@@ -53,7 +53,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="mt-auto p-4 border-t border-gray-200 dark:border-gray-700">
                     <a href="/logout" class="flex items-center px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-red-500 hover:text-white rounded-md">
                         <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i>
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-        
+
         <main class="flex-grow p-4 md:p-6 md:ml-0 transition-all duration-300 overflow-auto">
             <?php echo $content; ?>
         </main>
@@ -98,8 +98,8 @@
         </ul>
         <div class="flex flex-row items-center">
             <i class="fas fa-moon fa-lg" ></i>
-            <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch flex justify-start transition-all duration-100">
-                <div class="w-6 h-6 rounded-[50%] bg-white transition-all duration-100"></div>
+            <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch transition-all duration-100">
+                <div class="w-6 h-6 rounded-[50%] bg-white duration-200 ease-out"></div>
             </div>
             <i class="fas fa-sun fa-xl" ></i>
         </div>
@@ -108,48 +108,34 @@
         <?php echo $content; ?>
     </main>
     <?php endif; ?>
-    
+
     <script>
-        $('.theme-switch').click(function() {
-            const theme = $('html').attr('data-theme');
-            if (theme === 'dark') {
-                $('html').attr('data-theme', 'light');
-            } else {
-                $('html').attr('data-theme', 'dark');
+        $(document).ready(function() {
+            if(localStorage.theme === 'dark' || localStorage.theme === 'light') {
+                if (localStorage.theme === 'light') {
+                    $('html').attr('data-theme', 'light');
+                    $('.theme-switch div').addClass('translate-x-4/3');
+                } else {
+                    $('html').attr('data-theme', 'dark');
+                }
             }
-            if($('.theme-switch').hasClass('justify-start')) {
-                $('.theme-switch').removeClass('justify-start');
-                $('.theme-switch').addClass('justify-end');
-            } else {
-                $('.theme-switch').removeClass('justify-end');
-                $('.theme-switch').addClass('justify-start');
+            else {
+                localStorage.theme = 'light';
             }
-        });
-        
-        $('#sidebar-toggle').click(function() {
-            $('#sidebar').removeClass('hidden');
-        });
-        
-        $('#sidebar-close').click(function() {
-            $('#sidebar').addClass('hidden');
-        });
-        
-        $(document).click(function(event) {
-            const $target = $(event.target);
-            if(!$target.closest('#sidebar').length && 
-               !$target.closest('#sidebar-toggle').length && 
-               $('#sidebar').is(':visible') &&
-               window.innerWidth < 768) {
-                $('#sidebar').addClass('hidden');
-            }
-        });
-        
-        $(window).resize(function() {
-            if(window.innerWidth >= 768) {
-                $('#sidebar').removeClass('hidden');
-            } else if(!$('#sidebar-toggle').is(':visible')) {
-                $('#sidebar').addClass('hidden');
-            }
+
+
+            $('.theme-switch').on('click', function ()  {
+                const theme = localStorage.theme;
+                if (theme === 'dark') {
+                    $('html').attr('data-theme', 'light');
+                    $('.theme-switch div').addClass('translate-x-4/3');
+                    localStorage.theme = 'light';
+                } else {
+                    $('html').attr('data-theme', 'dark');
+                    $('.theme-switch div').removeClass('translate-x-4/3');
+                    localStorage.theme = 'dark';
+                }
+            });
         });
     </script>
 </body>
@@ -161,3 +147,4 @@ if (isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
 ?>
+
