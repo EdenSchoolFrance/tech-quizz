@@ -1,9 +1,10 @@
 <?php ob_start(); ?>
-<section class="w-full mx-auto">
     <h1 class="text-3xl font-bold mb-6 max-[376px]:hidden">Admin Dashboard</h1>
-    
-    <article>
-    <?php if (empty($userResults)): ?>
+    <section class="w-full mx-auto">
+        <h1 class="text-3xl font-bold mb-6 max-[376px]:hidden">Admin Dashboard</h1>
+
+        <article>
+            <?php if (empty($userResults)): ?>
             <p class="text-gray-500">This user haven't done any quiz yet.</p>
         <?php else: ?>
             <div class="overflow-x-auto ">
