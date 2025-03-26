@@ -9,19 +9,19 @@ if (isset($_SESSION['result'])) {
 
 <section class="flex flex-col md:flex-row md:items-start gap-12 xs:w-3/4 xs:mx-auto w-full  ">
     <div class="md:w-1/2">
-        <h1 class=" text-5xl  text-gray-800 mb-4">Quiz completed</h1>
-        <p class="text-5xl font-bold text-gray-700">You scored...</p>
+        <h1 class=" text-5xl dark:text-gray-400 text-gray-800 mb-4">Quiz completed</h1>
+        <p class="text-5xl font-bold dark:text-gray-300 text-gray-700">You scored...</p>
     </div>
 
     <div class="md:w-1/2">
-        <div class="bg-white rounded-xl p-8 shadow-sm mb-6">
+        <div class="bg-white dark:bg-[#3B4D66] rounded-xl p-8 shadow-sm mb-6">
             <div class="flex items-center justify-center mb-4">
-                <span class="text-lg font-medium text-gray-800"><?=$quiz->getTitle()?></span>
+                <span class="text-lg font-medium text-gray-800 dark:text-gray-400"><?=$quiz->getTitle()?></span>
             </div>
 
             <div class="text-center">
-                <span class="text-8xl font-bold text-gray-800 block"><?php echo $_SESSION['score'][0]; ?></span>
-                <span class="text-lg text-gray-500">out of <?php echo $_SESSION['score'][1]; ?></span>
+                <span class="text-8xl font-bold text-gray-800 dark:text-gray-400 block"><?php echo $_SESSION['score'][0]; ?></span>
+                <span class="text-lg text-gray-500 dark:text-gray-100">out of <?php echo $_SESSION['score'][1]; ?></span>
             </div>
         </div>
 
