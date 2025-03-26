@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark" class="font-rubik">
+<html lang="fr" data-theme="light" class="font-rubik ">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,17 +10,17 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 
-<body class="min-h-screen bg-[#F4F6FB] relative flex flex-col dark:bg-[#313E51] dark:text-neutral-50">
+<body class="min-h-screen bg-[#F4F6FB] relative flex flex-col dark:bg-gray-800 dark:text-neutral-50">
     <div class="absolute top-0 left-0 -z-10">
-        <img src="/assets/circle-top.png" alt="Background circle" class="w-full max-w-md opacity-10">
+        <img src="/assets/circle-top.png" alt="Background circle" class="w-full max-w-md opacity-10 dark:opacity-3">
     </div>
     
     <div class="absolute bottom-0 right-0 -z-10">
-        <img src="/assets/circle-bottom.png" alt="Background circle" class="w-full max-w-md opacity-10">
+        <img src="/assets/circle-bottom.png" alt="Background circle" class="w-full max-w-md opacity-10 dark:opacity-3">
     </div>
     
-    <header class="py-8 px-6 bg-white shadow-lg flex flex-row justify-between">
-        <ul class="flex gap-6 justify-start font-[600] text-gray-700 items-center">
+    <header class="py-8 px-6 bg-white dark:bg-[#313E51] shadow-lg flex flex-row justify-between">
+        <ul class="flex gap-6 justify-start font-[600] text-gray-700 dark:text-gray-100 items-center">
             <?php if(!auth()): ?>
             <li>
                 <a href="/register" class="aLink">Register</a>
@@ -47,8 +47,8 @@
         </ul>
         <div class="flex flex-row items-center">
             <i class="fas fa-moon fa-lg" ></i>
-            <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch flex justify-start transition-all duration-100">
-                <div class="w-6 h-6 rounded-[50%] bg-white transition-all duration-100"></div>
+            <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch transition-all duration-100">
+                <div class="w-6 h-6 rounded-[50%] bg-white duration-200 ease-out"></div>
             </div>
             <i class="fas fa-sun fa-xl" ></i>
         </div>
@@ -57,22 +57,34 @@
         <?php echo $content; ?>
     </main>
     <script>
-        $('.theme-switch').click(function() {
-            console.log('hello')
-            const theme = $('html').attr('data-theme');
-            if (theme === 'dark') {
-                $('html').attr('data-theme', 'light');
-            } else {
-                $('html').attr('data-theme', 'dark');
+        $(document).ready(function() {
+            if(localStorage.theme === 'dark' || localStorage.theme === 'light') {
+                if (localStorage.theme === 'light') {
+                    $('html').attr('data-theme', 'light');
+                    $('.theme-switch div').addClass('translate-x-4/3');
+                } else {
+                    $('html').attr('data-theme', 'dark');
+                }
             }
-            if($('.theme-switch').hasClass('justify-start')) {
-                $('.theme-switch').removeClass('justify-start');
-                $('.theme-switch').addClass('justify-end');
-            } else {
-                $('.theme-switch').removeClass('justify-end');
-                $('.theme-switch').addClass('justify-start');
+            else {
+                localStorage.theme = 'light';
             }
+
+
+            $('.theme-switch').on('click', function ()  {
+                const theme = localStorage.theme;
+                if (theme === 'dark') {
+                    $('html').attr('data-theme', 'light');
+                    $('.theme-switch div').addClass('translate-x-4/3');
+                    localStorage.theme = 'light';
+                } else {
+                    $('html').attr('data-theme', 'dark');
+                    $('.theme-switch div').removeClass('translate-x-4/3');
+                    localStorage.theme = 'dark';
+                }
+            });
         });
+
     </script>
 </body>
 </html>
