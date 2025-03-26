@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
-<section class="container mx-auto p-6">
+<section class="w-full mx-auto">
     
     <article>
     <?php if (empty($userResults)): ?>
@@ -8,21 +8,21 @@
         <?php else: ?>
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quiz Name</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                    <thead class="bg-gray-50 ">
+                        <tr class="grid grid-cols-4">
+                            <th scope="col" class="xs:px-6 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
+                            <th scope="col" class="xs:px-6 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th scope="col" class="xs:px-6 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quiz Name</th>
+                            <th scope="col" class="xs:px-6 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
+                    <tbody class="bg-white divide-y divide-gray-200 ">
                         <?php foreach ($userResults as $userResult): ?>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $userResult->getId() ?></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $userResult->getCompletedAt() ?>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $userResult->getTitle() ?></td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $userResult->getScore() ?></td>
+                            <tr class="grid grid-cols-4">
+                                <td class="xs:px-6 px-4 py-4 whitespace-normal break-words text-sm text-gray-500"><?= $userResult->getId() ?></td>
+                                <td class="xs:px-6 px-4 py-4 whitespace-normal text-sm text-gray-500"><?= date('d M Y', strtotime($userResult->getCompletedAt()) ) ?>
+                                <td class="xs:px-6 px-4 py-4 whitespace-normal text-sm text-gray-500"><?= $userResult->getTitle() ?></td>
+                                <td class="xs:px-6 px-4 py-4 whitespace-normal text-sm text-gray-500"><?= $userResult->getScore() ?></td>
 
                                 </td>
                             </tr>
