@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/create-user', [AdminController::class, 'createUser']);
         Route::post('admin/create-user', [AdminController::class, 'store'])->name('admin.create-user');
         Route::delete('admin/delete-user/{id}', [AdminController::class, 'deleteUser'])->name('admin.delete-user');
-        Route::get('admin/edit-user/{id}', [AdminController::class, 'editUser'])->name('admin.edit-user');
+        Route::get('admin/update-user/{id}', [AdminController::class, 'updateUserPage']);
         Route::patch('admin/update-user/{id}', [AdminController::class, 'updateUser'])->name('admin.update-user');
     });
 });

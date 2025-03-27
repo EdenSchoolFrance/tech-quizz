@@ -26,4 +26,11 @@ class AdminController extends Controller
         User::query()->findOrFail($id)->delete();
         return redirect()->route('admin.users')->with('message', 'User has been successfully deleted!');
     }
+
+    public function updateUserPage($id) {
+        $user = User::query()->findOrFail($id);
+        return view('admin.update-user', [
+            'user' => $user,
+        ]);
+    }
 }
