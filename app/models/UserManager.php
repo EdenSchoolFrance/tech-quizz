@@ -80,14 +80,15 @@ class UserManager extends Model
     public function updateUser($id, $username, $email, $role)
     {
         try {
-            $stmt = "UPDATE users SET username = :username, email = :email, role = :role WHERE id = :id";
+            $stmt = "UPDATE users SET username = :username, email = :email, role = :role WHERE id = :id, is_active = :is_active";
             $stmt = $this->pdo->prepare($stmt);
             
             return $stmt->execute([
                 ':id' => $id,
                 ':username' => $username,
                 ':email' => $email,
-                ':role' => $role
+                ':role' => $role,
+                ':is_active' => $is_active
             ]);
         } catch (\PDOException $e) {
             return false;
