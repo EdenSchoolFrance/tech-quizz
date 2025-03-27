@@ -2,10 +2,10 @@
 <main class="my-20 mx-72">
     <div class="flex justify-between">
         <div class="flex items-center">
-            <img src="/build/assets/img/quizz/accessibility.svg"
+            <img src="/build/assets//{{ $quizz->img_url }}"
                  alt="quizz icon"
                  class="me-4">
-            <p class="font-rubik text-[22px] font-[500]">Accessibility</p>
+            <p class="font-rubik text-[22px] font-[500]">{{ $quizz->title }}</p>
         </div>
         <div>
             <a href="/dashboard"><img src="/build/assets/img/quizz/accountIcon.svg"
@@ -22,10 +22,10 @@
         <div class="">
             <div class="py-12 bg-white w-[560px] flex flex-col items-center rounded-[24px] mb-6">
                 <div class="flex items-center">
-                    <img src="/build/assets/img/quizz/accessibility.svg"
+                    <img src="/build/assets//{{ $quizz->img_url }}"
                          alt="quizz icon"
                          class="me-4">
-                    <p class="font-rubik text-[22px] font-[500]">Accessibility</p>
+                    <p class="font-rubik text-[22px] font-[500]">/{{ $quizz->title }}</p>
                 </div>
 
                 <p class="font-[500] text-[122px] font-rubik text-deepl-blue h-40 mt-4">{{ $score }}</p>

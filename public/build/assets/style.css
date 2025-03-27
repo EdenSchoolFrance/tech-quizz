@@ -14,7 +14,7 @@
 
 * {
     font-family: "Rubik", sans-serif;
-    color: var(--grey-black-color) !important;
+    color: var(--grey-black-color);
 }
 
 .background {
