@@ -27,6 +27,19 @@ class AdminController
         require VIEWS . 'content/admin/index.php';
     }
     
+    public function users()
+    {
+        if (!isset($_SESSION['user']) || $_SESSION['user']->getRole() !== 'admin') {
+            $_SESSION['error'] = "You don't have permission to access this page";
+            header('Location: /');
+            exit();
+        }
+        
+        $users = $this->um->getAllUsers();
+        
+        require VIEWS . 'content/admin/users.php';
+    }
+    
     public function editUser($id)
     {
         $user = $this->um->getUserById($id);

@@ -27,7 +27,8 @@
         '/dashboard',
         '/content/admin',
         '/quiz/*/questions',
-        '/quiz/create'
+        '/quiz/create',
+        '/dashboard/user'
     ];
     
     foreach ($adminRoutes as $route) {
@@ -66,13 +67,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/dashboard" class="flex items-center px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-blue-500 hover:text-white rounded-md mx-2 <?= strpos($_SERVER['REQUEST_URI'], '/dashboard') !== false && !strpos($_SERVER['REQUEST_URI'], '/dashboard/user') ? 'bg-blue-500 text-white' : '' ?>">
+                            <a href="/dashboard" class="flex items-center px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-blue-500 hover:text-white rounded-md mx-2 <?= strpos($_SERVER['REQUEST_URI'], '/dashboard') === 0 && !strpos($_SERVER['REQUEST_URI'], '/dashboard/user') ? 'bg-blue-500 text-white' : '' ?>">
                                 <i class="fas fa-chart-bar w-5 h-5 mr-3"></i>
                                 <span>Quiz</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/dashboard/user/create" class="flex items-center px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-blue-500 hover:text-white rounded-md mx-2 <?= strpos($_SERVER['REQUEST_URI'], '/dashboard/user') !== false ? 'bg-blue-500 text-white' : '' ?>">
+                            <a href="/dashboard/user" class="flex items-center px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-blue-500 hover:text-white rounded-md mx-2 <?= strpos($_SERVER['REQUEST_URI'], '/dashboard/user') === 0 ? 'bg-blue-500 text-white' : '' ?>">
                                 <i class="fas fa-users w-5 h-5 mr-3"></i>
                                 <span>Users</span>
                             </a>
