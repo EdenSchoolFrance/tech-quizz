@@ -39,10 +39,8 @@
             <div class="w-[45%]">
                 <form class="answerForm h-full mb-0 flex justify-between flex-col gap-8"
                       method="POST">
-                    <input type="hidden"
-                           id="questionId"
-                           value="{{ $question->id }}">
                     @csrf
+                    <input type="hidden" id="quizId" value="{{ $quizz->id }}">
                     <input type="hidden" id="questionId" value="{{ $question->id }}">
 
                     @if ($errors->any())
@@ -54,9 +52,11 @@
                     @foreach($responses as $response)
                         <label for="response_{{ $response->id }}"
                                class="block">
-                            <div class="answerDiv flex text-[24px] items-center h-full p-4 bg-white rounded-[20px] shadow-sm hover:shadow-md border cursor-pointer justify-between transition">
+                            <div
+                                class="answerDiv flex text-[24px] items-center h-full p-4 bg-white rounded-[20px] shadow-sm hover:shadow-md border cursor-pointer justify-between transition">
                                 <div class="flex items-center">
-                                    <span class="order flex items-center justify-center p-6 w-6 h-6 mr-4 bg-[#F4F6FA] text-[#626C7F] font-[500] rounded-lg font-rubik">{{ $response->order }} </span>
+                                    <span
+                                        class="order flex items-center justify-center p-6 w-6 h-6 mr-4 bg-[#F4F6FA] text-[#626C7F] font-[500] rounded-lg font-rubik">{{ $response->order }} </span>
                                     <span class="text-lg font-[500] font-rubik">{{ $response->response_text }}</span>
                                 </div>
                                 <i class="fa-solid hidden mark fa-xmark"></i>
@@ -113,8 +113,6 @@
                 return;
             }
 
-            alreadySubmitted = true;
-
             // Récupérer les valeurs des champs
             let questionId = document.querySelector("#questionId").value;
             let selectedAnswer = document.querySelector('input[name="response"]:checked');
@@ -123,6 +121,8 @@
                 document.getElementById('errorMessage').textContent = "Please select an answer.";
                 return;
             }
+
+            alreadySubmitted = true;
 
             document.getElementById('errorMessage').textContent = "";
 
