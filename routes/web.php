@@ -20,9 +20,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/score/quizz/{id}', [QuizController::class, 'score']);
 
     Route::middleware([RoleMiddleware::class . ':admin'])->group(function () {
-        Route::get('/admin', function () {
-            var_dump("vous êtes un admin");
-        });
+        Route::get("/admin", [AdminController::class, 'index'])->name('admin.index');
+        Route::get("/admin/users", [AdminController::class, 'userManagement'])->name('admin.userManagement');
+        Route::get('admin/create-user', [AdminController::class, 'createUser']);
+        Route::post('admin/create-user', [AdminController::class, 'store'])->name('admin.create-user');
     });
 });
 
