@@ -50,7 +50,7 @@ class AuthController
     {
         $this->validator->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required', 'min:8']
         ]);
 
         $_SESSION['old'] = $_POST;
@@ -77,7 +77,7 @@ class AuthController
     public function register()
     {
         if ($this->um->getUser($_POST['email'])) {
-            $_SESSION['errors']['email'] = 'Email already exists';
+            $_SESSION['error']['email'] = 'L\'email est déjà utilisé';
             header('Location: /register');
             exit();
         }
@@ -86,7 +86,7 @@ class AuthController
         $this->validator->validate([
             'username' => ['required', 'min:3', 'max:50'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:6']
+            'password' => ['required', 'min:8', 'max:50', 'majuscule', 'minuscule', 'specialChars']
         ]);
 
         $_SESSION['old'] = $_POST;

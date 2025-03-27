@@ -11,7 +11,7 @@
                 <input 
                     type="email" 
                     name="email" 
-                    id="email" 
+                    id="email"
                     value="<?=old('email')?>" 
                     class="dark:bg-[#313E51] p-3 bg-gray-50 border border-gray-200  rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="your.email@example.com"

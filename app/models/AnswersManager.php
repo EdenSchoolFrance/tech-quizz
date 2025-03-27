@@ -1,7 +1,6 @@
 <?php
 
 namespace App\models;
-use App\Validator;
 
 class AnswersManager extends Model
 {
