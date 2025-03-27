@@ -32,6 +32,7 @@
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Email</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Username</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Role</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Creation Date</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Details</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Update</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Delete</th>
@@ -44,6 +45,22 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200"><?= $user->getEmail() ?></td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200"><?= $user->getUsername() ?></td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200"><?= strtoupper($user->getRole()) ?></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
+                                            <?php 
+                                                $date = new DateTime($user->getCreatedAt());
+                                                if (class_exists('IntlDateFormatter')) {
+                                                    $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'd MMMM Y');
+                                                    echo $formatter->format($date);
+                                                } else {
+                                                    $months = [
+                                                        1 => 'January', 2 => 'Feb', 3 => 'Mar', 4 => 'Apr',
+                                                        5 => 'May', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug',
+                                                        9 => 'Sep', 10 => 'Oct', 11 => 'Nov', 12 => 'Dec'
+                                                    ];
+                                                    echo $date->format('d') . ' ' . $months[(int)$date->format('m')] . ' ' . $date->format('Y');
+                                                }
+                                            ?>
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                                             <a href="#" class="text-green-500 hover:text-green-700 px-3 py-1 rounded bg-green-100 hover:bg-green-200">Details</a>
                                         </td>
