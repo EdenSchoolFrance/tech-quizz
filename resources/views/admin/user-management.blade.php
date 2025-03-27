@@ -75,10 +75,8 @@
                                         ?>
                                     <td>{{ $date }}</td>
                                     <td class="uppercase">{{ $user['role'] }}</td>
-                                    <td><a href="/admin/user-details/{{ $user->id }}"
-                                           class="bg-[#48FFB9] py-3 px-16 rounded-lg">Details</a></td>
-                                    <td><a href="/admin/update-user/{{ $user->id }}"
-                                           class="bg-[#8280FF] py-3 px-16 rounded-lg">Update</a></td>
+                                    <td><a href="/admin/user-details/{{ $user->id }}" class="bg-[#48FFB9] py-3 px-16 rounded-lg">Details</a></td>
+                                    <td><a href="/admin/update-user/{{ $user->id }}" class="bg-[#8280FF] py-3 px-16 rounded-lg">Update</a></td>
                                     <td>
                                         <form class="mb-0" action="{{ route('admin.delete-user', $user->id) }}"
                                               method="POST"
