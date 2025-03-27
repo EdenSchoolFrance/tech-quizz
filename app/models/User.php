@@ -10,6 +10,7 @@ class User
     private $password;
     private $role;
     private $created_at;
+    private $is_active;
 
     public function getId()
     {
@@ -74,6 +75,17 @@ class User
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
+        return $this;
+    }
+
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    public function setIsActive($is_active)
+    {
+        $this->is_active = $is_active;
         return $this;
     }
 }
