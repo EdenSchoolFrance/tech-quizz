@@ -23,7 +23,7 @@ if(auth() && !user('isactive') && $_SERVER["REQUEST_URI"] != '/suspended') {
     header('Location: /suspended');
 }
 
-if(!user('isactive')) {
+if(auth() && !user('isactive')) {
     $router->get('/suspended', 'HomeController@suspended');
 }
 

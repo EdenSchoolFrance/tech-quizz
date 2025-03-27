@@ -76,6 +76,8 @@ class AuthController
 
     public function register()
     {
+        $_SESSION['old'] = $_POST;
+
         if ($this->um->getUser($_POST['email'])) {
             $_SESSION['error']['email'] = 'L\'email est déjà utilisé';
             header('Location: /register');
@@ -89,7 +91,6 @@ class AuthController
             'password' => ['required', 'min:8', 'max:50', 'majuscule', 'minuscule', 'specialChars']
         ]);
 
-        $_SESSION['old'] = $_POST;
 
         if ($this->validator->errors() || $_POST['password'] !== $_POST['password_confirmation']) {
             if ($_POST['password'] !== $_POST['password_confirmation']) {
