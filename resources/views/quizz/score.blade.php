@@ -32,7 +32,7 @@
                 <p class="font-rubik text-deep-grey text-[20px]">out of 10</p>
             </div>
 
-            <a href="/quizzes">
+            <a href="/quizz/">
                 <div class="bg-purple text-center py-5 rounded-[24px]">
                     <p class="font-rubik text-white text-[22px]">Play again</p>
                 </div>
