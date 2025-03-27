@@ -14,12 +14,11 @@ Route::middleware('auth')->group(function () {
     Route::get('results', [ResultsController::class, 'results'])->name('quizzes.results');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/quizz/{id}/question/{idQuestion}', [QuizController::class, 'showQuestions']);
+    Route::get('/score/quizz/{id}', [QuizController::class, 'score']);
 });
 
 Route::get('/quizz/', [QuizController::class, 'index']);
-
-Route::get('/quizz/{id}/question/{idQuestion}', [QuizController::class, 'showQuestions'])->middleware('auth');
-Route::get('/score/quizz/{id}', [QuizController::class, 'score']);
 
 require __DIR__ . '/auth.php';
 

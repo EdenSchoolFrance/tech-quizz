@@ -43,12 +43,6 @@
                     <input type="hidden" id="quizId" value="{{ $quizz->id }}">
                     <input type="hidden" id="questionId" value="{{ $question->id }}">
 
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <p class="text-red-500 font-rubik"> {{ $error }}</p>
-                        @endforeach
-                    @endif
-
                     @foreach($responses as $response)
                         <label for="response_{{ $response->id }}"
                                class="block">
