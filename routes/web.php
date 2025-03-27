@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/score/quizz/{id}', [QuizController::class, 'score']);
 });
 
-Route::get('/quizz/', [QuizController::class, 'index']);
+Route::get('/quizz/', [QuizController::class, 'index'])->name('quizzes.index');
 
 require __DIR__ . '/auth.php';
 

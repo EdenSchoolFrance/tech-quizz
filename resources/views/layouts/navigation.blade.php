@@ -13,6 +13,12 @@
                     </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 me-8 sm:-my-px sm:flex">
+                    <x-nav-link :href="route('quizzes.index')">
+                        {{ __('Quizzes') }}
+                    </x-nav-link>
+                </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:flex">
                     <x-nav-link :href="route('quizzes.results')" :active="request()->routeIs('quizzes.results')">
                             {{ __('Results') }}
