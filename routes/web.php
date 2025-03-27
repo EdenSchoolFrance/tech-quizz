@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -16,6 +17,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/quizz/{id}/question/{idQuestion}', [QuizController::class, 'showQuestions']);
     Route::get('/score/quizz/{id}', [QuizController::class, 'score']);
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.quizzList');
 });
 
 Route::get('/quizz/', [QuizController::class, 'index'])->name('quizzes.index');
