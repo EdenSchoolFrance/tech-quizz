@@ -37,8 +37,8 @@
                     </div>
                     <div class="mb-6">
                         <label for="active" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Active *</label>
-                        <input type="radio" name="active" id="active" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required 
-                               value="<?= isset($_SESSION['old']['is_active']) ? $_SESSION['old']['is_active'] : $editUser->getIsActive() ?>">
+                        <input type="checkbox" name="is_active" id="is_active" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+                               value="1" <?= $editUser->getIsActive() == '1' ? 'selected' : '' ?>>
                     </div>
                     <div class="flex justify-center">
                         <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Update now</button>
