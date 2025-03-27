@@ -21,4 +21,9 @@ class AdminController extends Controller
             'users' => $users,
         ]);
     }
+
+    public function deleteUser($id) {
+        User::query()->findOrFail($id)->delete();
+        return redirect()->route('admin.users')->with('message', 'User has been successfully deleted!');
+    }
 }

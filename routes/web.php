@@ -21,9 +21,10 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware([RoleMiddleware::class . ':admin'])->group(function () {
         Route::get("/admin", [AdminController::class, 'index'])->name('admin.index');
-        Route::get("/admin/users", [AdminController::class, 'userManagement'])->name('admin.userManagement');
+        Route::get("/admin/users", [AdminController::class, 'userManagement'])->name('admin.users');
         Route::get('admin/create-user', [AdminController::class, 'createUser']);
         Route::post('admin/create-user', [AdminController::class, 'store'])->name('admin.create-user');
+        Route::delete('admin/delete-user/{id}', [AdminController::class, 'deleteUser'])->name('admin.delete-user');
     });
 });
 
