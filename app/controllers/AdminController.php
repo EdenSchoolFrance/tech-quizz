@@ -30,8 +30,6 @@ class AdminController
     
     public function editUser($id)
     {
-        
-        
         $user = $this->um->getUserById($id);
         
         if (!$user) {
@@ -44,19 +42,12 @@ class AdminController
         unset($_SESSION['success']);
         unset($_SESSION['old']);
         
-        $quizManager = new \App\models\QuizManager();
-        $quizzes = $quizManager->getQuizzesByUser($_SESSION['user']->getId());
-        
-        $users = $this->um->getAllUsers();
         $editUser = $user;
-        
-        require VIEWS . 'content/admin/index.php';
+        require VIEWS . 'content/admin/edit-user.php';
     }
     
     public function updateUser($id)
     {
-        
-        
         $user = $this->um->getUserById($id);
         
         if (!$user) {
@@ -116,8 +107,6 @@ class AdminController
 
     public function deleteUser($id)
     {
-        
-        
         if ($_SESSION['user']->getId() === $id) {
             $_SESSION['error'] = "You cannot delete your own account!";
             header('Location: /dashboard');
@@ -146,25 +135,15 @@ class AdminController
     
     public function createUser()
     {
-        
-        
         unset($_SESSION['error']);
         unset($_SESSION['success']);
         unset($_SESSION['old']);
         
-        $quizManager = new \App\models\QuizManager();
-        $quizzes = $quizManager->getQuizzesByUser($_SESSION['user']->getId());
-        
-        $users = $this->um->getAllUsers();
-        $createUser = true;
-        
-        require VIEWS . 'content/admin/index.php';
+        require VIEWS . 'content/admin/create-user.php';
     }
     
     public function storeUser()
     {
-        
-        
         if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['role'])) {
             $_SESSION['error'] = "All inputs are required";
             $_SESSION['old'] = $_POST;
@@ -201,12 +180,14 @@ class AdminController
         
         $result = $this->um->insertUser($username, $email, $password, $role);
         
-        if (!is_string($result)) {
+        if ($result) {
             $_SESSION['success'] = "User created successfully";
+            unset($_SESSION['error']);
+            unset($_SESSION['old']);
             header('Location: /dashboard');
             exit();
         } else {
-            $_SESSION['error'] = "Error creating user: " . $result;
+            $_SESSION['error'] = "Error creating user";
             $_SESSION['old'] = $_POST;
             header('Location: /dashboard/user/create');
             exit();

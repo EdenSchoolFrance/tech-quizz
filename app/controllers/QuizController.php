@@ -107,22 +107,13 @@ class QuizController
             exit();
         }
         
-        if ($quiz->getCreatedBy() !== user('id')) {
+        if (user('role') !== 'admin' && $quiz->getCreatedBy() !== user('id')) {
             $_SESSION['error'] = "You don't have permission to edit this quiz";
             header('Location: /dashboard');
             exit();
         }
         
-        $userId = $_SESSION['user']->getId();
-        $quizzes = $this->qc->getQuizzesByUser($userId);
-        
-        if (user('role') === 'admin') {
-            $userManager = new \App\models\UserManager();
-            $users = $userManager->getAllUsers();
-        }
-        
-        $editQuiz = $quiz;
-        require VIEWS . 'content/admin/index.php';
+        require VIEWS . 'content/admin/edit-quiz.php';
     }
     
     public function updateInDashboard($id)

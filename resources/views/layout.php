@@ -41,7 +41,7 @@
     ?>
     <div class="flex flex-col md:flex-row min-h-screen">
         <div class="md:hidden bg-white dark:bg-[#3B4D66] p-4 flex justify-between items-center shadow-md">
-            <h1 class="text-xl font-bold text-blue-600">DashQuizz</h1>
+            <h1 class="text-xl font-bold text-blue-600">DashQuiz</h1>
             <button id="sidebar-toggle" class="text-gray-700 dark:text-white">
                 <i class="fas fa-bars fa-lg"></i>
             </button>
