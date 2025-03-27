@@ -57,7 +57,7 @@
                 </button>
             </div>
             
-            <div class="flex flex-col h-full justify-between">
+            <div class="flex flex-col h-[80%] justify-between">
                 <div class="py-4">
                     <ul class="space-y-2">
                         <li>
