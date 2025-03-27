@@ -18,7 +18,6 @@
                         <table class="w-full">
                             <thead>
                             <tr>
-                                <th class="text-left">ID</th>
                                 <th class="text-left">Date</th>
                                 <th class="text-left">Quizz Name</th>
                                 <th class="text-left">Score</th>
@@ -31,10 +30,9 @@
                                         $date = strtotime($result['created_at']);
                                         $date = date('d F Y', $date);
                                         ?>
-                                    <td>{{ $id }} 1</td>
-                                    <td>{{ $date }} 04 March 2024</td>
-                                    <td>{{ $result['title'] }} Javascript</td>
-                                    <td>{{ $result['score'] }} 2/10</td>
+                                    <td>{{ $date }}</td>
+                                    <td>{{ $result['title'] }}</td>
+                                    <td>{{ $result['score'] }}/10</td>
                                 </tr>
                             @endforeach
                             </tbody>
