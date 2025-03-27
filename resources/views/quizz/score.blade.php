@@ -28,7 +28,7 @@
                     <p class="font-rubik text-[22px] font-[500]">Accessibility</p>
                 </div>
 
-                <p class="font-[500] text-[122px] font-rubik text-deepl-blue h-40 mt-4">8</p>
+                <p class="font-[500] text-[122px] font-rubik text-deepl-blue h-40 mt-4">{{ $score }}</p>
                 <p class="font-rubik text-deep-grey text-[20px]">out of 10</p>
             </div>
 
