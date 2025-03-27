@@ -66,6 +66,13 @@ class QuizController extends Controller
 
         $getAnswer = Responses::query()->find($answerId);
 
+        if (!$getAnswer || $getAnswer->question_id != $questionId) {
+            return response()->json([
+                "success" => false,
+                "Message" => "This answer does not match with any question"
+            ]);
+        }
+
         $correctAnswer = Responses::query()
             ->select("id")
             ->where("is_correct", "=", 1)
@@ -81,7 +88,6 @@ class QuizController extends Controller
             ]);
         }
         $request->session()->increment('score');
-
         $currentScore = $request->session()->get('score');
 
         return response()->json([
@@ -100,7 +106,9 @@ class QuizController extends Controller
             Results::query()->insert([
                 'quiz_id' => $idQuiz,
                 'score' => $score,
-                'user_id' => $userId
+                'user_id' => $userId,
+                'created_at' => NOW(),
+                'updated_at' => NOW()
             ]);
         } catch (\Exception $e) {
             dd('Erreur lors de l’insertion : ' . $e->getMessage());
