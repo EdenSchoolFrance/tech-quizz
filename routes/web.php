@@ -19,15 +19,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/quizz/{id}/question/{idQuestion}', [QuizController::class, 'showQuestions']);
     Route::get('/score/quizz/{id}', [QuizController::class, 'score']);
 
-});
-
-Route::middleware([RoleMiddleware::class . ':admin'])->group(function () {
-    Route::get('/admin', function () {
-        var_dump("vous êtes un admin");
-    })->middleware([RoleMiddleware::class . ':admin']);
+    Route::middleware([RoleMiddleware::class . ':admin'])->group(function () {
+        Route::get('/admin', function () {
+            var_dump("vous êtes un admin");
+        });
+    });
 });
 
 Route::get('/quizz/', [QuizController::class, 'index'])->name('quizzes.index');
 
 require __DIR__ . '/auth.php';
-
