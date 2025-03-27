@@ -17,11 +17,11 @@ class UserManager extends Model
     }
 
 
-    public function insertUser($username, $email, $password, $role = 'user')
+    public function insertUser($username, $email, $password, $role = 'user', $is_active = 1)
     {
         try {
-            $stmt = "INSERT INTO users (id, username, email, password, role) 
-                      VALUES (:id, :username, :email, :password, :role)";
+            $stmt = "INSERT INTO users (id, username, email, password, role, is_active) 
+                      VALUES (:id, :username, :email, :password, :role, :is_active)";
 
             $stmt = $this->pdo->prepare($stmt);
 
@@ -30,7 +30,8 @@ class UserManager extends Model
                 ':username' => $username,
                 ':email' => $email,
                 ':password' => password_hash($password, PASSWORD_DEFAULT),
-                ':role' => $role
+                ':role' => $role,
+                ':is_active' => $is_active
             ]);
 
         } catch (\PDOException $e) {

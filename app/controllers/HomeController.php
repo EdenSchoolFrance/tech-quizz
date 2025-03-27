@@ -8,4 +8,9 @@ class HomeController
     {
         require VIEWS . 'content/homepage.php';
     }
+
+    public function suspended()
+    {
+        require VIEWS . 'content/suspended.php';
+    }
 }

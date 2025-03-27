@@ -19,7 +19,17 @@ if (isset($_COOKIE['remember']) || isset($_SESSION['user'])) {
 
 $router = new Router($_SERVER["REQUEST_URI"]);
 
+if(!user('isactive') && $_SERVER["REQUEST_URI"] != '/suspended') {
+    header('Location: /suspended');
+}
+
+if(!user('isactive')) {
+    $router->get('/suspended', 'HomeController@suspended');
+}
+
 $router->get('/', 'HomeController@index');
+
+
 
 if(user('role') == 'admin') {
     $router->get('/dashboard', 'AdminController@index');
