@@ -19,23 +19,42 @@
         <img src="/assets/circle-bottom.png" alt="Background circle" class="w-full max-w-md opacity-10">
     </div>
     
-    <?php if(user('role') == 'admin'): ?>
+    <?php 
+    $currentPath = $_SERVER['REQUEST_URI'];
+    $isAdminDashboardRoute = false;
+    
+    $adminRoutes = [
+        '/dashboard',
+        '/content/admin',
+        '/quiz/*/questions'
+    ];
+    
+    foreach ($adminRoutes as $route) {
+        $pattern = str_replace('*', '.*', $route);
+        if (preg_match('#^' . $pattern . '#', $currentPath)) {
+            $isAdminDashboardRoute = true;
+            break;
+        }
+    }
+    
+    if(user('role') == 'admin' && $isAdminDashboardRoute): 
+    ?>
     <div class="flex flex-col md:flex-row min-h-screen">
         <div class="md:hidden bg-white dark:bg-[#3B4D66] p-4 flex justify-between items-center shadow-md">
-            <h1 class="text-xl font-bold text-blue-600">DashQuiz</h1>
+            <h1 class="text-xl font-bold text-blue-600">DashQuizz</h1>
             <button id="sidebar-toggle" class="text-gray-700 dark:text-white">
                 <i class="fas fa-bars fa-lg"></i>
             </button>
         </div>
 
-        <div id="sidebar" class="hidden md:flex fixed md:static inset-0 z-40 md:z-auto bg-white dark:bg-[#3B4D66] dark:text-white flex-col w-64 h-screen md:h-auto">
+        <div id="sidebar" class="hidden md:flex fixed md:static inset-0 z-40 md:z-auto bg-white dark:bg-[#3B4D66] dark:text-white flex-col w-64 h-screen md:h-auto transition-all duration-300 ease-in-out">
             <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700 md:p-6">
                 <h1 class="text-xl font-bold text-blue-600">DashQuiz</h1>
                 <button id="sidebar-close" class="md:hidden text-gray-700 dark:text-white">
                     <i class="fas fa-times fa-lg"></i>
                 </button>
             </div>
-
+            
             <div class="flex flex-col h-full justify-between">
                 <div class="py-4">
                     <ul class="space-y-2">
@@ -53,24 +72,24 @@
                         </li>
                     </ul>
                 </div>
-
+                
                 <div class="mt-auto p-4 border-t border-gray-200 dark:border-gray-700">
                     <a href="/logout" class="flex items-center px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-red-500 hover:text-white rounded-md">
                         <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i>
                         <span>Logout</span>
                     </a>
                     <div class="flex items-center mt-4 px-6">
-                        <i class="fas fa-moon fa-lg transition-none"></i>
-                        <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch flex justify-start">
+                        <i class="fas fa-moon fa-lg"></i>
+                        <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch flex justify-start transition-all duration-100">
                             <div class="w-6 h-6 rounded-[50%] bg-white transition-all duration-100"></div>
                         </div>
-                        <i class="fas fa-sun fa-lg transition-none"></i>
+                        <i class="fas fa-sun fa-xl"></i>
                     </div>
                 </div>
             </div>
         </div>
-
-        <main class="flex-grow p-4 md:p-6 md:ml-0 overflow-auto">
+        
+        <main class="flex-grow p-4 md:p-6 md:ml-0 transition-all duration-300 overflow-auto">
             <?php echo $content; ?>
         </main>
     </div>
@@ -91,6 +110,11 @@
                 <li>
                     <a href="/result" class="aLink">Result</a>
                 </li>
+                <?php if(user('role') == 'admin'): ?>
+                <li>
+                    <a href="/dashboard" class="aLink">Dashboard</a>
+                </li>
+                <?php endif; ?>
                 <li>
                     <a href="/logout" class="aLink">Logout</a>
                 </li>
@@ -98,8 +122,8 @@
         </ul>
         <div class="flex flex-row items-center">
             <i class="fas fa-moon fa-lg" ></i>
-            <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch">
-                <div class="w-6 h-6 rounded-[50%] bg-white transition-transform duration-200 ease-out"></div>
+            <div class="bg-purple-600 w-16 h-8 rounded-2xl p-1 mx-2 hover:cursor-pointer theme-switch flex justify-start transition-all duration-100">
+                <div class="w-6 h-6 rounded-[50%] bg-white transition-all duration-100"></div>
             </div>
             <i class="fas fa-sun fa-xl" ></i>
         </div>
@@ -108,7 +132,7 @@
         <?php echo $content; ?>
     </main>
     <?php endif; ?>
-
+    
     <script>
         $(document).ready(function() {
             if(localStorage.theme === 'dark' || localStorage.theme === 'light') {
@@ -137,6 +161,32 @@
                 }
             });
         });
+        
+        $('#sidebar-toggle').click(function() {
+            $('#sidebar').removeClass('hidden');
+        });
+        
+        $('#sidebar-close').click(function() {
+            $('#sidebar').addClass('hidden');
+        });
+        
+        $(document).click(function(event) {
+            const $target = $(event.target);
+            if(!$target.closest('#sidebar').length && 
+               !$target.closest('#sidebar-toggle').length && 
+               $('#sidebar').is(':visible') &&
+               window.innerWidth < 768) {
+                $('#sidebar').addClass('hidden');
+            }
+        });
+        
+        $(window).resize(function() {
+            if(window.innerWidth >= 768) {
+                $('#sidebar').removeClass('hidden');
+            } else if(!$('#sidebar-toggle').is(':visible')) {
+                $('#sidebar').addClass('hidden');
+            }
+        });
     </script>
 </body>
 </html>
@@ -147,4 +197,3 @@ if (isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
 ?>
-
