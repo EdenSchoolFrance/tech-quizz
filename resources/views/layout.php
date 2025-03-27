@@ -67,7 +67,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/dashboard" class="flex items-center px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-blue-500 hover:text-white rounded-md mx-2 <?= strpos($_SERVER['REQUEST_URI'], '/dashboard') === 0 && !strpos($_SERVER['REQUEST_URI'], '/dashboard/user') ? 'bg-blue-500 text-white' : '' ?>">
+                            <a href="/dashboard" class="flex items-center px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-blue-500 hover:text-white rounded-md mx-2 <?= $_SERVER['REQUEST_URI'] === '/dashboard' || strpos($_SERVER['REQUEST_URI'], 'quiz') ? 'bg-blue-500 text-white' : '' ?>">
                                 <i class="fas fa-chart-bar w-5 h-5 mr-3"></i>
                                 <span>Quiz</span>
                             </a>
