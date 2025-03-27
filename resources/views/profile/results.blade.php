@@ -16,7 +16,7 @@
                         </div>
                     @else
                         <table class="w-full">
-                            <thead>
+                            <thead class="mb-8">
                             <tr>
                                 <th class="text-left">Date</th>
                                 <th class="text-left">Quizz Name</th>
@@ -26,10 +26,10 @@
                             <tbody>
                             @foreach($results as $result)
                                 <tr>
-                                        <?php
-                                        $date = strtotime($result['created_at']);
-                                        $date = date('d F Y', $date);
-                                        ?>
+                                          <?php
+                                          $date = strtotime($result['created_at']);
+                                          $date = date('d F Y', $date);
+                                          ?>
                                     <td>{{ $date }}</td>
                                     <td>{{ $result['title'] }}</td>
                                     <td>{{ $result['score'] }}/10</td>
