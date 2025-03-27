@@ -22,7 +22,7 @@
 }
 
 .border-error {
-    border: 1px solid #EE5454;
+    border: 3px solid #EE5454;
 }
 
 .order-error {
@@ -31,7 +31,7 @@
 }
 
 .border-success {
-    border: 1px solid #26D782;
+    border: 3px solid #26D782;
 }
 
 .order-success {
@@ -42,22 +42,21 @@
 .checkSuccess {
     font-size: 17px;
     color: #26D782;
-    border: 1px solid #26D782;
-    border-radius: 50%;
-    padding: 5px;
+    border: 3px solid #26D782;
+    border-radius: calc(infinity * 1px);
+    padding: 5px 6px;
 }
 
 .markError {
     font-size: 17px;
     color: #EE5454;
-    border: 1px solid #EE5454;
-    border-radius: 50%;
-    padding: 5px;
+    border: 3px solid #EE5454;
+    border-radius: calc(infinity * 1px);
+    padding: 5px 7px;
 }
 
 .answerDiv.active {
-    border: 1px solid #6366f1;
-    background-color: #eef2ff;
+    border: 3px solid #A729F5;
 }
 
 .disabledInputs {
@@ -82,4 +81,15 @@
 
 .text-deep-grey {
     color: var(--deep-grey-color);
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--purple-color);
+    border-radius: calc(infinity * 1px);
+}
+
+progress::-webkit-progress-bar {
+    border: 4px white solid;
+    background-color: white;
+    border-radius: calc(infinity * 1px);
 }
