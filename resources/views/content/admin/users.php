@@ -62,7 +62,7 @@
                                             ?>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                            <a href="#" class="text-green-500 hover:text-green-700 px-3 py-1 rounded bg-green-100 hover:bg-green-200">Details</a>
+                                            <a href="/content/admin/result/<?= $user->getId() ?>" class="text-green-500 hover:text-green-700 px-3 py-1 rounded bg-green-100 hover:bg-green-200">Details</a>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                                             <a href="/dashboard/user/edit/<?= $user->getId() ?>" class="text-indigo-600 hover:text-indigo-900 px-3 py-1 rounded bg-indigo-100 hover:bg-indigo-200">Update</a>
