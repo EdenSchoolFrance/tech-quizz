@@ -13,4 +13,9 @@ class AdminController extends Controller
             'quizzes' => $quizzes,
         ]);
     }
+
+    public function createQuizz()
+    {
+        return view('admin.create-quizz');
+    }
 }

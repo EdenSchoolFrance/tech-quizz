@@ -19,6 +19,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/score/quizz/{id}', [QuizController::class, 'score']);
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.quizzList');
+    Route::get('/admin/create-quizz', [AdminController::class, 'createQuizz'])->name('admin.createQuizz');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.quizzList');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.quizzList');
 });
 
 Route::get('/quizz/', [QuizController::class, 'index'])->name('quizzes.index');
