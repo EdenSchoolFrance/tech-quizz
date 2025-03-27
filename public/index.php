@@ -23,6 +23,7 @@ $router->get('/', 'HomeController@index');
 
 if(user('role') == 'admin') {
     $router->get('/dashboard', 'AdminController@index');
+    $router->get('/quiz/create', 'QuizController@create');
     $router->post('/quiz/store', 'QuizController@store');
     $router->post('/quiz/delete/:id', 'QuizController@delete');
     $router->get('/dashboard/quiz/edit/:id', 'QuizController@editInDashboard');

@@ -26,6 +26,21 @@ class QuizController
         require VIEWS . 'content/quiz.php';
     }
 
+    public function create()
+    {
+        if (!isset($_SESSION['user']) || $_SESSION['user']->getRole() !== 'admin') {
+            $_SESSION['error'] = "You don't have permission to access this page";
+            header('Location: /');
+            exit();
+        }
+        
+        unset($_SESSION['error']);
+        unset($_SESSION['success']);
+        unset($_SESSION['old']);
+        
+        require VIEWS . 'content/admin/create-quiz.php';
+    }
+
     public function store()
     {
         if (!isset($_SESSION['user'])) {
@@ -41,7 +56,7 @@ class QuizController
         
         if (!empty($validator->errors())) {
             $_SESSION['old'] = $_POST;
-            header('Location: /dashboard');
+            header('Location: /quiz/create');
             exit();
         }
         
@@ -58,7 +73,7 @@ class QuizController
         } else {
             $_SESSION['error'] = "Error";
             $_SESSION['old'] = $_POST;
-            header('Location: /dashboard');
+            header('Location: /quiz/create');
             exit();
         }
     }

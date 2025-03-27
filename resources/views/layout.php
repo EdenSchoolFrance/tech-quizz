@@ -26,7 +26,8 @@
     $adminRoutes = [
         '/dashboard',
         '/content/admin',
-        '/quiz/*/questions'
+        '/quiz/*/questions',
+        '/quiz/create'
     ];
     
     foreach ($adminRoutes as $route) {
