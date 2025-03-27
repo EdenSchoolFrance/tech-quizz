@@ -66,7 +66,7 @@ class QuestionController
         
         $validator = new Validator();
         $validator->validate([
-            'question_text' => ['required'],
+            'question_text' => ['required', 'max:255'],
             'correct_answer' => ['required']
         ]);
         
@@ -186,7 +186,7 @@ class QuestionController
         
         $validator = new Validator();
         $validator->validate([
-            'question_text' => ['required'],
+            'question_text' => ['required', 'max:255'],
             'correct_answer' => ['required']
         ]);
         

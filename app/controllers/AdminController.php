@@ -4,7 +4,6 @@ namespace App\controllers;
 
 use App\models\QuizManager;
 use App\models\UserManager;
-use App\Validator;
 
 class AdminController 
 {
