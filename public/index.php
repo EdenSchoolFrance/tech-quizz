@@ -19,11 +19,11 @@ if (isset($_COOKIE['remember']) || isset($_SESSION['user'])) {
 
 $router = new Router($_SERVER["REQUEST_URI"]);
 
-if(!user('isactive') && $_SERVER["REQUEST_URI"] != '/suspended') {
+if(auth() && !user('isactive') && $_SERVER["REQUEST_URI"] != '/suspended') {
     header('Location: /suspended');
 }
 
-if(!user('isactive')) {
+if(auth() && !user('isactive')) {
     $router->get('/suspended', 'HomeController@suspended');
 }
 

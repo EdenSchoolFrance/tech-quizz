@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : jeu. 27 mars 2025 à 15:56
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Hôte : 127.0.0.1:3306
+-- Généré le : jeu. 27 mars 2025 à 15:45
+-- Version du serveur : 9.1.0
+-- Version de PHP : 8.3.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,11 +27,14 @@ SET time_zone = "+00:00";
 -- Structure de la table `answers`
 --
 
-CREATE TABLE `answers` (
-  `id` varchar(20) NOT NULL,
-  `question_id` varchar(20) DEFAULT NULL,
-  `answer_text` text NOT NULL,
-  `is_correct` tinyint(1) DEFAULT 0
+DROP TABLE IF EXISTS `answers`;
+CREATE TABLE IF NOT EXISTS `answers` (
+  `id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `question_id` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `answer_text` text COLLATE utf8mb4_general_ci NOT NULL,
+  `is_correct` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `question_id` (`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -106,11 +109,14 @@ INSERT INTO `answers` (`id`, `question_id`, `answer_text`, `is_correct`) VALUES
 -- Structure de la table `questions`
 --
 
-CREATE TABLE `questions` (
-  `id` varchar(20) NOT NULL,
-  `quizz_id` varchar(20) DEFAULT NULL,
-  `question_text` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+DROP TABLE IF EXISTS `questions`;
+CREATE TABLE IF NOT EXISTS `questions` (
+  `id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `quizz_id` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `question_text` text COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `quizz_id` (`quizz_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -140,12 +146,15 @@ INSERT INTO `questions` (`id`, `quizz_id`, `question_text`, `created_at`) VALUES
 -- Structure de la table `quizz`
 --
 
-CREATE TABLE `quizz` (
-  `id` varchar(20) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `created_by` varchar(20) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+DROP TABLE IF EXISTS `quizz`;
+CREATE TABLE IF NOT EXISTS `quizz` (
+  `id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `created_by` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `created_by` (`created_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -169,14 +178,17 @@ INSERT INTO `quizz` (`id`, `title`, `description`, `created_by`, `created_at`) V
 -- Structure de la table `users`
 --
 
-CREATE TABLE `users` (
-  `id` varchar(20) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` enum('admin','user') DEFAULT 'user',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `is_active` tinyint(1) NOT NULL DEFAULT 1
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `role` enum('admin','user') COLLATE utf8mb4_general_ci DEFAULT 'user',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -184,10 +196,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`, `is_active`) VALUES
-('64fb2a9ec7d53', 'admin', 'admin@example.com', '$2y$10$someHashedPassword', 'admin', '2025-03-24 13:36:51', 0),
-('67d98e752203f', 'Auguste', 'auguste.dollinger@gmail.com', '$2y$10$4Gxfbntw4gNcbIN5kRKVQeQOXbH2HWYOBjxyY1f1qosTTvH/xklrG', 'admin', '2025-03-18 15:17:09', 0),
-('67d99884d0654', 'ilan', 'Ilanbonobo@gmail.com', '$2y$10$NSDGraA5xw8NqjN84DPkQeEBEDZ2Bs0ABlXLSZkOMWotWAIwSJ/8y', 'user', '2025-03-18 16:00:05', 0),
-('67e2b4de27883', 'Test', 'test@gmal.com', '$2y$10$KFhbWV8Fo7YBpJFgfIgATufqSL3d27Msya65qpQ3JbgVMVT0CsfJe', 'admin', '2025-03-25 13:51:26', 1);
+('64fb2a9ec7d53', 'admin', 'admin@example.com', '$2y$10$someHashedPassword', 'admin', '2025-03-24 13:36:51', 1),
+('67d98e752203f', 'Auguste', 'auguste.dollinger@gmail.com', '$2y$10$4Gxfbntw4gNcbIN5kRKVQeQOXbH2HWYOBjxyY1f1qosTTvH/xklrG', 'admin', '2025-03-18 15:17:09', 1),
+('67d99884d0654', 'ilan', 'Ilanbonobo@gmail.com', '$2y$10$NSDGraA5xw8NqjN84DPkQeEBEDZ2Bs0ABlXLSZkOMWotWAIwSJ/8y', 'user', '2025-03-18 16:00:05', 1),
+('67e2b4de27883', 'Test', 'test@gmal.com', '$2y$10$KFhbWV8Fo7YBpJFgfIgATufqSL3d27Msya65qpQ3JbgVMVT0CsfJe', 'admin', '2025-03-25 13:51:26', 1),
+('67e57268a7880', 'Auguste', 'auguste.dollinger@gmail.come', '$2y$12$wghKXRqDCS2k29kxDDyNj.gFbmCy.UJUba2mMO43Ojw0FOh/qJa86', 'admin', '2025-03-27 15:44:40', 1);
 
 -- --------------------------------------------------------
 
@@ -195,13 +208,19 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`
 -- Structure de la table `user_answers`
 --
 
-CREATE TABLE `user_answers` (
-  `id` varchar(20) NOT NULL,
-  `try_id` varchar(20) NOT NULL,
-  `user_id` varchar(20) DEFAULT NULL,
-  `question_id` varchar(20) DEFAULT NULL,
-  `answer_id` varchar(20) DEFAULT NULL,
-  `answered_at` timestamp NOT NULL DEFAULT current_timestamp()
+DROP TABLE IF EXISTS `user_answers`;
+CREATE TABLE IF NOT EXISTS `user_answers` (
+  `id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `try_id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_id` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `question_id` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `answer_id` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `answered_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `question_id` (`question_id`),
+  KEY `answer_id` (`answer_id`),
+  KEY `try_id` (`try_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -271,13 +290,18 @@ INSERT INTO `user_answers` (`id`, `try_id`, `user_id`, `question_id`, `answer_id
 -- Structure de la table `user_quizz`
 --
 
-CREATE TABLE `user_quizz` (
-  `id` varchar(20) NOT NULL,
-  `try_id` varchar(20) NOT NULL,
-  `user_id` varchar(20) DEFAULT NULL,
-  `quizz_id` varchar(20) DEFAULT NULL,
-  `score` varchar(10) NOT NULL,
-  `completed_at` timestamp NOT NULL DEFAULT current_timestamp()
+DROP TABLE IF EXISTS `user_quizz`;
+CREATE TABLE IF NOT EXISTS `user_quizz` (
+  `id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `try_id` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_id` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `quizz_id` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `score` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `completed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `quizz_id` (`quizz_id`),
+  KEY `try_id` (`try_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -294,58 +318,6 @@ INSERT INTO `user_quizz` (`id`, `try_id`, `user_id`, `quizz_id`, `score`, `compl
 ('67e3c2463a36a', '67e3c240e219c', '67e2b4de27883', '64fb2ad758000', '1/1', '2025-03-26 09:00:54'),
 ('67e40e6a07350', '67e40e3b37eab', '67e2b4de27883', '64fb2aa0e5f12', '9/10', '2025-03-26 14:25:46'),
 ('67e41c0821d49', '67e41bde747d8', '67e2b4de27883', '67e2b7db58230', '0/1', '2025-03-26 15:23:52');
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `answers`
---
-ALTER TABLE `answers`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `question_id` (`question_id`);
-
---
--- Index pour la table `questions`
---
-ALTER TABLE `questions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `quizz_id` (`quizz_id`);
-
---
--- Index pour la table `quizz`
---
-ALTER TABLE `quizz`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `created_by` (`created_by`);
-
---
--- Index pour la table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Index pour la table `user_answers`
---
-ALTER TABLE `user_answers`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `question_id` (`question_id`),
-  ADD KEY `answer_id` (`answer_id`),
-  ADD KEY `try_id` (`try_id`);
-
---
--- Index pour la table `user_quizz`
---
-ALTER TABLE `user_quizz`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `quizz_id` (`quizz_id`),
-  ADD KEY `try_id` (`try_id`);
 
 --
 -- Contraintes pour les tables déchargées
