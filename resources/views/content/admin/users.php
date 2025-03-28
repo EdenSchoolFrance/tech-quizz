@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="flex min-h-screen">
-    <div class="flex-1 p-8">
+    <div class="flex-1  sm:p-0 lg:p-8">
         <div class="container mx-auto">
             <?php if (isset($_SESSION['success'])): ?>
                 <div class="bg-green-100 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-6">
