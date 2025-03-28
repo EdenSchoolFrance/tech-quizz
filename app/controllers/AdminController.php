@@ -4,16 +4,19 @@ namespace App\controllers;
 
 use App\models\QuizManager;
 use App\models\UserManager;
+use App\Validator;
 
 class AdminController 
 {
     private $um;
     private $qc;
+    private $validator;
 
     public function __construct()
     {
         $this->um = new UserManager();
         $this->qc = new QuizManager();
+        $this->validator = new Validator();
     }
 
     public function index()
@@ -49,9 +52,7 @@ class AdminController
             exit();
         }
         
-        unset($_SESSION['error']);
-        unset($_SESSION['success']);
-        unset($_SESSION['old']);
+        
         
         $editUser = $user;
         require VIEWS . 'content/admin/edit-user.php';
@@ -71,6 +72,14 @@ class AdminController
         }
         $_SESSION['old'] = $_POST;
 
+        $this->validator->validate([
+            'username' => ['max:255', 'required', 'alpha'],
+            'email' => ['max:255', 'required', 'email']
+        ]);
+
+        if($this->validator->errors()) {
+            header('Location: /dashboard/user/edit/' . $id);
+        }
 
         if ($_POST['role'] !== 'user' && $_POST['role'] !== 'admin') {
             $_SESSION['error'] = "Role must be 'user' or 'admin'";
@@ -136,10 +145,6 @@ class AdminController
     
     public function createUser()
     {
-        unset($_SESSION['error']);
-        unset($_SESSION['success']);
-        unset($_SESSION['old']);
-        
         require VIEWS . 'content/admin/create-user.php';
     }
     
