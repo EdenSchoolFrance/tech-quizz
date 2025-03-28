@@ -25,21 +25,32 @@
             </div>
             
             <div class="mb-6 ">
-                <h3 class="text-lg font-medium mb-2 dark:text-neutral-50">Answers (4 required)</h3>
-                <p class="text-sm text-gray-500 dark:text-neutral-50 mb-3">Select one answer as correct.</p>
+                <h3 class="text-lg font-medium mb-2 dark:text-neutral-50">Answers</h3>
+                <p class="text-sm text-gray-500 dark:text-neutral-50 mb-3">Add at least 2 answers and select one as correct.</p>
                 
-                <?php for ($i = 1; $i <= 4; $i++): ?>
-                <div class="mb-3 flex items-center">
-                    <div class="flex-1">
-                        <label for="answer_<?= $i ?>" class="block text-sm font-medium text-gray-700 dark:text-neutral-50 mb-1">Answer <?= $i ?> *</label>
-                        <input type="text" name="answers[<?= $i-1 ?>][text]" id="answer_<?= $i ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <div id="answers-container">
+                    <?php for ($i = 1; $i <= 2; $i++): ?>
+                    <div class="mb-3 flex items-center answer-row">
+                        <div class="flex-1">
+                            <label for="answer_<?= $i ?>" class="block text-sm font-medium text-gray-700 dark:text-neutral-50 mb-1">Answer <?= $i ?> *</label>
+                            <input type="text" name="answers[<?= $i-1 ?>][text]" id="answer_<?= $i ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="ml-4 flex items-center">
+                            <input type="radio" name="correct_answer" value="<?= $i-1 ?>" id="correct_<?= $i ?>" <?= $i === 1 ? 'checked' : '' ?> class="h-4 w-4 text-blue-600 focus:ring-blue-500">
+                            <label for="correct_<?= $i ?>" class="ml-2 text-sm text-gray-700 dark:text-neutral-50">Correct</label>
+                        </div>
+                        <?php if ($i > 2): ?>
+                        <button type="button" class="ml-2 text-red-500 remove-answer" onclick="removeAnswer(this)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <?php endif; ?>
                     </div>
-                    <div class="ml-4 flex items-center">
-                        <input type="radio" name="correct_answer" value="<?= $i-1 ?>" id="correct_<?= $i ?>" <?= $i === 1 ? 'checked' : '' ?> class="h-4 w-4 text-blue-600 focus:ring-blue-500">
-                        <label for="correct_<?= $i ?>" class="ml-2 text-sm text-gray-700 dark:text-neutral-50">Correct</label>
-                    </div>
+                    <?php endfor; ?>
                 </div>
-                <?php endfor; ?>
+                
+                <button type="button" id="add-answer" class="mt-2 px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors">
+                    <i class="fas fa-plus mr-1"></i> Add Another Answer
+                </button>
             </div>
             
             <div class="flex gap-3">
@@ -80,6 +91,65 @@
         <?php endif; ?>
     </div>
 </div>
+
+<script>
+    let answerCount = 2;
+    
+    document.getElementById('add-answer').addEventListener('click', function() {
+        // Check if we already have 4 answers
+        const currentAnswers = document.querySelectorAll('.answer-row');
+        if (currentAnswers.length >= 4) {
+            alert('Maximum 4 answers allowed');
+            return;
+        }
+        
+        answerCount++;
+        const container = document.getElementById('answers-container');
+        
+        const newRow = document.createElement('div');
+        newRow.className = 'mb-3 flex items-center answer-row';
+        
+        newRow.innerHTML = `
+            <div class="flex-1">
+                <label for="answer_${answerCount}" class="block text-sm font-medium text-gray-700 dark:text-neutral-50 mb-1">Answer ${answerCount} *</label>
+                <input type="text" name="answers[${answerCount-1}][text]" id="answer_${answerCount}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div class="ml-4 flex items-center">
+                <input type="radio" name="correct_answer" value="${answerCount-1}" id="correct_${answerCount}" class="h-4 w-4 text-blue-600 focus:ring-blue-500">
+                <label for="correct_${answerCount}" class="ml-2 text-sm text-gray-700 dark:text-neutral-50">Correct</label>
+            </div>
+            <button type="button" class="ml-2 text-red-500 remove-answer" onclick="removeAnswer(this)">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        
+        container.appendChild(newRow);
+    });
+    
+    function removeAnswer(button) {
+        const row = button.closest('.answer-row');
+        row.remove();
+        
+        // Renumber the remaining answers
+        const rows = document.querySelectorAll('.answer-row');
+        rows.forEach((row, index) => {
+            const label = row.querySelector('label');
+            label.textContent = `Answer ${index + 1} *`;
+            label.setAttribute('for', `answer_${index + 1}`);
+            
+            const input = row.querySelector('input[type="text"]');
+            input.setAttribute('id', `answer_${index + 1}`);
+            input.setAttribute('name', `answers[${index}][text]`);
+            
+            const radio = row.querySelector('input[type="radio"]');
+            radio.setAttribute('id', `correct_${index + 1}`);
+            radio.setAttribute('value', index);
+            
+            const radioLabel = row.querySelector('label:nth-child(2)');
+            radioLabel.setAttribute('for', `correct_${index + 1}`);
+        });
+    }
+</script>
 
 <?php 
 $content = ob_get_clean();

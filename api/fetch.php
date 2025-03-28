@@ -43,15 +43,19 @@ try {
 
     $stmt = 'SELECT questions.id Id_question, answers.id Id_reponse, question_text, answer_text '. (isset($_GET['answers']) ? ', is_correct' : '') .' FROM questions JOIN answers ON questions.id = answers.question_id WHERE quizz_id = ? AND questions.id = ?';
     $stmt = $pdo->prepare($stmt);
-    $limit = (int)$_GET['limit'] * 4;
-    $offset = (int)$_GET['limit'] * 4 - 4;
     $stmt->bindValue(1, $_GET['id']);
     $stmt->bindValue(2, $question['id']);
     $stmt->execute();
 
     $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $questions += ['4' => $count];
-    $questions += ['5' => $quizz['title']];
+    $stmt = 'SELECT COUNT(*) FROM answers WHERE question_id = ?';
+    $stmt = $pdo->prepare($stmt);
+    $stmt->bindValue(1, $question['id']);
+    $stmt->execute();
+    $num_answers = $stmt->fetchColumn();
+    $questions += ['num_answers' => $num_answers];
+    $questions += ['count' => $count];
+    $questions += ['title' => $quizz['title']];
     echo json_encode($questions);
 } catch (PDOException $e) {
     echo json_encode(['error' => 'Query failed: ' . $e->getMessage()]);

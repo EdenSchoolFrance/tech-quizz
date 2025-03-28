@@ -76,8 +76,8 @@ class QuestionController
             exit();
         }
         
-        if (!isset($_POST['answers']) || count($_POST['answers']) !== 4) {
-            $_SESSION['error'] = "Please provide exactly 4 answers";
+        if (!isset($_POST['answers']) || count($_POST['answers']) < 2) {
+            $_SESSION['error'] = "Please provide at least 2 answers";
             header('Location: /quiz/' . $quizId . '/questions');
             exit();
         }
@@ -196,8 +196,8 @@ class QuestionController
             exit();
         }
         
-        if (!isset($_POST['answers']) || count($_POST['answers']) !== 4) {
-            $_SESSION['error'] = "Please provide exactly 4 answers";
+        if (!isset($_POST['answers']) || count($_POST['answers']) < 2) {
+            $_SESSION['error'] = "Please provide at least 2 answers";
             header('Location: /quiz/' . $quizId . '/questions/edit/' . $questionId);
             exit();
         }
@@ -205,7 +205,6 @@ class QuestionController
         $questionText = htmlspecialchars($_POST['question_text']);
         $correctAnswerIndex = (int) $_POST['correct_answer'];
         
-        // Update question text
         $result = $this->qc->update($questionId, $questionText);
         
         if (!$result) {
@@ -217,7 +216,7 @@ class QuestionController
         // Delete existing answers
         $this->am->deleteByQuestionId($questionId);
         
-        // Create new answers
+        // Add new answers
         $success = true;
         foreach ($_POST['answers'] as $index => $answer) {
             $answerText = htmlspecialchars($answer['text']);
@@ -231,11 +230,11 @@ class QuestionController
         
         if ($success) {
             $_SESSION['success'] = "Question and answers updated successfully";
+            header('Location: /quiz/' . $quizId . '/questions');
         } else {
             $_SESSION['error'] = "Error updating answers";
+            header('Location: /quiz/' . $quizId . '/questions/edit/' . $questionId);
         }
-        
-        header('Location: /quiz/' . $quizId . '/questions');
         exit();
     }
 }
