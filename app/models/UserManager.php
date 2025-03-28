@@ -77,10 +77,10 @@ class UserManager extends Model
         }
     }
     
-    public function updateUser($id, $username, $email, $role)
+    public function updateUser($id, $username, $email, $role, $is_active)
     {
         try {
-            $stmt = "UPDATE users SET username = :username, email = :email, role = :role WHERE id = :id, is_active = :is_active";
+            $stmt = "UPDATE users SET username = :username, email = :email, role = :role, is_active = :is_active WHERE id = :id, is_active = :is_active";
             $stmt = $this->pdo->prepare($stmt);
             
             return $stmt->execute([

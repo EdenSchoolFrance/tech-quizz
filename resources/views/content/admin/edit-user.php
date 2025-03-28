@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
+
+echo gettype($user->getIsActive());
+?>
 
 <div class="flex min-h-screen">
     <div class="flex-1 p-8">
@@ -38,7 +41,7 @@
                     <div class="mb-6">
                         <label for="active" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Active *</label>
                         <input type="checkbox" name="is_active" id="is_active" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
-                               value="1" <?= $editUser->getIsActive() == '1' ? 'selected' : '' ?>>
+                               value="1" <?= $user->getIsActive() === 1 ? 'checked' : '' ?>>
                     </div>
                     <div class="flex justify-center">
                         <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Update now</button>

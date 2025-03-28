@@ -49,6 +49,10 @@ class AdminController
             exit();
         }
         
+        unset($_SESSION['error']);
+        unset($_SESSION['success']);
+        unset($_SESSION['old']);
+        
         $editUser = $user;
         require VIEWS . 'content/admin/edit-user.php';
     }
@@ -83,12 +87,20 @@ class AdminController
             header('Location: /dashboard/user/edit/' . $id);
             exit();
         }
+
+        if ($_POST['is_active'] !== '1' && $_POST['is_active'] !== '0') {
+            $_SESSION['error'] = "User must be 'active' or 'inactive'";
+            $_SESSION['old'] = $_POST;
+            header('Location: /dashboard/user/edit/' . $id);
+            exit();
+        }
         
         $username = htmlspecialchars($_POST['username']);
         $email = htmlspecialchars($_POST['email']);
         $role = $_POST['role'];
+        $is_active = $_POST['is_active'];
         
-        $result = $this->um->updateUser($id, $username, $email, $role);
+        $result = $this->um->updateUser($id, $username, $email, $role, $is_active);
         
         if ($result) {
             $_SESSION['success'] = "User updated successfully";
@@ -142,6 +154,9 @@ class AdminController
     
     public function createUser()
     {
+        unset($_SESSION['error']);
+        unset($_SESSION['success']);
+        unset($_SESSION['old']);
         
         require VIEWS . 'content/admin/create-user.php';
     }
