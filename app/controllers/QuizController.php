@@ -5,29 +5,51 @@ namespace App\controllers;
 use App\models\QuizManager;
 use App\Validator;
 
+/**
+ * Controller managing quiz actions such as viewing, creating, updating, and deleting quizzes.
+ */
 class QuizController
 {
     private $qc;
     private $validator;
 
+    /**
+     * Initialize QuizManager and Validator
+     */
     public function __construct()
     {
         $this->qc = new QuizManager();
         $this->validator = new Validator();
     }
 
+    /**
+     * Display all quizzes
+     * 
+     * @return void
+     */
     public function index()
     {
         $quizz = $this->qc->getAll();
         require VIEWS . 'content/quiz.php';
     }
 
+    /**
+     * Display a specific quiz by its ID
+     * 
+     * @param int $id Quiz ID
+     * @return void
+     */
     public function show($id)
     {
         $quiz = $this->qc->get($id);
         require VIEWS . 'content/quiz.php';
     }
 
+    /**
+     * Display the form to create a new quiz (only accessible by admin)
+     * 
+     * @return void
+     */
     public function create()
     {
         if (!isset($_SESSION['user']) || $_SESSION['user']->getRole() !== 'admin') {
@@ -39,6 +61,11 @@ class QuizController
         require VIEWS . 'content/admin/create-quiz.php';
     }
 
+    /**
+     * Handle the submission of the quiz creation form
+     * 
+     * @return void
+     */
     public function store()
     {
         if (!isset($_SESSION['user'])) {
@@ -74,7 +101,13 @@ class QuizController
             exit();
         }
     }
-    
+
+    /**
+     * Delete a quiz by its ID (only accessible by admin or the creator)
+     * 
+     * @param int $id Quiz ID
+     * @return void
+     */
     public function delete($id)
     {
         if (!isset($_SESSION['user'])) {
@@ -108,7 +141,12 @@ class QuizController
         exit();
     }
 
-    
+    /**
+     * Display the form to edit a quiz from the dashboard (only accessible by admin or the creator)
+     * 
+     * @param int $id Quiz ID
+     * @return void
+     */
     public function editInDashboard($id)
     {
         $quiz = $this->qc->get($id);
@@ -127,7 +165,13 @@ class QuizController
         
         require VIEWS . 'content/admin/edit-quiz.php';
     }
-    
+
+    /**
+     * Handle the submission of the quiz edit form from the dashboard
+     * 
+     * @param int $id Quiz ID
+     * @return void
+     */
     public function updateInDashboard($id)
     {
         if (!isset($_SESSION['user'])) {
@@ -149,7 +193,6 @@ class QuizController
             header('Location: /dashboard');
             exit();
         }
-        
 
         $this->validator->validate([
             'title' => ['required', 'max:255']
