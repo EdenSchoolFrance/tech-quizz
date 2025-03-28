@@ -18,8 +18,7 @@ class AdminController
 
     public function index()
     {
-        $userId = $_SESSION['user']->getId();
-        $quizzes = $this->qc->getQuizzesByUser($userId);
+        $quizzes = $this->qc->getAll();
 
         $userManager = new \App\models\UserManager();
         $users = $userManager->getAllUsers();
