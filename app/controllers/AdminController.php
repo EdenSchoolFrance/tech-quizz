@@ -136,7 +136,7 @@ class AdminController
             $_SESSION['error'] = "Error deleting user";
         }
         
-        header('Location: /dashboard');
+        header('Location: /dashboard/user');
         exit();
     }
     
