@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="flex min-h-screen">
-    <div class="flex-1  sm:p-0 lg:p-8">
+    <div class="flex-1 sm:p-0 lg:p-8">
         <div class="container mx-auto">
             <?php if (isset($_SESSION['success'])): ?>
                 <div class="bg-green-100 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-6">
@@ -60,7 +60,7 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                                             <?php if ($_SESSION['user']->getId() !== $user->getId()): ?>
-                                                <form action="/dashboard/user/delete/<?= $user->getId() ?>" method="POST" class="inline" onsubmit="return confirmDelete(<?= $user->getId() ?>)">
+                                                <form action="/dashboard/user/delete/<?= $user->getId() ?>" method="POST" class="inline" onsubmit="return confirmDelete()">
                                                     <button type="submit" class="text-red-600 hover:text-red-900 px-3 py-1 rounded bg-red-100 hover:bg-red-200">Delete</button>
                                                 </form>
                                             <?php else: ?>
@@ -79,7 +79,7 @@
 </div>
 
 <script>
-function confirmDelete(userId) {
+function confirmDelete() {
     return confirm('Are you sure you want to delete this user?');
 }
 </script>
