@@ -189,7 +189,7 @@ class AdminController
         if ($result) {
             $_SESSION['success'] = "User created successfully";
 
-            header('Location: /dashboard');
+            header('Location: /dashboard/user');
             exit();
         } else {
             $_SESSION['error'] = "Error creating user";
