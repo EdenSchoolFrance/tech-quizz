@@ -1,4 +1,4 @@
-<?php
+<?php 
 ob_start();
 $_SESSION['result'] = true;
 
@@ -31,7 +31,7 @@ $tryId = uniqid();
                     Submit Answer
                 </button>
                 <div class="text-center mt-4 text-red-500 submit-error hidden">
-                    Please select an answer
+                    Please select at least one answer
                 </div>
             </form>
         </div>
@@ -40,10 +40,10 @@ $tryId = uniqid();
         $(document).ready(function() {
             let limit = 1;
             let max;
-            function store(answer) {
+            function store(answers) {
                 const id = $('.question-text').attr('id');
                 $.ajax({
-                    url: `http://localhost:8001/store.php?result=${answer}&questionId=${id}&userId=<?=user('id')?>&tryId=<?=$tryId?>`,
+                    url: `http://localhost:8001/store.php?result=${answers.join(',')}&questionId=${id}&userId=<?=user('id')?>&tryId=<?=$tryId?>`,
                     method: 'GET',
                 });
             }
@@ -52,40 +52,40 @@ $tryId = uniqid();
                     url: `http://localhost:8001/fetch.php?id=<?=$id?>&limit=${limit-1}&answers=true`,
                     method: 'GET',
                     success: function(data) {
-                        const answer = $('input[name="answer"]:checked').val();
+                        const answers = $('input[name="answer"]:checked');
                         let correct = false;
-                        const answers = $('label')
+                        const answerLabels = $('label')
                         $('input[name="answer"]').prop('disabled', true);
-                        answers.removeClass('hover:shadow-md');
-                        answers.removeClass('hover:-translate-y-1');
-                        answers.removeClass('cursor-pointer');
+                        answerLabels.removeClass('hover:shadow-md');
+                        answerLabels.removeClass('hover:-translate-y-1');
+                        answerLabels.removeClass('cursor-pointer');
 
                         // Loop through answer data (excluding metadata)
                         for (let i = 0; i < data.num_answers; i++) {
                             const item = data[i];
-                            if (item.Id_reponse === answer && item.is_correct === 1) {
-                                correct = true;
-                                let id = $('input[name="answer"]:checked').attr('id');
-                                $(`label[for=${id}]`).removeClass('peer-checked:border-purple-600');
-                                $(`label[for=${id}]`).removeClass('border-transparent');
-                                $(`label[for=${id}]`).addClass('border-green-500');
-                            }
-                        }
-                        
-                        if (!correct) {
-                            let id = $('input[name="answer"]:checked').attr('id');
-                            $(`label[for=${id}]`).removeClass('peer-checked:border-purple-600');
-                            $(`label[for=${id}]`).removeClass('border-transparent');
-                            $(`label[for=${id}]`).addClass('border-red-500');
-                            
-                            // Loop through answer data to find correct answer
-                            for (let i = 0; i < data.num_answers; i++) {
-                                const item = data[i];
-                                if (item.is_correct == 1) {
-                                    id = $(`input[value=${item.Id_reponse}]`).attr('id');
+                            // Highlight the selected answer as correct or incorrect
+                            answers.each(function() {
+                                if (item.Id_reponse === $(this).val()) {
+                                    let id = $(this).attr('id');
                                     $(`label[for=${id}]`).removeClass('peer-checked:border-purple-600');
                                     $(`label[for=${id}]`).removeClass('border-transparent');
-                                    $(`label[for=${id}]`).addClass('border-green-500');
+                                    
+                                    if (item.is_correct === 1) {
+                                        correct = true;
+                                        $(`label[for=${id}]`).addClass('border-green-500');
+                                    } else {
+                                        $(`label[for=${id}]`).addClass('border-red-500');
+                                    }
+                                }
+                            });
+                            
+                            // Always highlight all correct answers in green (for QCM)
+                            if (item.is_correct == 1) {
+                                const correctId = $(`input[value=${item.Id_reponse}]`).attr('id');
+                                if (correctId) {
+                                    $(`label[for=${correctId}]`).removeClass('peer-checked:border-purple-600');
+                                    $(`label[for=${correctId}]`).removeClass('border-transparent');
+                                    $(`label[for=${correctId}]`).addClass('border-green-500');
                                 }
                             }
                         }
@@ -141,7 +141,7 @@ $tryId = uniqid();
 
                             const optionHtml = `
                                 <div class="option-containers">
-                                    <input type="radio" name="answer" id="${optionId}" value="${item.Id_reponse}" class="hidden peer">
+                                    <input type="checkbox" name="answer" id="${optionId}" value="${item.Id_reponse}" class="hidden peer">
                                     <label for="${optionId}" class="bg-white dark:bg-[#3B4D66] dark:text-gray-300 w-full rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 text-gray-900 font-medium flex justify-between items-center cursor-pointer border-2 border-transparent peer-checked:border-purple-600">
                                         <div class="flex items-center">
                                             <span class="mr-3 px-4 py-2 rounded-xl bg-[#F4F6FA] dark:bg-[#626C7F] dark:text-gray-300">${LetterArray[letterIndex]}</span>
@@ -164,10 +164,16 @@ $tryId = uniqid();
 
                         // Enable the submit button when an answer is selected
                         $('input[name="answer"]').on('change', function() {
-                            submitButton.removeClass('disabled');
-                            submitButton.addClass('cursor-pointer');
-                            submitButton.addClass('hover:bg-purple-700');
-
+                            const checkedAnswers = $('input[name="answer"]:checked');
+                            if (checkedAnswers.length > 0) {
+                                submitButton.removeClass('disabled');
+                                submitButton.addClass('cursor-pointer');
+                                submitButton.addClass('hover:bg-purple-700');
+                            } else {
+                                submitButton.addClass('disabled');
+                                submitButton.removeClass('cursor-pointer')
+                                submitButton.removeClass('hover:bg-purple-700');
+                            }
                         });
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -183,7 +189,11 @@ $tryId = uniqid();
                 else {
                     if(e.originalEvent.submitter.name === 'submit-button') {
                         $('.submit-error').addClass('hidden')
-                        store($('input[name="answer"]:checked').val());
+                        const answers = [];
+                        $('input[name="answer"]:checked').each(function() {
+                            answers.push($(this).val());
+                        });
+                        store(answers);
                         fetchAnswers();
                     }
                     else {

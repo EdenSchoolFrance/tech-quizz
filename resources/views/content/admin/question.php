@@ -26,7 +26,7 @@
             
             <div class="mb-6 ">
                 <h3 class="text-lg font-medium mb-2 dark:text-neutral-50">Answers</h3>
-                <p class="text-sm text-gray-500 dark:text-neutral-50 mb-3">Add at least 2 answers and select one as correct.</p>
+                <p class="text-sm text-gray-500 dark:text-neutral-50 mb-3">Add at least 2 answers and select one or more as correct for QCM.</p>
                 
                 <div id="answers-container">
                     <?php for ($i = 1; $i <= 2; $i++): ?>
@@ -36,7 +36,7 @@
                             <input type="text" name="answers[<?= $i-1 ?>][text]" id="answer_<?= $i ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         </div>
                         <div class="ml-4 flex items-center">
-                            <input type="radio" name="correct_answer" value="<?= $i-1 ?>" id="correct_<?= $i ?>" <?= $i === 1 ? 'checked' : '' ?> class="h-4 w-4 text-blue-600 focus:ring-blue-500">
+                            <input type="checkbox" name="correct_answers[]" value="<?= $i-1 ?>" id="correct_<?= $i ?>" class="h-4 w-4 text-blue-600 focus:ring-blue-500">
                             <label for="correct_<?= $i ?>" class="ml-2 text-sm text-gray-700 dark:text-neutral-50">Correct</label>
                         </div>
                         <?php if ($i > 2): ?>
@@ -115,7 +115,7 @@
                 <input type="text" name="answers[${answerCount-1}][text]" id="answer_${answerCount}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
             <div class="ml-4 flex items-center">
-                <input type="radio" name="correct_answer" value="${answerCount-1}" id="correct_${answerCount}" class="h-4 w-4 text-blue-600 focus:ring-blue-500">
+                <input type="checkbox" name="correct_answers[]" value="${answerCount-1}" id="correct_${answerCount}" class="h-4 w-4 text-blue-600 focus:ring-blue-500">
                 <label for="correct_${answerCount}" class="ml-2 text-sm text-gray-700 dark:text-neutral-50">Correct</label>
             </div>
             <button type="button" class="ml-2 text-red-500 remove-answer" onclick="removeAnswer(this)">
@@ -141,12 +141,12 @@
             input.setAttribute('id', `answer_${index + 1}`);
             input.setAttribute('name', `answers[${index}][text]`);
             
-            const radio = row.querySelector('input[type="radio"]');
-            radio.setAttribute('id', `correct_${index + 1}`);
-            radio.setAttribute('value', index);
+            const checkbox = row.querySelector('input[type="checkbox"]');
+            checkbox.setAttribute('id', `correct_${index + 1}`);
+            checkbox.setAttribute('value', index);
             
-            const radioLabel = row.querySelector('label:nth-child(2)');
-            radioLabel.setAttribute('for', `correct_${index + 1}`);
+            const checkboxLabel = row.querySelector('label:nth-child(2)');
+            checkboxLabel.setAttribute('for', `correct_${index + 1}`);
         });
     }
 </script>

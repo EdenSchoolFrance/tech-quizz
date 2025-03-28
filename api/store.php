@@ -17,11 +17,32 @@ try {
 }
 
 try {
-    $stmt = 'INSERT INTO user_answers (id, try_id, user_id, question_id, answer_id) VALUES (:id, :try_id, :user_id, :question_id, :answer_id)';
-    $req = $pdo->prepare($stmt);
-    $req->execute([':id' => uniqid(), ':user_id' => $_GET['userId'], ':try_id' => $_GET['tryId'], ':question_id' => $_GET['questionId'], ':answer_id' => $_GET['result']]);
+    // Check if we have multiple answers (comma-separated)
+    if (strpos($_GET['result'], ',') !== false) {
+        $answers = explode(',', $_GET['result']);
+        foreach ($answers as $answer) {
+            $stmt = 'INSERT INTO user_answers (id, try_id, user_id, question_id, answer_id) VALUES (:id, :try_id, :user_id, :question_id, :answer_id)';
+            $req = $pdo->prepare($stmt);
+            $req->execute([
+                ':id' => uniqid(), 
+                ':user_id' => $_GET['userId'], 
+                ':try_id' => $_GET['tryId'], 
+                ':question_id' => $_GET['questionId'], 
+                ':answer_id' => $answer
+            ]);
+        }
+    } else {
+        // Single answer (backward compatibility)
+        $stmt = 'INSERT INTO user_answers (id, try_id, user_id, question_id, answer_id) VALUES (:id, :try_id, :user_id, :question_id, :answer_id)';
+        $req = $pdo->prepare($stmt);
+        $req->execute([
+            ':id' => uniqid(), 
+            ':user_id' => $_GET['userId'], 
+            ':try_id' => $_GET['tryId'], 
+            ':question_id' => $_GET['questionId'], 
+            ':answer_id' => $_GET['result']
+        ]);
+    }
 } catch (PDOException $e) {
     echo json_encode(['error' => 'Query failed: ' . $e->getMessage()]);
 }
-
-
