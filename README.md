@@ -79,15 +79,15 @@ Application de gestion de quiz.
 
 # Développement du site - 4h
 
-- Créer et lancer de projet - 2h
-- Création de la BDD - 1h
-- Création des tests - 1h
+- ✅ Créer et lancer de projet - 2h
+- ✅ Création de la BDD - 1h
+- ✅ Création des tests - 1h
 
 # Développement front - 23h
 
-- 🟩 UI - 8h
+- ✅ UI - 8h
 - 🟩 Vue mobile - 2h
-- 🟩 Vue tablette - 2h
+- ✅ Vue tablette - 2h
 - ✅ Vue PC - 4h
 - ✅ Darkmode - 2h
 - ✅ Affichage de la page des résultats - 1h
@@ -108,7 +108,7 @@ Application de gestion de quiz.
 
 ## Features manquantes
 
-- ❌ 
+- ❌ Rôle modérateur
 
 # Rôles
   - Administrateur : Gestion complète du site (Utilisateurs, Quiz)
