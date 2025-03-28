@@ -116,3 +116,9 @@ Application de gestion de quiz.
   - Utilisateur : Peut participer aux quiz et voir ses résultats
 
 ## DevNotes
+
+  - US-1 : Nous avons ajouté un confirm password en plus, pour l'envoie de mail, nous avons prévu d'implémenter cette fonctionnalitée dans une future version.
+  - US-12 : Il y a en plus une colonne pour savoir si le compte de l'utilisateur est activé ou non.
+  - US-15 : Nous avons ajouté une checkbox pour définir si l'utilisateur est activé ou non.
+  - US-17 : Nous avons seulement mis deux réponses disponibles de base (pour les vrai ou faux) et on peut toujours ajoutés deux réponses en plus.
+  - US-19 : Le bouton "details" sert à modifier les questions/réponses du quiz, et le bouton "update" sert à modifier la description et le titre du quiz.
