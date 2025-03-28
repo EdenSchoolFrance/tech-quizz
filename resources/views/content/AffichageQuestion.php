@@ -21,7 +21,7 @@ $tryId = uniqid();
         </div>
 
         <div class="md:w-1/2 flex flex-col space-y-4">
-            <form class="quiz-form" action="" method="GET">
+            <form class="quiz-form" action="#" method="GET">
 
                 <div class="option-container space-y-4">
 
