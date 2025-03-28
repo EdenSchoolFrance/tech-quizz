@@ -60,7 +60,9 @@ $tryId = uniqid();
                         answers.removeClass('hover:-translate-y-1');
                         answers.removeClass('cursor-pointer');
 
-                        data.forEach(function(item) {
+                        // Loop through answer data (excluding metadata)
+                        for (let i = 0; i < data.num_answers; i++) {
+                            const item = data[i];
                             if (item.Id_reponse === answer && item.is_correct === 1) {
                                 correct = true;
                                 let id = $('input[name="answer"]:checked').attr('id');
@@ -68,21 +70,26 @@ $tryId = uniqid();
                                 $(`label[for=${id}]`).removeClass('border-transparent');
                                 $(`label[for=${id}]`).addClass('border-green-500');
                             }
-                        });
+                        }
+                        
                         if (!correct) {
                             let id = $('input[name="answer"]:checked').attr('id');
                             $(`label[for=${id}]`).removeClass('peer-checked:border-purple-600');
                             $(`label[for=${id}]`).removeClass('border-transparent');
                             $(`label[for=${id}]`).addClass('border-red-500');
-                            data.forEach(function (item) {
+                            
+                            // Loop through answer data to find correct answer
+                            for (let i = 0; i < data.num_answers; i++) {
+                                const item = data[i];
                                 if (item.is_correct == 1) {
                                     id = $(`input[value=${item.Id_reponse}]`).attr('id');
                                     $(`label[for=${id}]`).removeClass('peer-checked:border-purple-600');
                                     $(`label[for=${id}]`).removeClass('border-transparent');
                                     $(`label[for=${id}]`).addClass('border-green-500');
                                 }
-                            });
+                            }
                         }
+                        
                         const button = $('button[type="submit"]');
                         if(limit-1 === max) {
                             button.text('View Results');
@@ -103,10 +110,10 @@ $tryId = uniqid();
                     url: `http://localhost:8001/fetch.php?id=<?=$id?>&limit=${limit}`,
                     method: 'GET',
                     success: function(data) {
-                        max = data[4];
+                        max = data.count;
                         const quizzText = $('.quizz-text');
                         quizzText.empty()
-                        quizzText.append(data[5]);
+                        quizzText.append(data.title);
 
                         const optionsContainer = $('.option-container');
                         optionsContainer.empty()
@@ -118,30 +125,33 @@ $tryId = uniqid();
 
                         const questionNum = $('.question-num');
                         questionNum.empty()
-                        questionNum.append(`Question ${limit} of ` + data[4]);
+                        questionNum.append(`Question ${limit} of ` + data.count);
 
                         const progressBar = $('.progress-bar');
-                        progressBar.css({'transition': 'width ease 1s', 'width': (limit / data[4]) * 100 + '%'});
+                        progressBar.css({'transition': 'width ease 1s', 'width': (limit / data.count) * 100 + '%'});
 
                         optionsContainer.empty();
-                        const LetterArray = ['A', 'B', 'C', 'D']
-                        data.forEach(function(item, index) {
-                            if (index > 3) return;
+                        const LetterArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+                        
+                        // Loop through all answers (excluding the metadata properties)
+                        for (let index = 0; index < data.num_answers; index++) {
+                            const item = data[index];
                             const optionId = 'option' + index;
+                            const letterIndex = index < LetterArray.length ? index : index % LetterArray.length;
 
                             const optionHtml = `
                                 <div class="option-containers">
                                     <input type="radio" name="answer" id="${optionId}" value="${item.Id_reponse}" class="hidden peer">
                                     <label for="${optionId}" class="bg-white dark:bg-[#3B4D66] dark:text-gray-300 w-full rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 text-gray-900 font-medium flex justify-between items-center cursor-pointer border-2 border-transparent peer-checked:border-purple-600">
                                         <div class="flex items-center">
-                                            <span class="mr-3 px-4 py-2 rounded-xl bg-[#F4F6FA] dark:bg-[#626C7F] dark:text-gray-300">${LetterArray[index]}</span>
+                                            <span class="mr-3 px-4 py-2 rounded-xl bg-[#F4F6FA] dark:bg-[#626C7F] dark:text-gray-300">${LetterArray[letterIndex]}</span>
                                             <span>${item.answer_text}</span>
                                         </div>
                                     </label>
                                 </div>`;
 
                             optionsContainer.append(optionHtml);
-                        });
+                        }
                         limit++;
 
                         // Disable the submit button initially
