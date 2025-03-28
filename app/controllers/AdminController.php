@@ -59,6 +59,9 @@ class AdminController
     
     public function updateUser($id)
     {
+
+
+
         $user = $this->um->getUserById($id);
         
         if (!$user) {
@@ -66,31 +69,20 @@ class AdminController
             header('Location: /dashboard');
             exit();
         }
-        
-        if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['role'])) {
-            $_SESSION['error'] = "All inputs are required";
-            $_SESSION['old'] = $_POST;
-            header('Location: /dashboard/user/edit/' . $id);
-            exit();
-        }
-        
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            $_SESSION['error'] = "Invalid email format";
-            $_SESSION['old'] = $_POST;
-            header('Location: /dashboard/user/edit/' . $id);
-            exit();
-        }
-        
+        $_SESSION['old'] = $_POST;
+
+
         if ($_POST['role'] !== 'user' && $_POST['role'] !== 'admin') {
             $_SESSION['error'] = "Role must be 'user' or 'admin'";
-            $_SESSION['old'] = $_POST;
+            var_dump($_POST);
+            exit();
             header('Location: /dashboard/user/edit/' . $id);
             exit();
         }
 
-        if ($_POST['is_active'] !== '1' && $_POST['is_active'] !== '0') {
+        if ($_POST['is_active'] !== '1' && !empty($_POST['is_active']) ) {
             $_SESSION['error'] = "User must be 'active' or 'inactive'";
-            $_SESSION['old'] = $_POST;
+
             header('Location: /dashboard/user/edit/' . $id);
             exit();
         }
@@ -104,17 +96,7 @@ class AdminController
         
         if ($result) {
             $_SESSION['success'] = "User updated successfully";
-            unset($_SESSION['error']);
-            unset($_SESSION['old']);
-            
-            if (isset($_SESSION['user']) && $_SESSION['user']->getId() === $id) {
-                $updatedUser = $this->um->getUserById($id);
-                if ($updatedUser) {
-                    $_SESSION['user'] = $updatedUser;
-                }
-            }
-            
-            header('Location: /dashboard');
+            header('Location: /dashboard/user');
             exit();
         } else {
             $_SESSION['error'] = "Error updating user";

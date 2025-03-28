@@ -21,7 +21,7 @@
         <form action="/quiz/<?= $quiz->getId() ?>/questions/store" method="POST">
             <div class="mb-4">
                 <label for="question_text" class="block text-sm font-medium text-gray-700 dark:text-neutral-50 mb-1">Question Text *</label>
-                <input type="text" name="question_text" id="question_text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <input type="text" name="question_text" id="question_text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?=old('question_text')?>" required>
             </div>
             
             <div class="mb-6 ">
@@ -33,7 +33,7 @@
                     <div class="mb-3 flex items-center answer-row">
                         <div class="flex-1">
                             <label for="answer_<?= $i ?>" class="block text-sm font-medium text-gray-700 dark:text-neutral-50 mb-1">Answer <?= $i ?> *</label>
-                            <input type="text" name="answers[<?= $i-1 ?>][text]" id="answer_<?= $i ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="text" name="answers[<?= $i-1 ?>][text]" id="answer_<?= $i ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?=old('answers['. $i-1 .'][text]')?>" required>
                         </div>
                         <div class="ml-4 flex items-center">
                             <input type="checkbox" name="correct_answers[]" value="<?= $i-1 ?>" id="correct_<?= $i ?>" class="h-4 w-4 text-blue-600 focus:ring-blue-500">

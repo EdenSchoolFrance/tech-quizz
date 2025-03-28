@@ -1,6 +1,5 @@
 <?php ob_start(); 
 
-echo gettype($user->getIsActive());
 ?>
 
 <div class="flex min-h-screen">
@@ -10,7 +9,10 @@ echo gettype($user->getIsActive());
                 <div class="bg-green-100 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-6">
                     <?= $_SESSION['success'] ?>
                 </div>
-            <?php endif; ?>
+            <?php endif;
+
+            echo $_SESSION['error'];
+            ?>
 
             <?php if (isset($_SESSION['error']) && is_string($_SESSION['error'])): ?>
                 <div class="bg-red-100 border border-red-200 text-red-800 px-4 py-3 rounded-lg mb-6">

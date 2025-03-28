@@ -12,12 +12,14 @@ class QuestionController
     private $qc;
     private $am;
     private $qm;
+    private $validator;
 
     public function __construct()
     {
         $this->qc = new QuestionManager();
         $this->am = new AnswersManager();
         $this->qm = new QuizManager();
+        $this->validator = new Validator();
     }
 
     public function index($id)
@@ -63,13 +65,14 @@ class QuestionController
             header('Location: /dashboard');
             exit();
         }
+
+        $_SESSION['old'] = $_POST;
         
-        $validator = new Validator();
-        $validator->validate([
+        $this->validator->validate([
             'question_text' => ['required', 'max:255']
         ]);
         
-        if (!empty($validator->errors())) {
+        if ($this->validator->errors()) {
             $_SESSION['error'] = "Please fill all required fields";
             header('Location: /quiz/' . $quizId . '/questions');
             exit();
@@ -180,6 +183,8 @@ class QuestionController
             header('Location: /dashboard');
             exit();
         }
+
+        $_SESSION['old'] = $_POST;
         
         $question = $this->qc->get($questionId);
         
@@ -189,12 +194,11 @@ class QuestionController
             exit();
         }
         
-        $validator = new Validator();
-        $validator->validate([
+        $this->validator->validate([
             'question_text' => ['required', 'max:255']
         ]);
         
-        if (!empty($validator->errors())) {
+        if ($this->validator->errors()) {
             $_SESSION['error'] = "Please fill all required fields";
             header('Location: /quiz/' . $quizId . '/questions/edit/' . $questionId);
             exit();
