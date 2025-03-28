@@ -42,19 +42,8 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200"><?= $quiz->getId() ?></td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200"><?= $quiz->getTitle() ?></td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
-                                            <?php 
-                                                $date = new DateTime($quiz->getCreatedAt());
-                                                if (class_exists('IntlDateFormatter')) {
-                                                    $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'd MMMM Y');
-                                                    echo $formatter->format($date);
-                                                } else {
-                                                    $months = [
-                                                        1 => 'Jan', 2 => 'Feb', 3 => 'Mar', 4 => 'Apr',
-                                                        5 => 'May', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug',
-                                                        9 => 'Sep', 10 => 'Oct', 11 => 'Nov', 12 => 'Dec'
-                                                    ];
-                                                    echo $date->format('d') . ' ' . $months[(int)$date->format('m')] . ' ' . $date->format('Y');
-                                                }
+                                            <?php
+                                                echo date('d M Y', strtotime($quiz->getCreatedAt()));
                                             ?>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm">

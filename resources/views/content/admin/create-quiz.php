@@ -22,6 +22,7 @@
                         <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Quiz Title *</label>
                         <input type="text" name="title" id="title" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required 
                                value="<?= isset($_SESSION['old']['title']) ? $_SESSION['old']['title'] : '' ?>">
+                        <span class="error"><?=error('title')?></span>
                     </div>
                     <div class="mb-6">
                         <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description</label>

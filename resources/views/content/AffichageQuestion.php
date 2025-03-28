@@ -38,6 +38,7 @@ $tryId = uniqid();
     </section>
     <script>
         $(document).ready(function() {
+            $('button[name=submit-button]').toggleClass('opacity-10')
             let limit = 1;
             let max;
             function store(answer) {
