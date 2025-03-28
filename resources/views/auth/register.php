@@ -16,7 +16,7 @@
                     class="dark:bg-[#313E51] p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Username"
                 >
-                <span class="text-red-500 text-xs mt-1"><?=error('username')?></span>
+                <span class="error"><?=error('username')?></span>
             </div>
             
             <div class="flex flex-col">
@@ -29,7 +29,7 @@
                     class="dark:bg-[#313E51] p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="your.email@example.com"
                 >
-                <span class="text-red-500 text-xs mt-1"><?=error('email')?></span>
+                <span class="error"><?=error('email')?></span>
             </div>
             
             <div class="flex flex-col">
@@ -41,7 +41,7 @@
                     class="dark:bg-[#313E51] p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Your password"
                 >
-                <span class="text-red-500 text-xs mt-1"><?=error('password')?></span>
+                <span class="error"><?=error('password')?></span>
             </div>
             
             <div class="flex flex-col">
@@ -53,7 +53,7 @@
                     class="dark:bg-[#313E51] p-3 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Confirm your password"
                 >
-                <span class="text-red-500 text-xs mt-1"><?=error('password_confirmation')?></span>
+                <span class="error"><?=error('password_confirmation')?></span>
             </div>
             
             <button 

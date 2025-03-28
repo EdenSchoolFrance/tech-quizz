@@ -71,6 +71,8 @@ class AuthController
             exit();
         }
 
+        $_SESSION['error']['password'] = 'L\'email ou le mot de passe est incorrect.';
+
         header('Location: /login');
     }
 

@@ -49,10 +49,6 @@ class AdminController
             exit();
         }
         
-        unset($_SESSION['error']);
-        unset($_SESSION['success']);
-        unset($_SESSION['old']);
-        
         $editUser = $user;
         require VIEWS . 'content/admin/edit-user.php';
     }
@@ -146,9 +142,6 @@ class AdminController
     
     public function createUser()
     {
-        unset($_SESSION['error']);
-        unset($_SESSION['success']);
-        unset($_SESSION['old']);
         
         require VIEWS . 'content/admin/create-user.php';
     }

@@ -8,10 +8,12 @@ use App\Validator;
 class QuizController
 {
     private $qc;
+    private $validator;
 
     public function __construct()
     {
         $this->qc = new QuizManager();
+        $this->validator = new Validator();
     }
 
     public function index()
@@ -34,10 +36,6 @@ class QuizController
             exit();
         }
         
-        unset($_SESSION['error']);
-        unset($_SESSION['success']);
-        unset($_SESSION['old']);
-        
         require VIEWS . 'content/admin/create-quiz.php';
     }
 
@@ -48,13 +46,12 @@ class QuizController
             header('Location: /login');
             exit();
         }
-        
-        $validator = new Validator();
-        $validator->validate([
+
+        $this->validator->validate([
             'title' => ['required', 'max:255']
         ]);
         
-        if (!empty($validator->errors())) {
+        if ($this->validator->errors()) {
             $_SESSION['old'] = $_POST;
             header('Location: /quiz/create');
             exit();
@@ -153,12 +150,12 @@ class QuizController
             exit();
         }
         
-        $validator = new Validator();
-        $validator->validate([
+
+        $this->validator->validate([
             'title' => ['required', 'max:255']
         ]);
         
-        if (!empty($validator->errors())) {
+        if ($this->validator->errors()) {
             $_SESSION['old'] = $_POST;
             header('Location: /dashboard/quiz/edit/' . $id);
             exit();
