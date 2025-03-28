@@ -27,7 +27,7 @@ $tryId = uniqid();
 
                 </div>
 
-                <button type="submit" name="submit-button" class="w-full bg-purple-600 text-white font-medium py-4 px-6 rounded-xl mt-8 hover:bg-purple-700 transition-colors ">
+                <button type="submit" name="submit-button" class="opacity-10 w-full bg-purple-600 text-white font-medium py-4 px-6 rounded-xl mt-8 hover:bg-purple-700 transition-opacity duration-1000 ">
                     Submit Answer
                 </button>
                 <div class="text-center mt-4 text-red-500 submit-error hidden">
@@ -38,7 +38,6 @@ $tryId = uniqid();
     </section>
     <script>
         $(document).ready(function() {
-            $('button[name=submit-button]').toggleClass('opacity-10')
             let limit = 1;
             let max;
             function store(answers) {
@@ -152,14 +151,17 @@ $tryId = uniqid();
                                 </div>`;
 
                             optionsContainer.append(optionHtml);
+
                         }
                         limit++;
 
                         // Disable the submit button initially
+
                         const submitButton = $('button[type="submit"]');
                         submitButton.addClass('disabled');
                         submitButton.removeClass('cursor-pointer')
                         submitButton.removeClass('hover:bg-purple-700');
+                        submitButton.addClass('opacity-10');
                         submitButton.prop('name', 'submit-button');
                         submitButton.text('Submit Answer');
 
@@ -167,6 +169,7 @@ $tryId = uniqid();
                         $('input[name="answer"]').on('change', function() {
                             const checkedAnswers = $('input[name="answer"]:checked');
                             if (checkedAnswers.length > 0) {
+                                $('button[name=submit-button]').removeClass('opacity-10');
                                 submitButton.removeClass('disabled');
                                 submitButton.addClass('cursor-pointer');
                                 submitButton.addClass('hover:bg-purple-700');
