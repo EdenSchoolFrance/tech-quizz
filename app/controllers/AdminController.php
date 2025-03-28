@@ -19,6 +19,11 @@ class AdminController
         $this->validator = new Validator();
     }
 
+    /**
+     * Display the admin dashboard with quizzes and users
+     * 
+     * @return void
+     */
     public function index()
     {
         $quizzes = $this->qc->getAll();
@@ -29,6 +34,11 @@ class AdminController
         require VIEWS . 'content/admin/index.php';
     }
     
+    /**
+     * Display the user list (only for admin)
+     * 
+     * @return void
+     */
     public function users()
     {
         if (!isset($_SESSION['user']) || $_SESSION['user']->getRole() !== 'admin') {
@@ -42,6 +52,12 @@ class AdminController
         require VIEWS . 'content/admin/users.php';
     }
     
+    /**
+     * Display the edit user form
+     * 
+     * @param int $id user ID
+     * @return void
+     */
     public function editUser($id)
     {
         $user = $this->um->getUserById($id);
@@ -52,17 +68,18 @@ class AdminController
             exit();
         }
         
-        
-        
         $editUser = $user;
         require VIEWS . 'content/admin/edit-user.php';
     }
     
+    /**
+     * Processes the update user form submission
+     * 
+     * @param int $id user ID
+     * @return void
+     */
     public function updateUser($id)
     {
-
-
-
         $user = $this->um->getUserById($id);
         
         if (!$user) {
@@ -83,15 +100,12 @@ class AdminController
 
         if ($_POST['role'] !== 'user' && $_POST['role'] !== 'admin') {
             $_SESSION['error'] = "Role must be 'user' or 'admin'";
-            var_dump($_POST);
-            exit();
             header('Location: /dashboard/user/edit/' . $id);
             exit();
         }
 
         if ($_POST['is_active'] !== '1' && !empty($_POST['is_active']) ) {
             $_SESSION['error'] = "User must be 'active' or 'inactive'";
-
             header('Location: /dashboard/user/edit/' . $id);
             exit();
         }
@@ -115,6 +129,12 @@ class AdminController
         }
     }
 
+    /**
+     * Delete a user
+     * 
+     * @param int $id user ID
+     * @return void
+     */
     public function deleteUser($id)
     {
         if ($_SESSION['user']->getId() === $id) {
@@ -143,11 +163,21 @@ class AdminController
         exit();
     }
     
+    /**
+     * Display the create user form
+     * 
+     * @return void
+     */
     public function createUser()
     {
         require VIEWS . 'content/admin/create-user.php';
     }
     
+    /**
+     * Processes the create user form submission
+     * 
+     * @return void
+     */
     public function storeUser()
     {
         if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['role'])) {
@@ -188,8 +218,7 @@ class AdminController
         
         if ($result) {
             $_SESSION['success'] = "User created successfully";
-
-            header('Location: /dashboard');
+            header('Location: /dashboard/user');
             exit();
         } else {
             $_SESSION['error'] = "Error creating user";
