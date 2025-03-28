@@ -188,8 +188,7 @@ class AdminController
         
         if ($result) {
             $_SESSION['success'] = "User created successfully";
-            unset($_SESSION['error']);
-            unset($_SESSION['old']);
+
             header('Location: /dashboard');
             exit();
         } else {

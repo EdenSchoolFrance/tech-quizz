@@ -34,6 +34,8 @@ class UserManager extends Model
                 ':is_active' => $is_active
             ]);
 
+            return true;
+
         } catch (\PDOException $e) {
             return "Erreur de base de données: " . $e->getMessage();
         }
