@@ -18,4 +18,8 @@ class AdminController extends Controller
     {
         return view('admin.create-quizz');
     }
+
+    public function deleteQuizz() {
+
+    }
 }
