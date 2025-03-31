@@ -52,6 +52,7 @@ class QuizController extends Controller
         if ($idOrder == 1) {
             $request->session()->put('score', 0);
         }
+
         return $this->getResponsesAndQuestions($idQuiz, $idOrder);
     }
 
@@ -79,7 +80,7 @@ class QuizController extends Controller
             ->where("question_id", "=", $questionId)
             ->get();
 
-        if (!$getAnswer || $getAnswer->is_correct !== 1) {
+        if ($getAnswer->is_correct !== 1) {
             $currentScore = $request->session()->get('score');
             return response()->json([
                 "success" => false,
@@ -99,21 +100,29 @@ class QuizController extends Controller
 
     public function score(Request $request, $idQuiz)
     {
-        $score = $request->session()->get('score');
         $userId = Auth::id();
+        $score = $request->session()->get('score');
+
+        if ($score === null) {
+            abort(404);
+        }
 
         try {
             Results::query()->insert([
                 'quiz_id' => $idQuiz,
                 'score' => $score,
                 'user_id' => $userId,
-                'created_at' => NOW(),
-                'updated_at' => NOW()
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         } catch (\Exception $e) {
             dd('Erreur lors de l’insertion : ' . $e->getMessage());
         }
 
-        return view('quizz.score', ['score' => $score]);
+        $request->session()->forget(['score']);
+
+        $quizz = Quizzes::query()->findOrFail($idQuiz);
+        return view('quizz.score', ['score' => $score, 'quizz' => $quizz]);
     }
+
 }

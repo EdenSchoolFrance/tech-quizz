@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ResultsController;
@@ -18,13 +19,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/quizz/{id}/question/{idQuestion}', [QuizController::class, 'showQuestions']);
     Route::get('/score/quizz/{id}', [QuizController::class, 'score']);
 
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.quizzList');
-    Route::get('/admin/create-quizz', [AdminController::class, 'createQuizz'])->name('admin.createQuizz');
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.quizzList');
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.quizzList');
+    Route::middleware([RoleMiddleware::class . ':admin'])->group(function () {
+        Route::get("/admin", [AdminController::class, 'index'])->name('admin.index');
+        Route::get("/admin/users", [AdminController::class, 'userManagement'])->name('admin.users');
+        Route::get('admin/create-user', [AdminController::class, 'createUser']);
+        Route::post('admin/create-user', [AdminController::class, 'store'])->name('admin.create-user');
+        Route::delete('admin/delete-user/{id}', [AdminController::class, 'deleteUser'])->name('admin.delete-user');
+        Route::get('admin/update-user/{id}', [AdminController::class, 'updateUserPage']);
+        Route::patch('admin/update-user/{id}', [AdminController::class, 'updateUser'])->name('admin.update-user');
+    });
 });
 
 Route::get('/quizz/', [QuizController::class, 'index'])->name('quizzes.index');
 
 require __DIR__ . '/auth.php';
-
