@@ -12,6 +12,18 @@ use Illuminate\Validation\Rules;
 
 class AdminController extends Controller
 {
+    public function deleteUser($id) {
+        User::query()->findOrFail($id)->delete();
+        return redirect()->route('admin.users')->with('message', 'User has been successfully deleted!');
+    }
+
+    public function updateUserPage($id) {
+        $user = User::query()->findOrFail($id);
+        return view('admin.update-user', [
+            'user' => $user,
+        ]);
+    }
+  
      public function index()
      {
           $quizzes = Quizzes::all();
@@ -26,12 +38,6 @@ class AdminController extends Controller
           return view('admin.user-management', [
                'users' => $users,
           ]);
-     }
-
-     public function deleteUser($id)
-     {
-          User::query()->findOrFail($id)->delete();
-          return redirect()->route('admin.users')->with('message', 'User has been successfully deleted!');
      }
 
      public function createUser()
